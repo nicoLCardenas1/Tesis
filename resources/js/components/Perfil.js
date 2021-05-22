@@ -8,6 +8,7 @@ export const Perfil = () => {
     const [nombreIes, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [ubicacion, setUbicacion] = useState('');
+    const [urlPagina, setUrlPagina] = useState('');
     const user = useSelector(state => state.auth)
 
     useEffect(() => {
@@ -28,6 +29,7 @@ export const Perfil = () => {
                     setUrlPhoto(data.urlFoto ?? '');
                     setDescripcion(data.descripcion ?? '');
                     setUbicacion(data.ubicacion ?? '');
+                    setUrlPagina(data.urlPagina ?? '');
                 })
                 .catch(error => {
                     console.log(error);
@@ -37,7 +39,7 @@ export const Perfil = () => {
 
     const handlerSubmit = (e) => {
         e.preventDefault();
-        if (!urlFoto || !nombreIes || !descripcion || !ubicacion) {
+        if (!urlFoto || !nombreIes || !descripcion || !ubicacion || !urlPagina) {
             Swal.fire({
                 title: 'Incompletos',
                 text: 'Todos los campos son requeridos',
@@ -56,7 +58,7 @@ export const Perfil = () => {
                     "Access-Control-Request-Method": "*"
                 },
                 body: JSON.stringify({
-                    urlFoto, nombreIes, descripcion, ubicacion, idUser: user.user_id
+                    urlFoto, nombreIes, descripcion, ubicacion, urlPagina, idUser: user.user_id
                 })
             })
                 .then(data => data.json())
@@ -106,7 +108,11 @@ export const Perfil = () => {
                             <label htmlFor="ubicacion">Ubicación</label>
                             <input type="text" className="form-control" id="ubicacion" placeholder="Carrera 9 - 45A" onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} />
                         </div>
-                        <button type="submit" className="btn btn-primary" onClick={handlerSubmit}>Submit</button>
+                        <div className="form-group">
+                            <label htmlFor="pagina">URL página</label>
+                            <input type="text" className="form-control" id="pagina" placeholder="www.unal.edu.co" onChange={(e) => setUrlPagina(e.target.value)} value={urlPagina} />
+                        </div>
+                        <button type="submit" className="btn btn-primary" onClick={handlerSubmit}>Actualizar información</button>
                     </form>
                 </div>
             </div>

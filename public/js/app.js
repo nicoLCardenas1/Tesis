@@ -78881,6 +78881,11 @@ var Perfil = function Perfil() {
       ubicacion = _useState8[0],
       setUbicacion = _useState8[1];
 
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      urlPagina = _useState10[0],
+      setUrlPagina = _useState10[1];
+
   var user = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.auth;
   });
@@ -78898,12 +78903,13 @@ var Perfil = function Perfil() {
       }).then(function (data) {
         return data.json();
       }).then(function (data) {
-        var _data$nombreIes, _data$urlFoto, _data$descripcion, _data$ubicacion;
+        var _data$nombreIes, _data$urlFoto, _data$descripcion, _data$ubicacion, _data$urlPagina;
 
         setNombre((_data$nombreIes = data.nombreIes) !== null && _data$nombreIes !== void 0 ? _data$nombreIes : '');
         setUrlPhoto((_data$urlFoto = data.urlFoto) !== null && _data$urlFoto !== void 0 ? _data$urlFoto : '');
         setDescripcion((_data$descripcion = data.descripcion) !== null && _data$descripcion !== void 0 ? _data$descripcion : '');
         setUbicacion((_data$ubicacion = data.ubicacion) !== null && _data$ubicacion !== void 0 ? _data$ubicacion : '');
+        setUrlPagina((_data$urlPagina = data.urlPagina) !== null && _data$urlPagina !== void 0 ? _data$urlPagina : '');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -78913,7 +78919,7 @@ var Perfil = function Perfil() {
   var handlerSubmit = function handlerSubmit(e) {
     e.preventDefault();
 
-    if (!urlFoto || !nombreIes || !descripcion || !ubicacion) {
+    if (!urlFoto || !nombreIes || !descripcion || !ubicacion || !urlPagina) {
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
         title: 'Incompletos',
         text: 'Todos los campos son requeridos',
@@ -78936,6 +78942,7 @@ var Perfil = function Perfil() {
           nombreIes: nombreIes,
           descripcion: descripcion,
           ubicacion: ubicacion,
+          urlPagina: urlPagina,
           idUser: user.user_id
         })
       }).then(function (data) {
@@ -79023,11 +79030,24 @@ var Perfil = function Perfil() {
       return setUbicacion(e.target.value);
     },
     value: ubicacion
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "pagina"
+  }, "URL p\xE1gina"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "pagina",
+    placeholder: "www.unal.edu.co",
+    onChange: function onChange(e) {
+      return setUrlPagina(e.target.value);
+    },
+    value: urlPagina
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary",
     onClick: handlerSubmit
-  }, "Submit")))));
+  }, "Actualizar informaci\xF3n")))));
 };
 
 /***/ }),
@@ -79711,6 +79731,7 @@ var Representate = function Representate() {
 
   var triggerForm = function triggerForm() {
     setSnies('');
+    setNombreIes('');
     setNombrePrograma('');
     setSector('');
     setCaracterAcademico('');

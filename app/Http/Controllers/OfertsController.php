@@ -162,7 +162,7 @@ class OfertsController extends Controller
         }
 
         //devolver la respuesta del proceso al front
-        return response()->json($request->all(), 200);
+        return response()->json($response, 200);
     }
 
     /**
@@ -187,6 +187,7 @@ class OfertsController extends Controller
         $universidad->nombreIes = $request->input('nombreIes');
         $universidad->descripcion = $request->input('descripcion');
         $universidad->ubicacion = $request->input('ubicacion');
+        $universidad->urlPagina = $request->input('urlPagina');
         $universidad->idUser = $request->input('idUser');
 
         //hacer el guardado

@@ -19,6 +19,7 @@ class Universidad extends Migration
             $table->string('nombreIes');
             $table->string('descripcion');
             $table->string('ubicacion');
+            $table->string('urlPagina');
             $table->string('idUser');
             $table->timestamps();
         });

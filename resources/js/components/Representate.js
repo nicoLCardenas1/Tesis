@@ -175,6 +175,7 @@ export const Representate = () => {
 
     const triggerForm = () => {
         setSnies('')
+        setNombreIes('')
         setNombrePrograma('')
         setSector('')
         setCaracterAcademico('')
