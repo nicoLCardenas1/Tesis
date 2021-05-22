@@ -182,7 +182,10 @@ class OfertsController extends Controller
      */
     public function updateUniversidad(Request $request)
     {
-        $universidad = Universidad::find($request->input('idUser'));
+        $universidad = $find = Universidad::where('idUser', '=', $request->input('idUser'))->first();
+        if (!isset($find)) {
+            $universidad = new Universidad();
+        }
         $universidad->urlFoto = $request->input('urlFoto');
         $universidad->nombreIes = $request->input('nombreIes');
         $universidad->descripcion = $request->input('descripcion');
@@ -191,7 +194,7 @@ class OfertsController extends Controller
         $universidad->idUser = $request->input('idUser');
 
         //hacer el guardado
-        if ($universidad->update()) {
+        if (!isset($find) ? $universidad->save() : $universidad->update()) {
             $response = [
                 'status' => 1,
                 'universidad' => $universidad,
@@ -212,8 +215,16 @@ class OfertsController extends Controller
     /**
      * 
      */
-    public function getUniversidadId($idUser)
+    public function getUniversidadIdUser($idUser)
     {
-        return response()->json(Universidad::find($idUser), 200);
+        return response()->json(Universidad::where("idUser", $idUser)->first(), 200);
+    }
+
+    /**
+     * 
+     */
+    public function getUniversidadId($id)
+    {
+        return response()->json(Universidad::where("nombreIes", $id)->first(), 200);
     }
 }

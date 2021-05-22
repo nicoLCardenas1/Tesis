@@ -13,7 +13,7 @@ export const Perfil = () => {
 
     useEffect(() => {
         if (user.user_id) {
-            fetch(`/api/universidad/${user.user_id}`, {
+            fetch(`/api/universidad-user/${user.user_id}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

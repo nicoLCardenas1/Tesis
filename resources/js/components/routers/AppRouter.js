@@ -17,6 +17,7 @@ import { Favorite } from '../Favorite';
 import { Home } from '../Home';
 import { Postulados } from '../Postulados';
 import { Perfil } from '../Perfil';
+import { Universidad } from '../Universidad';
 
 export const AppRouter = () => {
     const dispatch = useDispatch();
@@ -42,6 +43,7 @@ export const AppRouter = () => {
                     <Route path="/home/aspirantes" component={Aspirante} />
                     <Route path="/home/representantes" component={Representate} />
                     <Route path="/home/perfil" component={Perfil} />
+                    <Route path="/home/universidad/:id" component={Universidad} />
                     <Route path="/home" component={Home} />
                 </Switch>
             </div>

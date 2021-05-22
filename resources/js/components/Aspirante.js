@@ -100,8 +100,18 @@ export const Aspirante = () => {
                                             <tr key={i} className='text-center'>
                                                 <th scope="row">{item.id}</th>
                                                 <td>{item.codigo_snies}</td>
-                                                <td>{item.nombre_ies}</td>
-                                                <td>{item.nombre_programa}</td>
+                                                <td>
+                                                    <Link
+                                                        to={`/home/universidad/${item.nombre_ies}`}
+                                                    >{item.nombre_ies}</Link>
+
+                                                </td>
+                                                <td>
+                                                    <Link
+                                                        to={`/home/programa/${item.id}`}
+                                                    >{item.nombre_programa}</Link>
+
+                                                </td>
                                                 <td>{item.sector_academico}</td>
                                                 <td>{item.caracter_academico}</td>
                                                 <td>{item.ubicacion}</td>
