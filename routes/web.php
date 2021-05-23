@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/register', 'Auth\RegisterController@showTemplate')->name('register');
 
 Route::get('/home/{route1?}/{route2?}', 'HomeController@index')->name('home');
 Route::get('/logout', 'HomeController@logout');

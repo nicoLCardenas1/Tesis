@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Snies;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,6 +58,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function showTemplate()
+    {
+        return view('auth/register', ['snies' => DB::select('SELECT * FROM snies as t1 WHERE NOT EXISTS (SELECT * FROM users as t2 WHERE t1.id_snies = t2.ies)')]);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -64,37 +71,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $iesCode = $data['code_ies'] ? $data['code_ies'] : $this->randIes(5);
         return User::create([
             'name' => $data['name'],
-            'ies' => $iesCode,
-            'snies' => $this->randString(5),
+            'ies' => $data['code_ies'],
+            'snies' => Snies::where("id_snies", $data['code_ies'])->get(['name'])->first()->name,
             'role' => $data['role'],
             'phone' => $data['phone'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    public function randString($length){
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-
-    }
-    
-    public function randIes($length){
-        $characters = '0123456789';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-
     }
 }
