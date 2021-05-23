@@ -79886,7 +79886,7 @@ var TableForm = function TableForm(_ref3) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
     scope: "row"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
+    type: "number",
     placeholder: "Codigo SNIES",
     onChange: function onChange(e) {
       return setSnies(e.target.value);
@@ -79942,7 +79942,7 @@ var TableForm = function TableForm(_ref3) {
     },
     value: acreditado
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
+    type: "number",
     placeholder: "Precio",
     onChange: function onChange(e) {
       return setPrecio(e.target.value);
@@ -79956,7 +79956,7 @@ var TableForm = function TableForm(_ref3) {
     },
     value: jornada
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
+    type: "number",
     placeholder: "N\xFAmero de Semestres",
     onChange: function onChange(e) {
       return setNumeroSemestres(e.target.value);

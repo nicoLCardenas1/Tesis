@@ -324,7 +324,7 @@ const TableForm = ({
     return (
         <tr className='text-center'>
             <th scope="row">{/* <Input type='text' placeholder='ID' /> */}</th>
-            <td><Input type='text' placeholder='Codigo SNIES' onChange={(e) => setSnies(e.target.value)} value={snies} /></td>
+            <td><Input type='number' placeholder='Codigo SNIES' onChange={(e) => setSnies(e.target.value)} value={snies} /></td>
             <td><Input type='text' placeholder='Nombre de programa' onChange={(e) => setNombrePrograma(e.target.value)} value={nombrePrograma} /></td>
             <td><Input type='text' placeholder='Título otorgado' onChange={(e) => setTitulo(e.target.value)} value={titulo} /></td>
             <td><Input type='text' placeholder='Nivel académico' onChange={(e) => setNivelAcademico(e.target.value)} value={nivelAcademico} /></td>
@@ -332,9 +332,9 @@ const TableForm = ({
             <td><Input type='text' placeholder='Carácter Académico' onChange={(e) => setCaracterAcademico(e.target.value)} value={caracterAcademico} /></td>
             <td><Input type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} /></td>
             <td><Input type='text' placeholder='Acreditado' onChange={(e) => setAcreditado(e.target.value)} value={acreditado} /></td>
-            <td><Input type='text' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} /></td>
+            <td><Input type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} /></td>
             <td><Input type='text' placeholder='Jornada' onChange={(e) => setJornada(e.target.value)} value={jornada} /></td>
-            <td><Input type='text' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} /></td>
+            <td><Input type='number' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} /></td>
             <td><Input type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} /></td>
             <td><button className='btn btn-sm btn-dark' onClick={triggerForm}>Limpiar</button></td>
         </tr>

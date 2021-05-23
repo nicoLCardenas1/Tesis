@@ -38,10 +38,10 @@ class FavoriteController extends Controller
     {
         $user_id = $request->input('user_id');
         $offer = $request->input('id');
-        
+
         $validate = Favorite::where('user_id', $user_id)
-                            ->where('offer_id', $offer)
-                            ->get();
+            ->where('offer_id', $offer)
+            ->get();
 
         if (count($validate)) {
             $response = [
@@ -50,12 +50,12 @@ class FavoriteController extends Controller
                 'message' => 'Ya lo añadiste a los favoritos',
                 'validate' => $validate
             ];
-        }else{
+        } else {
             $favorite = new Favorite();
             $favorite->user_id = $user_id;
             $favorite->offer_id = $offer;
             $favorite->save();
-            
+
             $response = [
                 'status' => 1,
                 'favorite' => $favorite,
@@ -79,13 +79,13 @@ class FavoriteController extends Controller
         $offers = Ofert::whereIn('id', $favorites)->get();
         return response()->json($offers, 200);
     }
-    
+
     public function postuados($id)
     {
         $favorites = Favorite::select('offer_id')->get();
         $offers = Ofert::whereIn('id', $favorites)
-                        ->where('user_id', $id)
-                        ->get();
+            ->where('user_id', $id)
+            ->get();
         return response()->json($offers, 200);
     }
 
