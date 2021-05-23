@@ -18,6 +18,7 @@ export const authReducer = (state = initialState, action) => {
                 role: action.payload.role,
                 name: action.payload.name,
                 ies: action.payload.ies,
+                snies: action.payload.snies,
             }
         default:
             return state;

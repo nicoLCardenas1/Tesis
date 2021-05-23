@@ -27,6 +27,9 @@ class CreateOfertsTable extends Migration
             $table->string('jornada');
             $table->string('numero_semestres');
             $table->string('metodologia');
+            $table->string('titulo_otorgado');
+            $table->string('nivel_academico');
+            $table->string('precio');
             $table->timestamps();
         });
     }

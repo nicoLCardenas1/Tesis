@@ -18,9 +18,10 @@ const Input = styled.input`
 export const Representate = () => {
     const [idoffer, setIdoffer] = useState(null)
     const [snies, setSnies] = useState('')
-    const [ies, setIes] = useState('')
+    const [titulo, setTitulo] = useState('')
+    const [nivelAcademico, setNivelAcademico] = useState('')
+    const [precio, setPrecio] = useState('')
     const [nombrePrograma, setNombrePrograma] = useState('')
-    const [nombreIes, setNombreIes] = useState('')
     const [sector, setSector] = useState('')
     const [caracterAcademico, setCaracterAcademico] = useState('')
     const [ubicacion, setUbicacion] = useState('')
@@ -42,17 +43,18 @@ export const Representate = () => {
         if (
             snies !== '' &&
             nombrePrograma !== '' &&
-            nombreIes !== '' &&
             sector !== '' &&
             caracterAcademico !== '' &&
             ubicacion !== '' &&
             acreditado !== '' &&
             jornada !== '' &&
             numeroSemestres !== '' &&
+            titulo !== '' &&
+            nivelAcademico !== '' &&
+            precio !== '' &&
             metodologia !== ''
         ) {
             handleSaveOferts(snies,
-                nombreIes,
                 nombrePrograma,
                 sector,
                 caracterAcademico,
@@ -60,6 +62,9 @@ export const Representate = () => {
                 acreditado,
                 jornada,
                 numeroSemestres,
+                titulo,
+                nivelAcademico,
+                precio,
                 metodologia)
         } else {
             alert('Por favor llenar todos los campos')
@@ -70,9 +75,7 @@ export const Representate = () => {
     const handleUpdateOffer = (offer, e) => {
         e.preventDefault();
         setIdoffer(offer.id)
-        setIes(offer.codigo_ies)
         setSnies(offer.codigo_snies)
-        setNombreIes(offer.nombre_ies)
         setNombrePrograma(offer.nombre_programa)
         setSector(offer.sector_academico)
         setCaracterAcademico(offer.caracter_academico)
@@ -81,14 +84,15 @@ export const Representate = () => {
         setJornada(offer.jornada)
         setNumeroSemestres(offer.numero_semestres)
         setMetodologia(offer.metodologia)
+        setTitulo(offer.titulo_otorgado)
+        setNivelAcademico(offer.nivel_academico)
+        setPrecio(offer.precio)
     }
 
     const handleSaveEdit = () => {
         if (
             idoffer !== null &&
-            ies !== '' &&
             snies !== '' &&
-            nombreIes !== '' &&
             nombrePrograma !== '' &&
             sector !== '' &&
             caracterAcademico !== '' &&
@@ -96,9 +100,12 @@ export const Representate = () => {
             acreditado !== '' &&
             jornada !== '' &&
             numeroSemestres !== '' &&
+            titulo !== '' &&
+            nivelAcademico !== '' &&
+            precio !== '' &&
             metodologia !== ''
         ) {
-            handleUpdateOferts({ idoffer, ies, snies, nombreIes, nombrePrograma, sector, caracterAcademico, ubicacion, acreditado, jornada, numeroSemestres, metodologia, user_id: user?.user_id })
+            handleUpdateOferts({ idoffer, ies: user.ies, snies, nombreIes: user.snies, nombrePrograma, sector, caracterAcademico, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, user_id: user?.user_id })
         } else {
             alert('Por favor llenar todos los campos')
         }
@@ -106,7 +113,6 @@ export const Representate = () => {
 
     const handleSaveOferts = async (
         snies,
-        nombreIes,
         nombrePrograma,
         sector,
         caracterAcademico,
@@ -114,9 +120,11 @@ export const Representate = () => {
         acreditado,
         jornada,
         numeroSemestres,
+        titulo,
+        nivelAcademico,
+        precio,
         metodologia
     ) => {
-
         try {
             const response = await fetch(`/api/save/ofert`, {
                 method: 'POST',
@@ -130,7 +138,7 @@ export const Representate = () => {
                 body: JSON.stringify({
                     user_id: user?.user_id,
                     ies: user?.ies,
-                    nombreIes,
+                    nombreIes: user.snies,
                     snies,
                     nombrePrograma,
                     sector,
@@ -139,6 +147,9 @@ export const Representate = () => {
                     acreditado,
                     jornada,
                     numeroSemestres,
+                    titulo,
+                    nivelAcademico,
+                    precio,
                     metodologia
                 })
             });
@@ -175,7 +186,6 @@ export const Representate = () => {
 
     const triggerForm = () => {
         setSnies('')
-        setNombreIes('')
         setNombrePrograma('')
         setSector('')
         setCaracterAcademico('')
@@ -184,6 +194,9 @@ export const Representate = () => {
         setJornada('')
         setNumeroSemestres('')
         setMetodologia('')
+        setTitulo('')
+        setNivelAcademico('')
+        setPrecio('')
     }
 
     return (
@@ -199,12 +212,14 @@ export const Representate = () => {
                             <tr className='text-center'>
                                 <th scope="col">ID</th>
                                 <th scope="col">Codigo SNIES</th>
-                                <th scope="col">N. IES</th>
                                 <th scope="col">N. Programa</th>
+                                <th scope="col">Título otorgado</th>
+                                <th scope="col">Nivel académico</th>
                                 <th scope="col">Sector</th>
                                 <th scope="col">Carácter Académico</th>
                                 <th scope="col">Ubicación</th>
                                 <th scope="col">¿Acreditado?</th>
+                                <th scope="col">Precio</th>
                                 <th scope="col">Jornada</th>
                                 <th scope="col">Num. Semestres</th>
                                 <th scope="col">Metodología</th>
@@ -214,23 +229,27 @@ export const Representate = () => {
                         <tbody>
                             <TableForm
                                 snies={snies}
-                                nombreIes={nombreIes}
                                 nombrePrograma={nombrePrograma}
+                                titulo={titulo}
+                                nivelAcademico={nivelAcademico}
                                 sector={sector}
                                 caracterAcademico={caracterAcademico}
                                 ubicacion={ubicacion}
                                 acreditado={acreditado}
+                                precio={precio}
                                 jornada={jornada}
                                 numeroSemestres={numeroSemestres}
                                 metodologia={metodologia}
 
                                 setSnies={setSnies}
                                 setNombrePrograma={setNombrePrograma}
-                                setNombreIes={setNombreIes}
+                                setTitulo={setTitulo}
+                                setNivelAcademico={setNivelAcademico}
                                 setSector={setSector}
                                 setCaracterAcademico={setCaracterAcademico}
                                 setUbicacion={setUbicacion}
                                 setAcreditado={setAcreditado}
+                                setPrecio={setPrecio}
                                 setJornada={setJornada}
                                 setNumeroSemestres={setNumeroSemestres}
                                 setMetodologia={setMetodologia}
@@ -244,12 +263,14 @@ export const Representate = () => {
                                             <tr key={i} className='text-center'>
                                                 <th scope="row">{item.id}</th>
                                                 <td>{item.codigo_snies}</td>
-                                                <td>{item.nombre_ies}</td>
                                                 <td>{item.nombre_programa}</td>
+                                                <td>{item.titulo_otorgado}</td>
+                                                <td>{item.nivel_academico}</td>
                                                 <td>{item.sector_academico}</td>
                                                 <td>{item.caracter_academico}</td>
                                                 <td>{item.ubicacion}</td>
                                                 <td>{item.acreditado}</td>
+                                                <td>{item.precio}</td>
                                                 <td>{item.jornada}</td>
                                                 <td>{item.numero_semestres}</td>
                                                 <td>{item.metodologia}</td>
@@ -274,23 +295,27 @@ export const Representate = () => {
 
 const TableForm = ({
     snies,
-    nombreIes,
     nombrePrograma,
+    titulo,
+    nivelAcademico,
     sector,
     caracterAcademico,
     ubicacion,
     acreditado,
+    precio,
     jornada,
     numeroSemestres,
     metodologia,
 
     setSnies,
-    setNombreIes,
     setNombrePrograma,
+    setTitulo,
+    setNivelAcademico,
     setSector,
     setCaracterAcademico,
     setUbicacion,
     setAcreditado,
+    setPrecio,
     setJornada,
     setNumeroSemestres,
     setMetodologia,
@@ -300,12 +325,14 @@ const TableForm = ({
         <tr className='text-center'>
             <th scope="row">{/* <Input type='text' placeholder='ID' /> */}</th>
             <td><Input type='text' placeholder='Codigo SNIES' onChange={(e) => setSnies(e.target.value)} value={snies} /></td>
-            <td><Input type='text' placeholder='Nombre de IES' onChange={(e) => setNombreIes(e.target.value)} value={nombreIes} /></td>
             <td><Input type='text' placeholder='Nombre de programa' onChange={(e) => setNombrePrograma(e.target.value)} value={nombrePrograma} /></td>
+            <td><Input type='text' placeholder='Título otorgado' onChange={(e) => setTitulo(e.target.value)} value={titulo} /></td>
+            <td><Input type='text' placeholder='Nivel académico' onChange={(e) => setNivelAcademico(e.target.value)} value={nivelAcademico} /></td>
             <td><Input type='text' placeholder='Sector' onChange={(e) => setSector(e.target.value)} value={sector} /></td>
             <td><Input type='text' placeholder='Carácter Académico' onChange={(e) => setCaracterAcademico(e.target.value)} value={caracterAcademico} /></td>
             <td><Input type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} /></td>
             <td><Input type='text' placeholder='Acreditado' onChange={(e) => setAcreditado(e.target.value)} value={acreditado} /></td>
+            <td><Input type='text' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} /></td>
             <td><Input type='text' placeholder='Jornada' onChange={(e) => setJornada(e.target.value)} value={jornada} /></td>
             <td><Input type='text' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} /></td>
             <td><Input type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} /></td>

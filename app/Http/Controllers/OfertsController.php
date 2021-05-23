@@ -64,6 +64,9 @@ class OfertsController extends Controller
         $ofert->jornada = $jornada;
         $ofert->numero_semestres = $numeroSemestres;
         $ofert->metodologia = $metodologia;
+        $ofert->titulo_otorgado = $request->input('titulo');
+        $ofert->nivel_academico = $request->input('nivelAcademico');
+        $ofert->precio = $request->input('precio');
 
         //hacer el guardado
         if ($ofert->save()) {
@@ -145,6 +148,9 @@ class OfertsController extends Controller
         $ofert->jornada = $jornada;
         $ofert->numero_semestres = $numeroSemestres;
         $ofert->metodologia = $metodologia;
+        $ofert->titulo_otorgado = $request->input('titulo');
+        $ofert->nivel_academico = $request->input('nivelAcademico');
+        $ofert->precio = $request->input('precio');
 
         //hacer el guardado
         if ($ofert->update()) {

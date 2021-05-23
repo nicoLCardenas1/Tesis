@@ -20,6 +20,7 @@
 <input type="hidden" id="role" value="{{ Auth::user()->role }}" />
 <input type="hidden" id="name" value="{{ Auth::user()->name }}" />
 <input type="hidden" id="ies" value="{{ Auth::user()->ies }}" />
+<input type="hidden" id="snies" value="{{ Auth::user()->snies }}" />
 <div id="example"></div>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>

@@ -1,6 +1,5 @@
 import { types } from "../types/types"
 
-
 export const login = (uid, displayName, email) => ({
     type: types.login,
     payload: {
@@ -17,10 +16,10 @@ export const test = () => ({
     }
 })
 
-export const dataUser = (id, role, name, ies) => ({
+export const dataUser = (id, role, name, ies, snies) => ({
     type: types.userActive,
     payload: {
-        id, role, name, ies
+        id, role, name, ies, snies
     }
 })
 

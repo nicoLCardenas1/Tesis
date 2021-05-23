@@ -27,7 +27,8 @@ export const AppRouter = () => {
         const role = document.getElementById('role');
         const name = document.getElementById('name');
         const ies = document.getElementById('ies');
-        dispatch(dataUser(user.value, role.value, name.value, ies.value))
+        const snies = document.getElementById('snies');
+        dispatch(dataUser(user.value, role.value, name.value, ies.value, snies.value))
     }, [])
 
     return (
