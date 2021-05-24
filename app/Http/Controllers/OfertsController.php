@@ -14,9 +14,9 @@ class OfertsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id = null)
     {
-        return response()->json(Ofert::orderBy('id', 'desc')->get(), 200);
+        return response()->json(Ofert::where('user_id', $id)->orderBy('id', 'desc')->get(), 200);
     }
 
     /**

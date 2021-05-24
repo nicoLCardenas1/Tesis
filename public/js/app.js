@@ -79570,8 +79570,8 @@ var Representate = function Representate() {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     console.log('***', offer === null || offer === void 0 ? void 0 : offer.offers);
-    if (!(offer !== null && offer !== void 0 && offer.offers)) dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])());
-  }, []);
+    if (!(offer !== null && offer !== void 0 && offer.offers)) dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])(user.user_id));
+  }, [user]);
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -79670,7 +79670,7 @@ var Representate = function Representate() {
             case 6:
               data = _context.sent;
               console.log('******||******', data);
-              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])());
+              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])(user.user_id));
               if (data.status) triggerForm();else {
                 sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
                   title: 'Upps!',
@@ -79729,7 +79729,7 @@ var Representate = function Representate() {
             case 6:
               data = _context2.sent;
               console.log('update||******', data);
-              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])());
+              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])(user.user_id));
               if (data.status) triggerForm();
               _context2.next = 15;
               break;
@@ -80478,6 +80478,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var offers = function offers() {
+  var uid = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
       var offers;
@@ -80486,7 +80487,7 @@ var offers = function offers() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return Object(_hlpers_LoadOffers__WEBPACK_IMPORTED_MODULE_1__["loadOffers"])();
+              return Object(_hlpers_LoadOffers__WEBPACK_IMPORTED_MODULE_1__["loadOffers"])(uid);
 
             case 2:
               offers = _context.sent;
@@ -80549,7 +80550,7 @@ var loadOffers = /*#__PURE__*/function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return fetch("/api/oferts", {
+            return fetch("/api/oferts/".concat(uid), {
               method: 'GET',
               headers: {
                 'Accept': 'application/json',

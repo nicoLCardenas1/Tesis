@@ -1,9 +1,9 @@
 import { loadOffers } from "../hlpers/LoadOffers";
 import { types } from "../types/types"
 
-export const offers = () => {
+export const offers = (uid = '') => {
     return async (dispatch) => {
-        const offers = await loadOffers();
+        const offers = await loadOffers(uid);
         dispatch(setOffers(offers))
     }
 }

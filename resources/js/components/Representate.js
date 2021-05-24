@@ -36,8 +36,8 @@ export const Representate = () => {
 
     useEffect(() => {
         console.log('***', offer?.offers)
-        if (!offer?.offers) dispatch(offers())
-    }, []);
+        if (!offer?.offers) dispatch(offers(user.user_id))
+    }, [user]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -156,7 +156,7 @@ export const Representate = () => {
             });
             const data = await response.json();
             console.log('******||******', data)
-            dispatch(offers())
+            dispatch(offers(user.user_id))
             if (data.status) triggerForm()
             else {
                 Swal.fire({
@@ -186,7 +186,7 @@ export const Representate = () => {
             });
             const data = await response.json();
             console.log('update||******', data)
-            dispatch(offers())
+            dispatch(offers(user.user_id))
             if (data.status) triggerForm()
         } catch (error) {
             console.log(error)

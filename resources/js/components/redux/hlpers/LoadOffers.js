@@ -1,6 +1,6 @@
 export const loadOffers = async (uid) => {
     try {
-        const response = await fetch(`/api/oferts`, {
+        const response = await fetch(`/api/oferts/${uid}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

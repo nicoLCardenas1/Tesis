@@ -24,7 +24,7 @@ Route::get('favorites/{id}', 'FavoriteController@show');
 Route::post('save/favorite', 'FavoriteController@store');
 Route::post('save/ofert', 'OfertsController@store');
 Route::post('update/ofert', 'OfertsController@update');
-Route::get('oferts', 'OfertsController@index');
+Route::get('oferts/{id?}', 'OfertsController@index');
 Route::get('offer/{id}', 'OfertsController@show');
 Route::put('universidad', 'OfertsController@updateUniversidad');
 Route::get('universidad-user/{id}', 'OfertsController@getUniversidadIdUser');
