@@ -16,7 +16,12 @@ class OfertsController extends Controller
      */
     public function index($id = null)
     {
-        return response()->json(Ofert::where('user_id', $id)->orderBy('id', 'desc')->get(), 200);
+        if ($id == null) {
+            $response = Ofert::orderBy('id', 'desc')->get();
+        } else {
+            $response = Ofert::where('user_id', $id)->orderBy('id', 'desc')->get();
+        }
+        return response()->json($response, 200);
     }
 
     /**

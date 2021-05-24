@@ -79385,6 +79385,10 @@ var Program = function Program() {
 
             case 3:
               request = _context.sent;
+
+              /**
+               * La variable request tiene toda la información de la oferta, por lo cual puedes agregar una vista para el programa.
+               */
               setOffer(request);
 
             case 5:

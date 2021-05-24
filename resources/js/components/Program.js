@@ -20,6 +20,9 @@ export const Program = () => {
             parametro: id,
         };
         const request = await GetHttpRequest(data)
+        /**
+         * La variable request tiene toda la información de la oferta, por lo cual puedes agregar una vista para el programa.
+         */
         setOffer(request);
     }
 
