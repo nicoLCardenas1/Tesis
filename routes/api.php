@@ -29,3 +29,4 @@ Route::get('offer/{id}', 'OfertsController@show');
 Route::put('universidad', 'OfertsController@updateUniversidad');
 Route::get('universidad-user/{id}', 'OfertsController@getUniversidadIdUser');
 Route::get('universidad/{id}', 'OfertsController@getUniversidadId');
+Route::post('snies', 'OfertsController@snies');

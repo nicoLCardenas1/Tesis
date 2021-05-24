@@ -73,8 +73,8 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'ies' => $data['code_ies'],
-            'snies' => Snies::where("id_snies", $data['code_ies'])->get(['name'])->first()->name,
+            'ies' => $data['code_ies'] ?? null,
+            'snies' => isset($data['code_ies']) ? Snies::where("id_snies", $data['code_ies'])->get(['name'])->first()->name : null,
             'role' => $data['role'],
             'phone' => $data['phone'],
             'email' => $data['email'],

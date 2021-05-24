@@ -78907,9 +78907,9 @@ var Perfil = function Perfil() {
       }).then(function (data) {
         return data.json();
       }).then(function (data) {
-        var _data$nombreIes, _data$urlFoto, _data$descripcion, _data$ubicacion, _data$urlPagina;
+        var _user$snies, _data$urlFoto, _data$descripcion, _data$ubicacion, _data$urlPagina;
 
-        setNombre((_data$nombreIes = data.nombreIes) !== null && _data$nombreIes !== void 0 ? _data$nombreIes : '');
+        setNombre((_user$snies = user.snies) !== null && _user$snies !== void 0 ? _user$snies : '');
         setUrlPhoto((_data$urlFoto = data.urlFoto) !== null && _data$urlFoto !== void 0 ? _data$urlFoto : '');
         setDescripcion((_data$descripcion = data.descripcion) !== null && _data$descripcion !== void 0 ? _data$descripcion : '');
         setUbicacion((_data$ubicacion = data.ubicacion) !== null && _data$ubicacion !== void 0 ? _data$ubicacion : '');
@@ -79001,12 +79001,9 @@ var Perfil = function Perfil() {
     htmlFor: "nombre"
   }, "Nombre universidad"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     type: "text",
+    disabled: true,
     className: "form-control",
     id: "nombre",
-    placeholder: "Universidad Piloto de Colombia",
-    onChange: function onChange(e) {
-      return setNombre(e.target.value);
-    },
     value: nombreIes
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -79468,6 +79465,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
 var _templateObject;
 
 
@@ -79489,6 +79488,7 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
 
 
 
@@ -79671,7 +79671,14 @@ var Representate = function Representate() {
               data = _context.sent;
               console.log('******||******', data);
               dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])());
-              if (data.status) triggerForm();
+              if (data.status) triggerForm();else {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
+                  title: 'Upps!',
+                  text: data.message,
+                  icon: 'error',
+                  confirmButtonText: 'Cerrar'
+                });
+              }
               _context.next = 15;
               break;
 

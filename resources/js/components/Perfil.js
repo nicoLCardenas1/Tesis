@@ -9,7 +9,7 @@ export const Perfil = () => {
     const [descripcion, setDescripcion] = useState('');
     const [ubicacion, setUbicacion] = useState('');
     const [urlPagina, setUrlPagina] = useState('');
-    const user = useSelector(state => state.auth)
+    const user = useSelector(state => state.auth);
 
     useEffect(() => {
         if (user.user_id) {
@@ -25,7 +25,7 @@ export const Perfil = () => {
             })
                 .then(data => data.json())
                 .then(data => {
-                    setNombre(data.nombreIes ?? '');
+                    setNombre(user.snies ?? '');
                     setUrlPhoto(data.urlFoto ?? '');
                     setDescripcion(data.descripcion ?? '');
                     setUbicacion(data.ubicacion ?? '');
@@ -98,7 +98,7 @@ export const Perfil = () => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="nombre">Nombre universidad</label>
-                            <input type="text" className="form-control" id="nombre" placeholder="Universidad Piloto de Colombia" onChange={(e) => setNombre(e.target.value)} value={nombreIes} />
+                            <input type="text" disabled className="form-control" id="nombre" value={nombreIes} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="descripcion">Descripción</label>

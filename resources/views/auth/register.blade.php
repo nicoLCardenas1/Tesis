@@ -44,11 +44,11 @@
                         </div>
 
                         <div class="form-group row" id="IesContainer">
-                            <label for="code_ies" class="col-md-4 col-form-label text-md-right">{{ __('Codigo Ies') }}</label>
+                            <label for="code_ies" class="col-md-4 col-form-label text-md-right">{{ __('Ies') }}</label>
 
                             <div class="col-md-6 code_ies">
                                 <select id="code_ies" type="text" class="form-control @error('code_ies') is-invalid @enderror code_ies" name="code_ies" value="{{ old('code_ies') }}" required autocomplete="code_ies">
-                                    <option value="" selected disabled hidden>Selecciona Codigo Ies</option>
+                                    <option value="" selected disabled hidden>Selecciona Ies</option>
                                     @foreach ($snies as $ies)
                                     <option value="{{$ies->id_snies}}">{{$ies->name}}</option>
                                     @endforeach

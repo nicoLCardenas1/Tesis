@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ofert;
 use App\Universidad;
 use Illuminate\Http\Request;
+use App\Snies;
 
 class OfertsController extends Controller
 {
@@ -49,6 +50,15 @@ class OfertsController extends Controller
         $ies = $request->input('ies');
         $nombre_ies = $request->input('nombreIes');
         $ubicacion = $request->input('ubicacion');
+
+        $universidad = Universidad::where('nombreIes', $nombre_ies)->get();
+        if (count($universidad) <= 0) {
+            return [
+                'status' => 0,
+                'ofert' => 0,
+                'message' => 'Para guardar una oferta, primero debe ingresar el perfil de la universidad.',
+            ];
+        }
 
         //meterlos en el modelo de laravel
         $ofert = new Ofert();
@@ -169,6 +179,15 @@ class OfertsController extends Controller
 
         //devolver la respuesta del proceso al front
         return response()->json($response, 200);
+    }
+
+    public function snies(Request $request)
+    {
+        $snies = new Snies();
+        $snies->id_snies = $request->input('idSnies');
+        $snies->name = $request->input('name');
+
+        return response()->json($snies->save(), 200);
     }
 
     /**

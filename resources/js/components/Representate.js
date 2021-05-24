@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { createOffer, offers } from './redux/actions/oferts';
+import Swal from 'sweetalert2'
 
 const Input = styled.input`
   border: none;
@@ -157,6 +158,14 @@ export const Representate = () => {
             console.log('******||******', data)
             dispatch(offers())
             if (data.status) triggerForm()
+            else {
+                Swal.fire({
+                    title: 'Upps!',
+                    text: data.message,
+                    icon: 'error',
+                    confirmButtonText: 'Cerrar'
+                });
+            }
         } catch (error) {
             console.log(error)
         }
