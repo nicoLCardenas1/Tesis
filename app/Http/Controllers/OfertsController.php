@@ -183,11 +183,18 @@ class OfertsController extends Controller
 
     public function snies(Request $request)
     {
-        $snies = new Snies();
-        $snies->id_snies = $request->input('idSnies');
-        $snies->name = $request->input('name');
+        $data = $request->input('data');
+        $count = 0;
 
-        return response()->json($snies->save(), 200);
+        foreach ($data as $snies) {
+            $newSnies = new Snies();
+            $newSnies->id_snies = $snies["idSnies"];
+            $newSnies->name = $snies["name"];
+            if ($newSnies->save()) {
+                $count++;
+            }
+        }
+        return response()->json(["count" => $count], 200);
     }
 
     /**
