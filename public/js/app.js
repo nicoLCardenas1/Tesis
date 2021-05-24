@@ -79793,6 +79793,16 @@ var Representate = function Representate() {
     setPrecio('');
   };
 
+  var styleTable = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  };
+  var table = {
+    overflowX: 'auto',
+    display: 'block',
+    width: 'max-content'
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -79803,14 +79813,154 @@ var Representate = function Representate() {
     className: "text-primary"
   }, "Bienvenido: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "text-dark"
-  }, user === null || user === void 0 ? void 0 : user.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "btn btn-light btn-sm mb-3",
+  }, user === null || user === void 0 ? void 0 : user.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "accordion",
+    id: "accordionExample"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card-header",
+    id: "headingOne"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+    className: "mb-0"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "btn btn-link btn-block text-left",
+    type: "button",
+    "data-toggle": "collapse",
+    "data-target": "#collapseOne",
+    "aria-expanded": "true",
+    "aria-controls": "collapseOne"
+  }, "Ingresar oferta"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    id: "collapseOne",
+    className: "collapse show",
+    "aria-labelledby": "headingOne",
+    "data-parent": "#accordionExample"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Codigo SNIES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "number",
+    placeholder: "Codigo SNIES",
+    onChange: function onChange(e) {
+      return setSnies(e.target.value);
+    },
+    value: snies
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Nombre de programa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    placeholder: "Nombre de programa",
+    onChange: function onChange(e) {
+      return setNombrePrograma(e.target.value);
+    },
+    value: nombrePrograma
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "T\xEDtulo otorgado"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    placeholder: "T\xEDtulo otorgado",
+    onChange: function onChange(e) {
+      return setTitulo(e.target.value);
+    },
+    value: titulo
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Nivel acad\xE9mico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    placeholder: "Nivel acad\xE9mico",
+    onChange: function onChange(e) {
+      return setNivelAcademico(e.target.value);
+    },
+    value: nivelAcademico
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Ubicaci\xF3n"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    placeholder: "Ubicaci\xF3n",
+    onChange: function onChange(e) {
+      return setUbicacion(e.target.value);
+    },
+    value: ubicacion
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Acreditado"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    placeholder: "Acreditado",
+    onChange: function onChange(e) {
+      return setAcreditado(e.target.value);
+    },
+    value: acreditado
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "number",
+    placeholder: "Precio",
+    onChange: function onChange(e) {
+      return setPrecio(e.target.value);
+    },
+    value: precio
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Jornada"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    placeholder: "Jornada",
+    onChange: function onChange(e) {
+      return setJornada(e.target.value);
+    },
+    value: jornada
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "N\xFAmero de Semestres"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "number",
+    placeholder: "N\xFAmero de Semestres",
+    onChange: function onChange(e) {
+      return setNumeroSemestres(e.target.value);
+    },
+    value: numeroSemestres
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Metodolog\xEDa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    placeholder: "Metodolog\xEDa",
+    onChange: function onChange(e) {
+      return setMetodologia(e.target.value);
+    },
+    value: metodologia
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "btn btn-success mx-2",
     onClick: handleSubmit
   }, "Crear Nuevo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "btn btn-light btn-sm mb-3",
+    className: "btn btn-primary mx-2",
     onClick: handleSaveEdit
-  }, "Actualizar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
-    className: "table table-hover"
+  }, "Actualizar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "btn btn-dark mx-2",
+    onClick: triggerForm
+  }, "Limpiar")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    style: styleTable
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    className: "table table-hover",
+    style: table
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", {
     className: "bg-primary text-light"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
@@ -79839,29 +79989,7 @@ var Representate = function Representate() {
     scope: "col"
   }, "Metodolog\xEDa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
     scope: "col"
-  }, "Acciones"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(TableForm, {
-    snies: snies,
-    nombrePrograma: nombrePrograma,
-    titulo: titulo,
-    nivelAcademico: nivelAcademico,
-    ubicacion: ubicacion,
-    acreditado: acreditado,
-    precio: precio,
-    jornada: jornada,
-    numeroSemestres: numeroSemestres,
-    metodologia: metodologia,
-    setSnies: setSnies,
-    setNombrePrograma: setNombrePrograma,
-    setTitulo: setTitulo,
-    setNivelAcademico: setNivelAcademico,
-    setUbicacion: setUbicacion,
-    setAcreditado: setAcreditado,
-    setPrecio: setPrecio,
-    setJornada: setJornada,
-    setNumeroSemestres: setNumeroSemestres,
-    setMetodologia: setMetodologia,
-    triggerForm: triggerForm
-  }), offer !== null && offer !== void 0 && offer.offers ? offer !== null && offer !== void 0 && offer.offers.length ? offer === null || offer === void 0 ? void 0 : offer.offers.map(function (item, i) {
+  }, "Acciones"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, offer !== null && offer !== void 0 && offer.offers ? offer !== null && offer !== void 0 && offer.offers.length ? offer === null || offer === void 0 ? void 0 : offer.offers.map(function (item, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
       key: i,
       className: "text-center"
@@ -79877,109 +80005,7 @@ var Representate = function Representate() {
     colSpan: 11
   }, "No hay ofertas disponibles")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
     colSpan: 11
-  }, "Cargando ofertas")))))));
-};
-
-var TableForm = function TableForm(_ref3) {
-  var snies = _ref3.snies,
-      nombrePrograma = _ref3.nombrePrograma,
-      titulo = _ref3.titulo,
-      nivelAcademico = _ref3.nivelAcademico,
-      ubicacion = _ref3.ubicacion,
-      acreditado = _ref3.acreditado,
-      precio = _ref3.precio,
-      jornada = _ref3.jornada,
-      numeroSemestres = _ref3.numeroSemestres,
-      metodologia = _ref3.metodologia,
-      setSnies = _ref3.setSnies,
-      setNombrePrograma = _ref3.setNombrePrograma,
-      setTitulo = _ref3.setTitulo,
-      setNivelAcademico = _ref3.setNivelAcademico,
-      setUbicacion = _ref3.setUbicacion,
-      setAcreditado = _ref3.setAcreditado,
-      setPrecio = _ref3.setPrecio,
-      setJornada = _ref3.setJornada,
-      setNumeroSemestres = _ref3.setNumeroSemestres,
-      setMetodologia = _ref3.setMetodologia,
-      triggerForm = _ref3.triggerForm;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
-    className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
-    scope: "row"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "number",
-    placeholder: "Codigo SNIES",
-    onChange: function onChange(e) {
-      return setSnies(e.target.value);
-    },
-    value: snies
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Nombre de programa",
-    onChange: function onChange(e) {
-      return setNombrePrograma(e.target.value);
-    },
-    value: nombrePrograma
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "T\xEDtulo otorgado",
-    onChange: function onChange(e) {
-      return setTitulo(e.target.value);
-    },
-    value: titulo
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Nivel acad\xE9mico",
-    onChange: function onChange(e) {
-      return setNivelAcademico(e.target.value);
-    },
-    value: nivelAcademico
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Ubicaci\xF3n",
-    onChange: function onChange(e) {
-      return setUbicacion(e.target.value);
-    },
-    value: ubicacion
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Acreditado",
-    onChange: function onChange(e) {
-      return setAcreditado(e.target.value);
-    },
-    value: acreditado
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "number",
-    placeholder: "Precio",
-    onChange: function onChange(e) {
-      return setPrecio(e.target.value);
-    },
-    value: precio
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Jornada",
-    onChange: function onChange(e) {
-      return setJornada(e.target.value);
-    },
-    value: jornada
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "number",
-    placeholder: "N\xFAmero de Semestres",
-    onChange: function onChange(e) {
-      return setNumeroSemestres(e.target.value);
-    },
-    value: numeroSemestres
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Metodolog\xEDa",
-    onChange: function onChange(e) {
-      return setMetodologia(e.target.value);
-    },
-    value: metodologia
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    className: "btn btn-sm btn-dark",
-    onClick: triggerForm
-  }, "Limpiar")));
+  }, "Cargando ofertas"))))))));
 };
 
 /***/ }),

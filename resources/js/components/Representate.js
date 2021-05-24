@@ -194,130 +194,148 @@ export const Representate = () => {
         setPrecio('')
     }
 
+    const styleTable = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    };
+
+    const table = {
+        overflowX: 'auto',
+        display: 'block',
+        width: 'max-content'
+    }
+
     return (
         <div className='container-fluid'>
             <div className='row justify-content-center'>
                 <div className='col-md-12 mt-4'>
-                    {/* <h4 className='text-primary'>Nombre de la IES</h4> */}
                     <h4 className='text-primary'>Bienvenido: <span className='text-dark'>{user?.name}</span></h4>
-                    <button className='btn btn-light btn-sm mb-3' onClick={handleSubmit}>Crear Nuevo</button>
-                    <button className='btn btn-light btn-sm mb-3' onClick={handleSaveEdit}>Actualizar</button>
-                    <table className="table table-hover">
-                        <thead className='bg-primary text-light'>
-                            <tr className='text-center'>
-                                <th scope="col">ID</th>
-                                <th scope="col">Codigo SNIES</th>
-                                <th scope="col">N. Programa</th>
-                                <th scope="col">Título otorgado</th>
-                                <th scope="col">Nivel académico</th>
-                                <th scope="col">Ubicación</th>
-                                <th scope="col">¿Acreditado?</th>
-                                <th scope="col">Precio</th>
-                                <th scope="col">Jornada</th>
-                                <th scope="col">Num. Semestres</th>
-                                <th scope="col">Metodología</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <TableForm
-                                snies={snies}
-                                nombrePrograma={nombrePrograma}
-                                titulo={titulo}
-                                nivelAcademico={nivelAcademico}
-                                ubicacion={ubicacion}
-                                acreditado={acreditado}
-                                precio={precio}
-                                jornada={jornada}
-                                numeroSemestres={numeroSemestres}
-                                metodologia={metodologia}
+                    <div className="accordion" id="accordionExample">
+                        <div className="card">
+                            <div className="card-header" id="headingOne">
+                                <h2 className="mb-0">
+                                    <button className="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        Ingresar oferta
+                            </button>
+                                </h2>
+                            </div>
 
-                                setSnies={setSnies}
-                                setNombrePrograma={setNombrePrograma}
-                                setTitulo={setTitulo}
-                                setNivelAcademico={setNivelAcademico}
-                                setUbicacion={setUbicacion}
-                                setAcreditado={setAcreditado}
-                                setPrecio={setPrecio}
-                                setJornada={setJornada}
-                                setNumeroSemestres={setNumeroSemestres}
-                                setMetodologia={setMetodologia}
-                                triggerForm={triggerForm}
-                            />
-                            {
-                                offer?.offers
-                                    ? offer?.offers.length
-                                        ?
-                                        offer?.offers.map((item, i) => (
-                                            <tr key={i} className='text-center'>
-                                                <th scope="row">{item.id}</th>
-                                                <td>{item.codigo_snies}</td>
-                                                <td>{item.nombre_programa}</td>
-                                                <td>{item.titulo_otorgado}</td>
-                                                <td>{item.nivel_academico}</td>
-                                                <td>{item.ubicacion}</td>
-                                                <td>{item.acreditado}</td>
-                                                <td>{item.precio}</td>
-                                                <td>{item.jornada}</td>
-                                                <td>{item.numero_semestres}</td>
-                                                <td>{item.metodologia}</td>
-                                                <td><button className='btn btn-sm btn-warning' onClick={(e) => handleUpdateOffer(item, e)}>Editar</button></td>
+                            <div id="collapseOne" className="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div className="card-body">
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6">
+                                            <label>Codigo SNIES</label>
+                                            <input className="form-control" type='number' placeholder='Codigo SNIES' onChange={(e) => setSnies(e.target.value)} value={snies} />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label>Nombre de programa</label>
+                                            <input className="form-control" type='text' placeholder='Nombre de programa' onChange={(e) => setNombrePrograma(e.target.value)} value={nombrePrograma} />
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6">
+                                            <label>Título otorgado</label>
+                                            <input className="form-control" type='text' placeholder='Título otorgado' onChange={(e) => setTitulo(e.target.value)} value={titulo} />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label>Nivel académico</label>
+                                            <input className="form-control" type='text' placeholder='Nivel académico' onChange={(e) => setNivelAcademico(e.target.value)} value={nivelAcademico} />
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6">
+                                            <label>Ubicación</label>
+                                            <input className="form-control" type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label>Acreditado</label>
+                                            <input className="form-control" type='text' placeholder='Acreditado' onChange={(e) => setAcreditado(e.target.value)} value={acreditado} />
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6">
+                                            <label>Precio</label>
+                                            <input className="form-control" type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label>Jornada</label>
+                                            <input className="form-control" type='text' placeholder='Jornada' onChange={(e) => setJornada(e.target.value)} value={jornada} />
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6">
+                                            <label>Número de Semestres</label>
+                                            <input className="form-control" type='number' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label>Metodología</label>
+                                            <input className="form-control" type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} />
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <button className='btn btn-success mx-2' onClick={handleSubmit}>Crear Nuevo</button>
+                                        <button className='btn btn-primary mx-2' onClick={handleSaveEdit}>Actualizar</button>
+                                        <button className='btn btn-dark mx-2' onClick={triggerForm}>Limpiar</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={styleTable}>
+                        <table className="table table-hover" style={table}>
+                            <thead className='bg-primary text-light'>
+                                <tr className='text-center'>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Codigo SNIES</th>
+                                    <th scope="col">N. Programa</th>
+                                    <th scope="col">Título otorgado</th>
+                                    <th scope="col">Nivel académico</th>
+                                    <th scope="col">Ubicación</th>
+                                    <th scope="col">¿Acreditado?</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Jornada</th>
+                                    <th scope="col">Num. Semestres</th>
+                                    <th scope="col">Metodología</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    offer?.offers
+                                        ? offer?.offers.length
+                                            ?
+                                            offer?.offers.map((item, i) => (
+                                                <tr key={i} className='text-center'>
+                                                    <th scope="row">{item.id}</th>
+                                                    <td>{item.codigo_snies}</td>
+                                                    <td>{item.nombre_programa}</td>
+                                                    <td>{item.titulo_otorgado}</td>
+                                                    <td>{item.nivel_academico}</td>
+                                                    <td>{item.ubicacion}</td>
+                                                    <td>{item.acreditado}</td>
+                                                    <td>{item.precio}</td>
+                                                    <td>{item.jornada}</td>
+                                                    <td>{item.numero_semestres}</td>
+                                                    <td>{item.metodologia}</td>
+                                                    <td><button className='btn btn-sm btn-warning' onClick={(e) => handleUpdateOffer(item, e)}>Editar</button></td>
+                                                </tr>
+                                            ))
+                                            : <tr>
+                                                <td colSpan={11}>No hay ofertas disponibles</td>
                                             </tr>
-                                        ))
                                         : <tr>
-                                            <td colSpan={11}>No hay ofertas disponibles</td>
+                                            <td colSpan={11}>Cargando ofertas</td>
                                         </tr>
-                                    : <tr>
-                                        <td colSpan={11}>Cargando ofertas</td>
-                                    </tr>
-                            }
-                        </tbody>
-                    </table>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    )
-}
-
-
-const TableForm = ({
-    snies,
-    nombrePrograma,
-    titulo,
-    nivelAcademico,
-    ubicacion,
-    acreditado,
-    precio,
-    jornada,
-    numeroSemestres,
-    metodologia,
-
-    setSnies,
-    setNombrePrograma,
-    setTitulo,
-    setNivelAcademico,
-    setUbicacion,
-    setAcreditado,
-    setPrecio,
-    setJornada,
-    setNumeroSemestres,
-    setMetodologia,
-    triggerForm,
-}) => {
-    return (
-        <tr className='text-center'>
-            <th scope="row">{/* <Input type='text' placeholder='ID' /> */}</th>
-            <td><Input type='number' placeholder='Codigo SNIES' onChange={(e) => setSnies(e.target.value)} value={snies} /></td>
-            <td><Input type='text' placeholder='Nombre de programa' onChange={(e) => setNombrePrograma(e.target.value)} value={nombrePrograma} /></td>
-            <td><Input type='text' placeholder='Título otorgado' onChange={(e) => setTitulo(e.target.value)} value={titulo} /></td>
-            <td><Input type='text' placeholder='Nivel académico' onChange={(e) => setNivelAcademico(e.target.value)} value={nivelAcademico} /></td>
-            <td><Input type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} /></td>
-            <td><Input type='text' placeholder='Acreditado' onChange={(e) => setAcreditado(e.target.value)} value={acreditado} /></td>
-            <td><Input type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} /></td>
-            <td><Input type='text' placeholder='Jornada' onChange={(e) => setJornada(e.target.value)} value={jornada} /></td>
-            <td><Input type='number' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} /></td>
-            <td><Input type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} /></td>
-            <td><button className='btn btn-sm btn-dark' onClick={triggerForm}>Limpiar</button></td>
-        </tr>
+        </div >
     )
 }
