@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { createOffer, offers } from './redux/actions/oferts';
+import { offers } from './redux/actions/oferts';
 import Swal from 'sweetalert2'
-
-const Input = styled.input`
-  border: none;
-  height: 100%;
-  min-height: 35px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border-radius: 4px;
-  text-align: center;
-  color: gray;
-`;
 
 export const Representate = () => {
     const [idoffer, setIdoffer] = useState(null)
@@ -91,6 +78,54 @@ export const Representate = () => {
         setDescripcion(offer.descripcion)
         setPaginaAdmision(offer.pagina_admision)
         setPaginaPlan(offer.pagina_plan)
+    }
+
+    const handleDeleteOffer = (id, e, index) => {
+        e.preventDefault();
+
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Esta acción no será reversible",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`/api/offer/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json; charset=utf-8',
+                        'Access-Control-Allow-Origin': '*',
+                        "Access-Control-Request-Headers": "*",
+                        "Access-Control-Request-Method": "*"
+                    }
+                })
+                    .then(data => data.json())
+                    .then(data => {
+                        if (data) {
+                            Swal.fire(
+                                'Eliminado',
+                                'La oferta fue eliminada con exito.',
+                                'success'
+                            );
+                            dispatch(offers(user.user_id))
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        Swal.fire({
+                            title: 'Upps!',
+                            text: 'Se ha presentado un error, intente nuevamente',
+                            icon: 'error',
+                            confirmButtonText: 'Cerrar'
+                        });
+                    });
+            }
+        })
     }
 
     const handleSaveEdit = () => {
@@ -360,7 +395,10 @@ export const Representate = () => {
                                                     <td>{item.jornada}</td>
                                                     <td>{item.numero_semestres}</td>
                                                     <td>{item.metodologia}</td>
-                                                    <td><button className='btn btn-sm btn-warning' onClick={(e) => handleUpdateOffer(item, e)}>Editar</button></td>
+                                                    <td>
+                                                        <button className='btn btn-sm mx-1 btn-warning' onClick={(e) => handleUpdateOffer(item, e)}>Editar</button>
+                                                        <button className='btn btn-sm mx-1 btn-danger' onClick={(e) => handleDeleteOffer(item.id, e, i)}>Eliminar</button>
+                                                    </td>
                                                 </tr>
                                             ))
                                             : <tr>

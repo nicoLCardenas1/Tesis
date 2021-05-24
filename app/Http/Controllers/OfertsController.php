@@ -77,9 +77,9 @@ class OfertsController extends Controller
         $ofert->titulo_otorgado = $request->input('titulo');
         $ofert->nivel_academico = $request->input('nivelAcademico');
         $ofert->precio = $request->input('precio');
-        $ofert->descripcion = $request->input('descripcion');
-        $ofert->pagina_admision = $request->input('paginaAdmision');
-        $ofert->pagina_plan = $request->input('paginaPlan');
+        $ofert->descripcion = $request->input('descripcion') ?? '';
+        $ofert->pagina_admision = $request->input('paginaAdmision') ?? '';
+        $ofert->pagina_plan = $request->input('paginaPlan') ?? '';
 
         //hacer el guardado
         if ($ofert->save()) {
@@ -164,9 +164,9 @@ class OfertsController extends Controller
         $ofert->titulo_otorgado = $request->input('titulo');
         $ofert->nivel_academico = $request->input('nivelAcademico');
         $ofert->precio = $request->input('precio');
-        $ofert->descripcion = $request->input('descripcion');
-        $ofert->pagina_admision = $request->input('paginaAdmision');
-        $ofert->pagina_plan = $request->input('paginaPlan');
+        $ofert->descripcion = $request->input('descripcion') ?? '';
+        $ofert->pagina_admision = $request->input('paginaAdmision') ?? '';
+        $ofert->pagina_plan = $request->input('paginaPlan') ?? '';
 
         //hacer el guardado
         if ($ofert->update()) {
@@ -187,6 +187,9 @@ class OfertsController extends Controller
         return response()->json($response, 200);
     }
 
+    /**
+     * 
+     */
     public function snies(Request $request)
     {
         $data = $request->input('data');
@@ -201,6 +204,19 @@ class OfertsController extends Controller
             }
         }
         return response()->json(["count" => $count], 200);
+    }
+
+    /**
+     * 
+     */
+    public function delete($id)
+    {
+        $status = false;
+        if (Ofert::where('id', $id)->delete()) {
+            $status = true;
+        }
+
+        return response()->json($status, 200);
     }
 
     /**

@@ -79503,12 +79503,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
-var _templateObject;
-
+/* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -79527,14 +79524,10 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
 
-
-
-var Input = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].input(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: none;\n  height: 100%;\n  min-height: 35px;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-radius: 4px;\n  text-align: center;\n  color: gray;\n"])));
 var Representate = function Representate() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -79615,7 +79608,7 @@ var Representate = function Representate() {
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     console.log('***', offer === null || offer === void 0 ? void 0 : offer.offers);
-    if (!(offer !== null && offer !== void 0 && offer.offers)) dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])(user.user_id));
+    if (!(offer !== null && offer !== void 0 && offer.offers)) dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__["offers"])(user.user_id));
   }, [user]);
 
   var handleSubmit = function handleSubmit(e) {
@@ -79644,6 +79637,48 @@ var Representate = function Representate() {
     setDescripcion(offer.descripcion);
     setPaginaAdmision(offer.pagina_admision);
     setPaginaPlan(offer.pagina_plan);
+  };
+
+  var handleDeleteOffer = function handleDeleteOffer(id, e, index) {
+    e.preventDefault();
+    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+      title: '¿Está seguro?',
+      text: "Esta acción no será reversible",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        fetch("/api/offer/".concat(id), {
+          method: 'DELETE',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
+            'Access-Control-Allow-Origin': '*',
+            "Access-Control-Request-Headers": "*",
+            "Access-Control-Request-Method": "*"
+          }
+        }).then(function (data) {
+          return data.json();
+        }).then(function (data) {
+          if (data) {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Eliminado', 'La oferta fue eliminada con exito.', 'success');
+            dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__["offers"])(user.user_id));
+          }
+        })["catch"](function (error) {
+          console.log(error);
+          sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+            title: 'Upps!',
+            text: 'Se ha presentado un error, intente nuevamente',
+            icon: 'error',
+            confirmButtonText: 'Cerrar'
+          });
+        });
+      }
+    });
   };
 
   var handleSaveEdit = function handleSaveEdit() {
@@ -79722,9 +79757,9 @@ var Representate = function Representate() {
             case 6:
               data = _context.sent;
               console.log('******||******', data);
-              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])(user.user_id));
+              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__["offers"])(user.user_id));
               if (data.status) triggerForm();else {
-                sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
+                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
                   title: 'Upps!',
                   text: data.message,
                   icon: 'error',
@@ -79781,7 +79816,7 @@ var Representate = function Representate() {
             case 6:
               data = _context2.sent;
               console.log('update||******', data);
-              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])(user.user_id));
+              dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__["offers"])(user.user_id));
               if (data.status) triggerForm();
               _context2.next = 15;
               break;
@@ -80053,11 +80088,16 @@ var Representate = function Representate() {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
       scope: "row"
     }, item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.codigo_snies), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.titulo_otorgado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nivel_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.acreditado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.numero_semestres), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-      className: "btn btn-sm btn-warning",
+      className: "btn btn-sm mx-1 btn-warning",
       onClick: function onClick(e) {
         return handleUpdateOffer(item, e);
       }
-    }, "Editar")));
+    }, "Editar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "btn btn-sm mx-1 btn-danger",
+      onClick: function onClick(e) {
+        return handleDeleteOffer(item.id, e, i);
+      }
+    }, "Eliminar")));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
     colSpan: 11
   }, "No hay ofertas disponibles")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {

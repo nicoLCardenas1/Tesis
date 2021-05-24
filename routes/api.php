@@ -22,11 +22,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('postulados/{id}', 'FavoriteController@postuados');
 Route::get('favorites/{id}', 'FavoriteController@show');
 Route::post('save/favorite', 'FavoriteController@store');
+
 Route::post('save/ofert', 'OfertsController@store');
 Route::post('update/ofert', 'OfertsController@update');
 Route::get('oferts/{id?}', 'OfertsController@index');
 Route::get('offer/{id}', 'OfertsController@show');
+Route::delete('offer/{id}', 'OfertsController@delete');
+
 Route::put('universidad', 'OfertsController@updateUniversidad');
 Route::get('universidad-user/{id}', 'OfertsController@getUniversidadIdUser');
 Route::get('universidad/{id}', 'OfertsController@getUniversidadId');
+
 Route::post('snies', 'OfertsController@snies');
