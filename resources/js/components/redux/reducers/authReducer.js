@@ -19,6 +19,8 @@ export const authReducer = (state = initialState, action) => {
                 name: action.payload.name,
                 ies: action.payload.ies,
                 snies: action.payload.snies,
+                sector: action.payload.sector,
+                caracterAcademico: action.payload.caracterAcademico,
             }
         default:
             return state;

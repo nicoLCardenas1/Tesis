@@ -21,6 +21,8 @@
 <input type="hidden" id="name" value="{{ Auth::user()->name }}" />
 <input type="hidden" id="ies" value="{{ Auth::user()->ies }}" />
 <input type="hidden" id="snies" value="{{ Auth::user()->snies }}" />
+<input type="hidden" id="sector" value="{{ isset($universidad->sector) ? $universidad->sector : '' }}" />
+<input type="hidden" id="caracterAcademico" value="{{ isset($universidad->caracterAcademico) ? $universidad->caracterAcademico : '' }}" />
 <div id="example"></div>
 <script src="{{ asset('js/app.js') }}"></script>
 <script>

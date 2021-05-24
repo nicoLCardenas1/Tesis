@@ -28,7 +28,10 @@ export const AppRouter = () => {
         const name = document.getElementById('name');
         const ies = document.getElementById('ies');
         const snies = document.getElementById('snies');
-        dispatch(dataUser(user.value, role.value, name.value, ies.value, snies.value))
+        const sector = document.getElementById('sector');
+        const caracterAcademico = document.getElementById('caracterAcademico');
+
+        dispatch(dataUser(user.value, role.value, name.value, ies.value, snies.value, sector.value, caracterAcademico.value))
     }, [])
 
     return (

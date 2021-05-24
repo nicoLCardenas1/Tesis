@@ -16,10 +16,10 @@ export const test = () => ({
     }
 })
 
-export const dataUser = (id, role, name, ies, snies) => ({
+export const dataUser = (id, role, name, ies, snies, sector, caracterAcademico) => ({
     type: types.userActive,
     payload: {
-        id, role, name, ies, snies
+        id, role, name, ies, snies, sector, caracterAcademico
     }
 })
 

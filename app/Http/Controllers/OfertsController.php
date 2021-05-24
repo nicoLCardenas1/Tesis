@@ -224,6 +224,8 @@ class OfertsController extends Controller
         $universidad->ubicacion = $request->input('ubicacion');
         $universidad->urlPagina = $request->input('urlPagina');
         $universidad->idUser = $request->input('idUser');
+        $universidad->sector = $request->input('sector');
+        $universidad->caracterAcademico = $request->input('caracterAcademico');
 
         //hacer el guardado
         if (!isset($find) ? $universidad->save() : $universidad->update()) {

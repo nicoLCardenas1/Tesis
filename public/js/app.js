@@ -78887,8 +78887,18 @@ var Perfil = function Perfil() {
 
   var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState10 = _slicedToArray(_useState9, 2),
-      urlPagina = _useState10[0],
-      setUrlPagina = _useState10[1];
+      caracterAcademico = _useState10[0],
+      setCaracterAcademico = _useState10[1];
+
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      sector = _useState12[0],
+      setSector = _useState12[1];
+
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      urlPagina = _useState14[0],
+      setUrlPagina = _useState14[1];
 
   var user = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.auth;
@@ -78907,13 +78917,15 @@ var Perfil = function Perfil() {
       }).then(function (data) {
         return data.json();
       }).then(function (data) {
-        var _user$snies, _data$urlFoto, _data$descripcion, _data$ubicacion, _data$urlPagina;
+        var _user$snies, _data$urlFoto, _data$descripcion, _data$ubicacion, _data$urlPagina, _data$sector, _data$caracterAcademi;
 
         setNombre((_user$snies = user.snies) !== null && _user$snies !== void 0 ? _user$snies : '');
         setUrlPhoto((_data$urlFoto = data.urlFoto) !== null && _data$urlFoto !== void 0 ? _data$urlFoto : '');
         setDescripcion((_data$descripcion = data.descripcion) !== null && _data$descripcion !== void 0 ? _data$descripcion : '');
         setUbicacion((_data$ubicacion = data.ubicacion) !== null && _data$ubicacion !== void 0 ? _data$ubicacion : '');
         setUrlPagina((_data$urlPagina = data.urlPagina) !== null && _data$urlPagina !== void 0 ? _data$urlPagina : '');
+        setSector((_data$sector = data.sector) !== null && _data$sector !== void 0 ? _data$sector : '');
+        setCaracterAcademico((_data$caracterAcademi = data.caracterAcademico) !== null && _data$caracterAcademi !== void 0 ? _data$caracterAcademi : '');
       })["catch"](function (error) {
         console.log(error);
       });
@@ -78923,7 +78935,7 @@ var Perfil = function Perfil() {
   var handlerSubmit = function handlerSubmit(e) {
     e.preventDefault();
 
-    if (!urlFoto || !nombreIes || !descripcion || !ubicacion || !urlPagina) {
+    if (!urlFoto || !nombreIes || !descripcion || !ubicacion || !urlPagina || !sector || !caracterAcademico) {
       sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
         title: 'Incompletos',
         text: 'Todos los campos son requeridos',
@@ -78947,7 +78959,9 @@ var Perfil = function Perfil() {
           descripcion: descripcion,
           ubicacion: ubicacion,
           urlPagina: urlPagina,
-          idUser: user.user_id
+          idUser: user.user_id,
+          sector: sector,
+          caracterAcademico: caracterAcademico
         })
       }).then(function (data) {
         return data.json();
@@ -79044,6 +79058,30 @@ var Perfil = function Perfil() {
       return setUrlPagina(e.target.value);
     },
     value: urlPagina
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "sector"
+  }, "Sector"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "sector",
+    onChange: function onChange(e) {
+      return setSector(e.target.value);
+    },
+    value: sector
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+    htmlFor: "caracterAcademico"
+  }, "Caracter academico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    id: "caracterAcademico",
+    onChange: function onChange(e) {
+      return setCaracterAcademico(e.target.value);
+    },
+    value: caracterAcademico
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary",
@@ -80410,7 +80448,7 @@ var test = function test() {
     }
   };
 };
-var dataUser = function dataUser(id, role, name, ies, snies) {
+var dataUser = function dataUser(id, role, name, ies, snies, sector, caracterAcademico) {
   return {
     type: _types_types__WEBPACK_IMPORTED_MODULE_1__["types"].userActive,
     payload: {
@@ -80418,7 +80456,9 @@ var dataUser = function dataUser(id, role, name, ies, snies) {
       role: role,
       name: name,
       ies: ies,
-      snies: snies
+      snies: snies,
+      sector: sector,
+      caracterAcademico: caracterAcademico
     }
   };
 };
@@ -80629,7 +80669,9 @@ var authReducer = function authReducer() {
         role: action.payload.role,
         name: action.payload.name,
         ies: action.payload.ies,
-        snies: action.payload.snies
+        snies: action.payload.snies,
+        sector: action.payload.sector,
+        caracterAcademico: action.payload.caracterAcademico
       });
 
     default:
@@ -80792,7 +80834,9 @@ var AppRouter = function AppRouter() {
     var name = document.getElementById('name');
     var ies = document.getElementById('ies');
     var snies = document.getElementById('snies');
-    dispatch(Object(_redux_actions_auth__WEBPACK_IMPORTED_MODULE_2__["dataUser"])(user.value, role.value, name.value, ies.value, snies.value));
+    var sector = document.getElementById('sector');
+    var caracterAcademico = document.getElementById('caracterAcademico');
+    dispatch(Object(_redux_actions_auth__WEBPACK_IMPORTED_MODULE_2__["dataUser"])(user.value, role.value, name.value, ies.value, snies.value, sector.value, caracterAcademico.value));
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Navbar__WEBPACK_IMPORTED_MODULE_4__["Navbar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     path: "/home/programa/:id",
