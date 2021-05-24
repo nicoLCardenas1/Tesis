@@ -7334,7 +7334,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".pb-image-viewer .img-responsive.full-width{\n    display: none !important;\n}", ""]);
+exports.push([module.i, ".pb-image-viewer .img-responsive.full-width{\r\n    display: none !important;\r\n}", ""]);
 
 // exports
 
@@ -78734,7 +78734,7 @@ var Navbar = function Navbar() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "navbar-brand",
     href: "/home"
-  }, "Ies"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "Questudiar"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "navbar-toggler",
     type: "button",
     "data-toggle": "collapse",
@@ -80980,8 +80980,8 @@ var AppRouter = function AppRouter() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\ies-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\ies-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ashly\OneDrive\Escritorio\Proyecto\Tesis\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ashly\OneDrive\Escritorio\Proyecto\Tesis\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

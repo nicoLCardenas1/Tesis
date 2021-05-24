@@ -1,11 +1,11 @@
 {
-    "short_name": "React App",
-    "name": "Create React App Sample",
+    "short_name": "Questudiar",
+    "name": "Questudiar",
     "icons": [
         {
-            "src": "/images/icons-512.png",
+            "src": "/images/descarga.png",
             "type": "image/png",
-            "sizes": "512x512"
+            "sizes": "5696x5696"
         }
     ],
     "start_url": ".",
