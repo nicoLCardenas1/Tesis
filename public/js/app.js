@@ -78974,6 +78974,8 @@ var Perfil = function Perfil() {
             confirmButtonText: 'Cerrar',
             timer: 5000
           });
+          user.sector = sector;
+          user.caracterAcademico = caracterAcademico;
         } else {
           sweetalert2__WEBPACK_IMPORTED_MODULE_1___default.a.fire({
             title: 'Upps!',
@@ -79566,38 +79568,28 @@ var Representate = function Representate() {
 
   var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState14 = _slicedToArray(_useState13, 2),
-      sector = _useState14[0],
-      setSector = _useState14[1];
+      ubicacion = _useState14[0],
+      setUbicacion = _useState14[1];
 
   var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState16 = _slicedToArray(_useState15, 2),
-      caracterAcademico = _useState16[0],
-      setCaracterAcademico = _useState16[1];
+      acreditado = _useState16[0],
+      setAcreditado = _useState16[1];
 
   var _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState18 = _slicedToArray(_useState17, 2),
-      ubicacion = _useState18[0],
-      setUbicacion = _useState18[1];
+      jornada = _useState18[0],
+      setJornada = _useState18[1];
 
   var _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState20 = _slicedToArray(_useState19, 2),
-      acreditado = _useState20[0],
-      setAcreditado = _useState20[1];
+      numeroSemestres = _useState20[0],
+      setNumeroSemestres = _useState20[1];
 
   var _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState22 = _slicedToArray(_useState21, 2),
-      jornada = _useState22[0],
-      setJornada = _useState22[1];
-
-  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
-      _useState24 = _slicedToArray(_useState23, 2),
-      numeroSemestres = _useState24[0],
-      setNumeroSemestres = _useState24[1];
-
-  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
-      _useState26 = _slicedToArray(_useState25, 2),
-      metodologia = _useState26[0],
-      setMetodologia = _useState26[1];
+      metodologia = _useState22[0],
+      setMetodologia = _useState22[1];
 
   var user = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.auth;
@@ -79614,8 +79606,8 @@ var Representate = function Representate() {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
 
-    if (snies !== '' && nombrePrograma !== '' && sector !== '' && caracterAcademico !== '' && ubicacion !== '' && acreditado !== '' && jornada !== '' && numeroSemestres !== '' && titulo !== '' && nivelAcademico !== '' && precio !== '' && metodologia !== '') {
-      handleSaveOferts(snies, nombrePrograma, sector, caracterAcademico, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia);
+    if (snies !== '' && nombrePrograma !== '' && ubicacion !== '' && acreditado !== '' && jornada !== '' && numeroSemestres !== '' && titulo !== '' && nivelAcademico !== '' && precio !== '' && metodologia !== '') {
+      handleSaveOferts(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia);
     } else {
       alert('Por favor llenar todos los campos');
     }
@@ -79626,8 +79618,6 @@ var Representate = function Representate() {
     setIdoffer(offer.id);
     setSnies(offer.codigo_snies);
     setNombrePrograma(offer.nombre_programa);
-    setSector(offer.sector_academico);
-    setCaracterAcademico(offer.caracter_academico);
     setUbicacion(offer.ubicacion);
     setAcreditado(offer.acreditado);
     setJornada(offer.jornada);
@@ -79639,15 +79629,15 @@ var Representate = function Representate() {
   };
 
   var handleSaveEdit = function handleSaveEdit() {
-    if (idoffer !== null && snies !== '' && nombrePrograma !== '' && sector !== '' && caracterAcademico !== '' && ubicacion !== '' && acreditado !== '' && jornada !== '' && numeroSemestres !== '' && titulo !== '' && nivelAcademico !== '' && precio !== '' && metodologia !== '') {
+    if (idoffer !== null && snies !== '' && nombrePrograma !== '' && ubicacion !== '' && acreditado !== '' && jornada !== '' && numeroSemestres !== '' && titulo !== '' && nivelAcademico !== '' && precio !== '' && metodologia !== '') {
       handleUpdateOferts({
         idoffer: idoffer,
         ies: user.ies,
         snies: snies,
         nombreIes: user.snies,
         nombrePrograma: nombrePrograma,
-        sector: sector,
-        caracterAcademico: caracterAcademico,
+        sector: user.sector,
+        caracterAcademico: user.caracterAcademico,
         ubicacion: ubicacion,
         acreditado: acreditado,
         jornada: jornada,
@@ -79664,7 +79654,7 @@ var Representate = function Representate() {
   };
 
   var handleSaveOferts = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(snies, nombrePrograma, sector, caracterAcademico, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia) {
       var response, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -79687,8 +79677,8 @@ var Representate = function Representate() {
                   nombreIes: user.snies,
                   snies: snies,
                   nombrePrograma: nombrePrograma,
-                  sector: sector,
-                  caracterAcademico: caracterAcademico,
+                  sector: user.sector,
+                  caracterAcademico: user.caracterAcademico,
                   ubicacion: ubicacion,
                   acreditado: acreditado,
                   jornada: jornada,
@@ -79733,7 +79723,7 @@ var Representate = function Representate() {
       }, _callee, null, [[0, 12]]);
     }));
 
-    return function handleSaveOferts(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10, _x11, _x12) {
+    return function handleSaveOferts(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -79785,7 +79775,7 @@ var Representate = function Representate() {
       }, _callee2, null, [[0, 12]]);
     }));
 
-    return function handleUpdateOferts(_x13) {
+    return function handleUpdateOferts(_x11) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -79793,8 +79783,6 @@ var Representate = function Representate() {
   var triggerForm = function triggerForm() {
     setSnies('');
     setNombrePrograma('');
-    setSector('');
-    setCaracterAcademico('');
     setUbicacion('');
     setAcreditado('');
     setJornada('');
@@ -79839,10 +79827,6 @@ var Representate = function Representate() {
     scope: "col"
   }, "Nivel acad\xE9mico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
     scope: "col"
-  }, "Sector"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
-    scope: "col"
-  }, "Car\xE1cter Acad\xE9mico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
-    scope: "col"
   }, "Ubicaci\xF3n"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
     scope: "col"
   }, "\xBFAcreditado?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
@@ -79860,8 +79844,6 @@ var Representate = function Representate() {
     nombrePrograma: nombrePrograma,
     titulo: titulo,
     nivelAcademico: nivelAcademico,
-    sector: sector,
-    caracterAcademico: caracterAcademico,
     ubicacion: ubicacion,
     acreditado: acreditado,
     precio: precio,
@@ -79872,8 +79854,6 @@ var Representate = function Representate() {
     setNombrePrograma: setNombrePrograma,
     setTitulo: setTitulo,
     setNivelAcademico: setNivelAcademico,
-    setSector: setSector,
-    setCaracterAcademico: setCaracterAcademico,
     setUbicacion: setUbicacion,
     setAcreditado: setAcreditado,
     setPrecio: setPrecio,
@@ -79887,7 +79867,7 @@ var Representate = function Representate() {
       className: "text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
       scope: "row"
-    }, item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.codigo_snies), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.titulo_otorgado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nivel_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.sector_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.caracter_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.acreditado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.numero_semestres), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    }, item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.codigo_snies), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.titulo_otorgado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nivel_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.acreditado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.numero_semestres), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "btn btn-sm btn-warning",
       onClick: function onClick(e) {
         return handleUpdateOffer(item, e);
@@ -79905,8 +79885,6 @@ var TableForm = function TableForm(_ref3) {
       nombrePrograma = _ref3.nombrePrograma,
       titulo = _ref3.titulo,
       nivelAcademico = _ref3.nivelAcademico,
-      sector = _ref3.sector,
-      caracterAcademico = _ref3.caracterAcademico,
       ubicacion = _ref3.ubicacion,
       acreditado = _ref3.acreditado,
       precio = _ref3.precio,
@@ -79917,8 +79895,6 @@ var TableForm = function TableForm(_ref3) {
       setNombrePrograma = _ref3.setNombrePrograma,
       setTitulo = _ref3.setTitulo,
       setNivelAcademico = _ref3.setNivelAcademico,
-      setSector = _ref3.setSector,
-      setCaracterAcademico = _ref3.setCaracterAcademico,
       setUbicacion = _ref3.setUbicacion,
       setAcreditado = _ref3.setAcreditado,
       setPrecio = _ref3.setPrecio,
@@ -79958,20 +79934,6 @@ var TableForm = function TableForm(_ref3) {
       return setNivelAcademico(e.target.value);
     },
     value: nivelAcademico
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Sector",
-    onChange: function onChange(e) {
-      return setSector(e.target.value);
-    },
-    value: sector
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
-    type: "text",
-    placeholder: "Car\xE1cter Acad\xE9mico",
-    onChange: function onChange(e) {
-      return setCaracterAcademico(e.target.value);
-    },
-    value: caracterAcademico
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Input, {
     type: "text",
     placeholder: "Ubicaci\xF3n",

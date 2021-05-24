@@ -75,6 +75,8 @@ export const Perfil = () => {
                             confirmButtonText: 'Cerrar',
                             timer: 5000
                         });
+                        user.sector = sector;
+                        user.caracterAcademico = caracterAcademico;
                     } else {
                         Swal.fire({
                             title: 'Upps!',
