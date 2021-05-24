@@ -77,6 +77,9 @@ class OfertsController extends Controller
         $ofert->titulo_otorgado = $request->input('titulo');
         $ofert->nivel_academico = $request->input('nivelAcademico');
         $ofert->precio = $request->input('precio');
+        $ofert->descripcion = $request->input('descripcion');
+        $ofert->pagina_admision = $request->input('paginaAdmision');
+        $ofert->pagina_plan = $request->input('paginaPlan');
 
         //hacer el guardado
         if ($ofert->save()) {
@@ -161,6 +164,9 @@ class OfertsController extends Controller
         $ofert->titulo_otorgado = $request->input('titulo');
         $ofert->nivel_academico = $request->input('nivelAcademico');
         $ofert->precio = $request->input('precio');
+        $ofert->descripcion = $request->input('descripcion');
+        $ofert->pagina_admision = $request->input('paginaAdmision');
+        $ofert->pagina_plan = $request->input('paginaPlan');
 
         //hacer el guardado
         if ($ofert->update()) {

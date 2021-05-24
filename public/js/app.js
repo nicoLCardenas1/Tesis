@@ -79591,6 +79591,21 @@ var Representate = function Representate() {
       metodologia = _useState22[0],
       setMetodologia = _useState22[1];
 
+  var _useState23 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState24 = _slicedToArray(_useState23, 2),
+      descripcion = _useState24[0],
+      setDescripcion = _useState24[1];
+
+  var _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState26 = _slicedToArray(_useState25, 2),
+      paginaAdmision = _useState26[0],
+      setPaginaAdmision = _useState26[1];
+
+  var _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState28 = _slicedToArray(_useState27, 2),
+      paginaPlan = _useState28[0],
+      setPaginaPlan = _useState28[1];
+
   var user = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.auth;
   });
@@ -79607,7 +79622,7 @@ var Representate = function Representate() {
     e.preventDefault();
 
     if (snies !== '' && nombrePrograma !== '' && ubicacion !== '' && acreditado !== '' && jornada !== '' && numeroSemestres !== '' && titulo !== '' && nivelAcademico !== '' && precio !== '' && metodologia !== '') {
-      handleSaveOferts(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia);
+      handleSaveOferts(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, descripcion, paginaAdmision, paginaPlan);
     } else {
       alert('Por favor llenar todos los campos');
     }
@@ -79626,6 +79641,9 @@ var Representate = function Representate() {
     setTitulo(offer.titulo_otorgado);
     setNivelAcademico(offer.nivel_academico);
     setPrecio(offer.precio);
+    setDescripcion(offer.descripcion);
+    setPaginaAdmision(offer.pagina_admision);
+    setPaginaPlan(offer.pagina_plan);
   };
 
   var handleSaveEdit = function handleSaveEdit() {
@@ -79646,7 +79664,10 @@ var Representate = function Representate() {
         nivelAcademico: nivelAcademico,
         precio: precio,
         metodologia: metodologia,
-        user_id: user === null || user === void 0 ? void 0 : user.user_id
+        user_id: user === null || user === void 0 ? void 0 : user.user_id,
+        descripcion: descripcion,
+        paginaAdmision: paginaAdmision,
+        paginaPlan: paginaPlan
       });
     } else {
       alert('Por favor llenar todos los campos');
@@ -79654,7 +79675,7 @@ var Representate = function Representate() {
   };
 
   var handleSaveOferts = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, descripcion, paginaAdmision, paginaPlan) {
       var response, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -79686,7 +79707,10 @@ var Representate = function Representate() {
                   titulo: titulo,
                   nivelAcademico: nivelAcademico,
                   precio: precio,
-                  metodologia: metodologia
+                  metodologia: metodologia,
+                  descripcion: descripcion,
+                  paginaAdmision: paginaAdmision,
+                  paginaPlan: paginaPlan
                 })
               });
 
@@ -79723,7 +79747,7 @@ var Representate = function Representate() {
       }, _callee, null, [[0, 12]]);
     }));
 
-    return function handleSaveOferts(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10) {
+    return function handleSaveOferts(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10, _x11, _x12, _x13) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -79775,7 +79799,7 @@ var Representate = function Representate() {
       }, _callee2, null, [[0, 12]]);
     }));
 
-    return function handleUpdateOferts(_x11) {
+    return function handleUpdateOferts(_x14) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -79791,6 +79815,9 @@ var Representate = function Representate() {
     setTitulo('');
     setNivelAcademico('');
     setPrecio('');
+    setDescripcion('');
+    setPaginaAdmision('');
+    setPaginaPlan('');
   };
 
   var styleTable = {
@@ -79947,6 +79974,36 @@ var Representate = function Representate() {
       return setMetodologia(e.target.value);
     },
     value: metodologia
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Descripci\xF3n programa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("textarea", {
+    className: "form-control",
+    onChange: function onChange(e) {
+      return setDescripcion(e.target.value);
+    },
+    value: descripcion
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "P\xE1gina admisiones"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    onChange: function onChange(e) {
+      return setPaginaAdmision(e.target.value);
+    },
+    value: paginaAdmision
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "P\xE1gina plan de estudio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    onChange: function onChange(e) {
+      return setPaginaPlan(e.target.value);
+    },
+    value: paginaPlan
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "btn btn-success mx-2",
     onClick: handleSubmit

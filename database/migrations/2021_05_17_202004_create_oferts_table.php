@@ -30,6 +30,9 @@ class CreateOfertsTable extends Migration
             $table->string('titulo_otorgado');
             $table->string('nivel_academico');
             $table->string('precio');
+            $table->string('descripcion');
+            $table->string('pagina_admision');
+            $table->string('pagina_plan');
             $table->timestamps();
         });
     }

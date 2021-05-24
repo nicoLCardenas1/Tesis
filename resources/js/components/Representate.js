@@ -28,6 +28,10 @@ export const Representate = () => {
     const [jornada, setJornada] = useState('')
     const [numeroSemestres, setNumeroSemestres] = useState('')
     const [metodologia, setMetodologia] = useState('')
+    const [descripcion, setDescripcion] = useState('')
+    const [paginaAdmision, setPaginaAdmision] = useState('')
+    const [paginaPlan, setPaginaPlan] = useState('')
+
     const user = useSelector(state => state.auth)
     const offer = useSelector(state => state.offer)
     const dispatch = useDispatch();
@@ -60,7 +64,11 @@ export const Representate = () => {
                 titulo,
                 nivelAcademico,
                 precio,
-                metodologia)
+                metodologia,
+                descripcion,
+                paginaAdmision,
+                paginaPlan
+            )
         } else {
             alert('Por favor llenar todos los campos')
         }
@@ -80,6 +88,9 @@ export const Representate = () => {
         setTitulo(offer.titulo_otorgado)
         setNivelAcademico(offer.nivel_academico)
         setPrecio(offer.precio)
+        setDescripcion(offer.descripcion)
+        setPaginaAdmision(offer.pagina_admision)
+        setPaginaPlan(offer.pagina_plan)
     }
 
     const handleSaveEdit = () => {
@@ -96,7 +107,11 @@ export const Representate = () => {
             precio !== '' &&
             metodologia !== ''
         ) {
-            handleUpdateOferts({ idoffer, ies: user.ies, snies, nombreIes: user.snies, nombrePrograma, sector: user.sector, caracterAcademico: user.caracterAcademico, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, user_id: user?.user_id })
+            handleUpdateOferts({
+                idoffer, ies: user.ies, snies, nombreIes: user.snies, nombrePrograma,
+                sector: user.sector, caracterAcademico: user.caracterAcademico, ubicacion, acreditado, jornada, numeroSemestres,
+                titulo, nivelAcademico, precio, metodologia, user_id: user?.user_id, descripcion, paginaAdmision, paginaPlan
+            })
         } else {
             alert('Por favor llenar todos los campos')
         }
@@ -112,7 +127,10 @@ export const Representate = () => {
         titulo,
         nivelAcademico,
         precio,
-        metodologia
+        metodologia,
+        descripcion,
+        paginaAdmision,
+        paginaPlan
     ) => {
         try {
             const response = await fetch(`/api/save/ofert`, {
@@ -139,7 +157,10 @@ export const Representate = () => {
                     titulo,
                     nivelAcademico,
                     precio,
-                    metodologia
+                    metodologia,
+                    descripcion,
+                    paginaAdmision,
+                    paginaPlan
                 })
             });
             const data = await response.json();
@@ -192,6 +213,9 @@ export const Representate = () => {
         setTitulo('')
         setNivelAcademico('')
         setPrecio('')
+        setDescripcion('')
+        setPaginaAdmision('')
+        setPaginaPlan('')
     }
 
     const styleTable = {
@@ -271,6 +295,22 @@ export const Representate = () => {
                                         <div className="form-group col-md-6">
                                             <label>Metodología</label>
                                             <input className="form-control" type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} />
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-12">
+                                            <label>Descripción programa</label>
+                                            <textarea className="form-control" onChange={(e) => setDescripcion(e.target.value)} value={descripcion}></textarea>
+                                        </div>
+                                    </div>
+                                    <div className="form-row">
+                                        <div className="form-group col-md-6">
+                                            <label>Página admisiones</label>
+                                            <input className="form-control" type='text' onChange={(e) => setPaginaAdmision(e.target.value)} value={paginaAdmision} />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label>Página plan de estudio</label>
+                                            <input className="form-control" type='text' onChange={(e) => setPaginaPlan(e.target.value)} value={paginaPlan} />
                                         </div>
                                     </div>
 
