@@ -43,11 +43,10 @@ export const Universidad = () => {
                             </svg>
                             <span className="card-title">{offer?.ubicacion}</span>
                             <br></br>
-                            <span className="card-title">Código IES: {offer?.codigo_ies}</span>
-                            <br></br>
+                           <br></br>
                             <span className="card-title">Sector: {offer?.sector}</span>
                             <br></br> 
-                            <span className="card-title">caracter Academico: {offer?.caracterAcademico}</span> </div>
+                            <span className="card-title">Caracter Academico: {offer?.caracterAcademico}</span> </div>
                         <a href={offer?.urlPagina} target="_blank" className="btn btn-primary">Abrir página</a>
                     </div>
                 </div>

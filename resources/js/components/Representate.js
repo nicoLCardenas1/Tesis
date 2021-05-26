@@ -373,7 +373,6 @@ export const Representate = () => {
                         <table className="table table-hover" style={table}>
                             <thead className='bg-primary text-light'>
                                 <tr className='text-center'>
-                                    <th scope="col">ID</th>
                                     <th scope="col">Codigo SNIES</th>
                                     <th scope="col">N. Programa</th>
                                     <th scope="col">Título otorgado</th>
@@ -394,7 +393,6 @@ export const Representate = () => {
                                             ?
                                             offer?.offers.map((item, i) => (
                                                 <tr key={i} className='text-center'>
-                                                    <th scope="row">{item.id}</th>
                                                     <td>{item.codigo_snies}</td>
                                                     <td>{item.nombre_programa}</td>
                                                     <td>{item.titulo_otorgado}</td>

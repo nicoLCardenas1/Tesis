@@ -78,7 +78,6 @@ export const Aspirante = () => {
                             </tr>
 
                             <tr className='bg-primary text-light text-center'>
-                                <th scope="col">ID</th>
                                 <th scope="col">Codigo SNIES</th>
                                 <th scope="col">N. IES</th>
                                 <th scope="col">N. Programa</th>
@@ -100,7 +99,6 @@ export const Aspirante = () => {
                                         ?
                                         dinamicOffer.map((item, i) => (
                                             <tr key={i} className='text-center'>
-                                                <th scope="row">{item.id}</th>
                                                 <td>{item.codigo_snies}</td>
                                                 <td>
                                                     <Link
