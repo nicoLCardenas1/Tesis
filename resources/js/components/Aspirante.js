@@ -52,8 +52,9 @@ export const Aspirante = () => {
             const jornada = item.jornada.toUpperCase()
             const numero_semestres = item.numero_semestres.toUpperCase()
             const metodologia = item.metodologia.toUpperCase()
+            const precio = item.precio.toUpperCase()
             //merge seacrh
-            const campo = id + " " + codigo_snies + " " + codigo_ies + " " + nombre_ies + " " + nombre_programa + " " + sector_academico + " " + caracter_academico + " " + ubicacion + " " + acreditado + " " + jornada + " " + numero_semestres + " " + metodologia
+            const campo = id + " " + codigo_snies + " " + codigo_ies + " " + nombre_ies + " " + nombre_programa + " " + sector_academico + " " + caracter_academico + " " + ubicacion + " " + acreditado + " " + jornada + " " + numero_semestres + " " + metodologia + " " + precio
             const textData = text.toUpperCase()
             console.log('result index of', campo.indexOf(textData) > -1);
             return campo.indexOf(textData) > -1
@@ -88,6 +89,7 @@ export const Aspirante = () => {
                                 <th scope="col">Jornada</th>
                                 <th scope="col">Num. Semestres</th>
                                 <th scope="col">Metodología</th>
+                                <th scope="col">Precio</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
@@ -119,6 +121,8 @@ export const Aspirante = () => {
                                                 <td>{item.jornada}</td>
                                                 <td>{item.numero_semestres}</td>
                                                 <td>{item.metodologia}</td>
+                                                <td>{item.precio}</td>
+
                                                 <td>
                                                     <Link
                                                         to={`/home/programa/${item.id}`}

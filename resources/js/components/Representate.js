@@ -18,6 +18,7 @@ export const Representate = () => {
     const [descripcion, setDescripcion] = useState('')
     const [paginaAdmision, setPaginaAdmision] = useState('')
     const [paginaPlan, setPaginaPlan] = useState('')
+    const [urlPrograma, setUrlPrograma] = useState('')
 
     const user = useSelector(state => state.auth)
     const offer = useSelector(state => state.offer)
@@ -54,7 +55,8 @@ export const Representate = () => {
                 metodologia,
                 descripcion,
                 paginaAdmision,
-                paginaPlan
+                paginaPlan,
+                urlPrograma
             )
         } else {
             alert('Por favor llenar todos los campos')
@@ -78,6 +80,7 @@ export const Representate = () => {
         setDescripcion(offer.descripcion)
         setPaginaAdmision(offer.pagina_admision)
         setPaginaPlan(offer.pagina_plan)
+        setUrlPrograma(offer.urlPrograma)
     }
 
     const handleDeleteOffer = (id, e, index) => {
@@ -145,7 +148,7 @@ export const Representate = () => {
             handleUpdateOferts({
                 idoffer, ies: user.ies, snies, nombreIes: user.snies, nombrePrograma,
                 sector: user.sector, caracterAcademico: user.caracterAcademico, ubicacion, acreditado, jornada, numeroSemestres,
-                titulo, nivelAcademico, precio, metodologia, user_id: user?.user_id, descripcion, paginaAdmision, paginaPlan
+                titulo, nivelAcademico, precio, metodologia, user_id: user?.user_id, descripcion, paginaAdmision, paginaPlan, urlPrograma
             })
         } else {
             alert('Por favor llenar todos los campos')
@@ -165,7 +168,8 @@ export const Representate = () => {
         metodologia,
         descripcion,
         paginaAdmision,
-        paginaPlan
+        paginaPlan,
+        urlPrograma
     ) => {
         try {
             const response = await fetch(`/api/save/ofert`, {
@@ -195,7 +199,8 @@ export const Representate = () => {
                     metodologia,
                     descripcion,
                     paginaAdmision,
-                    paginaPlan
+                    paginaPlan,
+                    urlPrograma
                 })
             });
             const data = await response.json();
@@ -251,6 +256,7 @@ export const Representate = () => {
         setDescripcion('')
         setPaginaAdmision('')
         setPaginaPlan('')
+        setUrlPrograma('')
     }
 
     const styleTable = {
@@ -346,6 +352,10 @@ export const Representate = () => {
                                         <div className="form-group col-md-6">
                                             <label>Página plan de estudio</label>
                                             <input className="form-control" type='text' onChange={(e) => setPaginaPlan(e.target.value)} value={paginaPlan} />
+                                        </div>
+                                        <div className="form-group col-md-6">
+                                            <label>url</label>
+                                            <input className="form-control" type='text' onChange={(e) => setUrlPrograma(e.target.value)} value={urlPrograma} />
                                         </div>
                                     </div>
 

@@ -78307,9 +78307,10 @@ var Aspirante = function Aspirante() {
       var acreditado = item.acreditado.toUpperCase();
       var jornada = item.jornada.toUpperCase();
       var numero_semestres = item.numero_semestres.toUpperCase();
-      var metodologia = item.metodologia.toUpperCase(); //merge seacrh
+      var metodologia = item.metodologia.toUpperCase();
+      var precio = item.precio.toUpperCase(); //merge seacrh
 
-      var campo = id + " " + codigo_snies + " " + codigo_ies + " " + nombre_ies + " " + nombre_programa + " " + sector_academico + " " + caracter_academico + " " + ubicacion + " " + acreditado + " " + jornada + " " + numero_semestres + " " + metodologia;
+      var campo = id + " " + codigo_snies + " " + codigo_ies + " " + nombre_ies + " " + nombre_programa + " " + sector_academico + " " + caracter_academico + " " + ubicacion + " " + acreditado + " " + jornada + " " + numero_semestres + " " + metodologia + " " + precio;
       var textData = text.toUpperCase();
       console.log('result index of', campo.indexOf(textData) > -1);
       return campo.indexOf(textData) > -1;
@@ -78379,6 +78380,8 @@ var Aspirante = function Aspirante() {
     scope: "col"
   }, "Metodolog\xEDa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
+  }, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
+    scope: "col"
   }, "Acciones"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, offer !== null && offer !== void 0 && offer.offers ? dinamicOffer.length ? dinamicOffer.map(function (item, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: i,
@@ -78389,7 +78392,7 @@ var Aspirante = function Aspirante() {
       to: "/home/universidad/".concat(item.nombre_ies)
     }, item.nombre_ies)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       to: "/home/programa/".concat(item.id)
-    }, item.nombre_programa)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.sector_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.caracter_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.acreditado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.numero_semestres), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    }, item.nombre_programa)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.sector_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.caracter_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.acreditado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.numero_semestres), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, item.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       to: "/home/programa/".concat(item.id),
       className: "btn btn-sm btn-warning text-light"
     }, " Ver...")));
@@ -79472,22 +79475,67 @@ var Program = function Program() {
     };
   }();
 
+  console.log(offer);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "row justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-6 card p-4 mt-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-    type: "button",
-    className: "btn btn-sm mb-3",
-    style: {
-      fontSize: '30px'
-    },
-    onClick: function onClick() {
-      return handleSaveFavorite(offer);
-    }
-  }, "\u2764"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", null, "Oferta ", offer !== null && offer !== void 0 && offer.nombre_programa ? offer === null || offer === void 0 ? void 0 : offer.nombre_programa : 'Cargando...'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Codigo Snies: ".concat(offer !== null && offer !== void 0 && offer.codigo_snies ? offer === null || offer === void 0 ? void 0 : offer.codigo_snies : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Nombre de programa: ".concat(offer !== null && offer !== void 0 && offer.nombre_programa ? offer === null || offer === void 0 ? void 0 : offer.nombre_programa : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Sector Academico: ".concat(offer !== null && offer !== void 0 && offer.sector_academico ? offer === null || offer === void 0 ? void 0 : offer.sector_academico : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Caracter Academico: ".concat(offer !== null && offer !== void 0 && offer.caracter_academico ? offer === null || offer === void 0 ? void 0 : offer.caracter_academico : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Ubicaci\xF3n: ".concat(offer !== null && offer !== void 0 && offer.ubicacion ? offer === null || offer === void 0 ? void 0 : offer.ubicacion : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Acreditado: ".concat(offer !== null && offer !== void 0 && offer.acreditado ? offer === null || offer === void 0 ? void 0 : offer.acreditado : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Jornada: ".concat(offer !== null && offer !== void 0 && offer.jornada ? offer === null || offer === void 0 ? void 0 : offer.jornada : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "N\xFAmero de semestres: ".concat(offer !== null && offer !== void 0 && offer.numero_semestres ? offer === null || offer === void 0 ? void 0 : offer.numero_semestres : 'Cargando...')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Metodolog\xEDa: ".concat(offer !== null && offer !== void 0 && offer.metodologia ? offer === null || offer === void 0 ? void 0 : offer.metodologia : 'Cargando...')))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+    className: "card-title"
+  }, offer === null || offer === void 0 ? void 0 : offer.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+    src: offer === null || offer === void 0 ? void 0 : offer.url_programa,
+    className: "card-img-top",
+    alt: "..."
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, offer === null || offer === void 0 ? void 0 : offer.descripcion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
+    xmlns: "http://www.w3.org/2000/svg",
+    className: "icon icon-tabler icon-tabler-map-pin p-2",
+    width: "44",
+    height: "44",
+    viewBox: "0 0 24 24",
+    strokeWidth: "1.5",
+    stroke: "#2c3e50",
+    fill: "none",
+    strokeLinecap: "round",
+    strokeLinejoin: "round"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    stroke: "none",
+    d: "M0 0h24v24H0z",
+    fill: "none"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("circle", {
+    cx: "12",
+    cy: "11",
+    r: "3"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
+    d: "M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, offer === null || offer === void 0 ? void 0 : offer.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "Valor Semestre: ", offer === null || offer === void 0 ? void 0 : offer.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "Titulo Otorgado: ", offer === null || offer === void 0 ? void 0 : offer.titulo_otorgado), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "Nivel Academico: ", offer === null || offer === void 0 ? void 0 : offer.nivel_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "Metodologia: ", offer === null || offer === void 0 ? void 0 : offer.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "Jornada: ", offer === null || offer === void 0 ? void 0 : offer.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: offer === null || offer === void 0 ? void 0 : offer.pagina_admision,
+    target: "_blank",
+    className: "btn btn-dark"
+  }, "P\xE1gina de Admisiones"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: offer === null || offer === void 0 ? void 0 : offer.pagina_plan,
+    target: "_blank",
+    className: "btn btn-primary"
+  }, "Ver plan de estudios")))));
 };
 
 /***/ }),
@@ -79603,6 +79651,11 @@ var Representate = function Representate() {
       paginaPlan = _useState28[0],
       setPaginaPlan = _useState28[1];
 
+  var _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState30 = _slicedToArray(_useState29, 2),
+      urlPrograma = _useState30[0],
+      setUrlPrograma = _useState30[1];
+
   var user = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.auth;
   });
@@ -79619,7 +79672,7 @@ var Representate = function Representate() {
     e.preventDefault();
 
     if (snies !== '' && nombrePrograma !== '' && ubicacion !== '' && acreditado !== '' && jornada !== '' && numeroSemestres !== '' && titulo !== '' && nivelAcademico !== '' && precio !== '' && metodologia !== '') {
-      handleSaveOferts(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, descripcion, paginaAdmision, paginaPlan);
+      handleSaveOferts(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, descripcion, paginaAdmision, paginaPlan, urlPrograma);
     } else {
       alert('Por favor llenar todos los campos');
     }
@@ -79641,6 +79694,7 @@ var Representate = function Representate() {
     setDescripcion(offer.descripcion);
     setPaginaAdmision(offer.pagina_admision);
     setPaginaPlan(offer.pagina_plan);
+    setUrlPrograma(offer.urlPrograma);
   };
 
   var handleDeleteOffer = function handleDeleteOffer(id, e, index) {
@@ -79706,7 +79760,8 @@ var Representate = function Representate() {
         user_id: user === null || user === void 0 ? void 0 : user.user_id,
         descripcion: descripcion,
         paginaAdmision: paginaAdmision,
-        paginaPlan: paginaPlan
+        paginaPlan: paginaPlan,
+        urlPrograma: urlPrograma
       });
     } else {
       alert('Por favor llenar todos los campos');
@@ -79714,7 +79769,7 @@ var Representate = function Representate() {
   };
 
   var handleSaveOferts = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, descripcion, paginaAdmision, paginaPlan) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(snies, nombrePrograma, ubicacion, acreditado, jornada, numeroSemestres, titulo, nivelAcademico, precio, metodologia, descripcion, paginaAdmision, paginaPlan, urlPrograma) {
       var response, data;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
@@ -79749,7 +79804,8 @@ var Representate = function Representate() {
                   metodologia: metodologia,
                   descripcion: descripcion,
                   paginaAdmision: paginaAdmision,
-                  paginaPlan: paginaPlan
+                  paginaPlan: paginaPlan,
+                  urlPrograma: urlPrograma
                 })
               });
 
@@ -79786,7 +79842,7 @@ var Representate = function Representate() {
       }, _callee, null, [[0, 12]]);
     }));
 
-    return function handleSaveOferts(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10, _x11, _x12, _x13) {
+    return function handleSaveOferts(_x, _x2, _x3, _x4, _x5, _x6, _x7, _x8, _x9, _x10, _x11, _x12, _x13, _x14) {
       return _ref.apply(this, arguments);
     };
   }();
@@ -79838,7 +79894,7 @@ var Representate = function Representate() {
       }, _callee2, null, [[0, 12]]);
     }));
 
-    return function handleUpdateOferts(_x14) {
+    return function handleUpdateOferts(_x15) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -79857,6 +79913,7 @@ var Representate = function Representate() {
     setDescripcion('');
     setPaginaAdmision('');
     setPaginaPlan('');
+    setUrlPrograma('');
   };
 
   var styleTable = {
@@ -80043,6 +80100,15 @@ var Representate = function Representate() {
       return setPaginaPlan(e.target.value);
     },
     value: paginaPlan
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "form-group col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "url"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "form-control",
+    type: "text",
+    onChange: function onChange(e) {
+      return setUrlPrograma(e.target.value);
+    },
+    value: urlPrograma
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     className: "btn btn-success mx-2",
     onClick: handleSubmit
@@ -80149,7 +80215,7 @@ var Simulate = function Simulate() {
       monto = _useState2[0],
       setMonto = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0.20),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0.0128),
       _useState4 = _slicedToArray(_useState3, 2),
       tasa = _useState4[0],
       setTasa = _useState4[1];
@@ -80172,7 +80238,7 @@ var Simulate = function Simulate() {
   var handleSimulate = function handleSimulate(e) {
     e.preventDefault();
     console.log('sii');
-    setTotal(monto * plazo * tasa);
+    setTotal(monto * tasa/(1-Math.pow((1+tasa),-plazo)));
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80234,7 +80300,9 @@ var Simulate = function Simulate() {
     value: 36
   }, "36 Meses"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: 48
-  }, "48 Meses"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "48 Meses"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: 60
+  }, "60 Meses"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-primary btn-sm btn-block"
@@ -80342,6 +80410,7 @@ var Universidad = function Universidad() {
     };
   }();
 
+  console.log(offer);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -80356,7 +80425,9 @@ var Universidad = function Universidad() {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "card-title"
-  }, offer === null || offer === void 0 ? void 0 : offer.nombreIes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, offer === null || offer === void 0 ? void 0 : offer.nombreIes), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, offer === null || offer === void 0 ? void 0 : offer.descripcion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "my-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
     xmlns: "http://www.w3.org/2000/svg",
@@ -80380,10 +80451,14 @@ var Universidad = function Universidad() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "card-text"
-  }, offer === null || offer === void 0 ? void 0 : offer.ubicacion)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-    className: "card-text"
-  }, offer === null || offer === void 0 ? void 0 : offer.descripcion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    className: "card-title"
+  }, offer === null || offer === void 0 ? void 0 : offer.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "C\xF3digo IES: ", offer === null || offer === void 0 ? void 0 : offer.codigo_ies), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "Sector: ", offer === null || offer === void 0 ? void 0 : offer.sector), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "card-title"
+  }, "caracter Academico: ", offer === null || offer === void 0 ? void 0 : offer.caracterAcademico), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: offer === null || offer === void 0 ? void 0 : offer.urlPagina,
     target: "_blank",
     className: "btn btn-primary"

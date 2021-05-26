@@ -85,6 +85,8 @@ class OfertsController extends Controller
         $ofert->descripcion = $request->input('descripcion') ?? '';
         $ofert->pagina_admision = $request->input('paginaAdmision') ?? '';
         $ofert->pagina_plan = $request->input('paginaPlan') ?? '';
+        $ofert->url_programa = $request->input('urlPrograma') ?? '';
+
 
         //hacer el guardado
         if ($ofert->save()) {
@@ -172,6 +174,9 @@ class OfertsController extends Controller
         $ofert->descripcion = $request->input('descripcion') ?? '';
         $ofert->pagina_admision = $request->input('paginaAdmision') ?? '';
         $ofert->pagina_plan = $request->input('paginaPlan') ?? '';
+        $ofert->url_programa = $request->input('urlPrograma') ?? '';
+
+        
 
         //hacer el guardado
         if ($ofert->update()) {

@@ -33,6 +33,7 @@ class CreateOfertsTable extends Migration
             $table->string('descripcion');
             $table->string('pagina_admision');
             $table->string('pagina_plan');
+            $table->string('url_programa');
             $table->timestamps();
         });
     }

@@ -12,7 +12,7 @@ const Title = styled.h3`
 
 export const Simulate = () => {
     const [monto, setMonto] = useState(0)
-    const [tasa, setTasa] = useState(0.20)
+    const [tasa, setTasa] = useState(0.0128)
     const [plazo, setPlazo] = useState(48)
     const [total, setTotal] = useState(0)
     const [typePayment, setTypePayment] = useState('credito')
@@ -20,8 +20,7 @@ export const Simulate = () => {
     const handleSimulate = (e) => {
         e.preventDefault();
         console.log('sii')
-        setTotal(monto * plazo * tasa);
-    }
+        setTotal(monto * tasa/(1-Math.pow((1+tasa),-plazo)));    }
 
     return (
         <div className='container-fluid m-0 p-0'>
@@ -33,13 +32,7 @@ export const Simulate = () => {
                             <label htmlFor="exampleFormControlInput1">Monto del crédito</label>
                             <input type="number" className="form-control" onChange={(e) => setMonto(e.target.value)} value={monto} placeholder="0" />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="exampleFormControlSelect1">Forma de pago</label>
-                            <select className="form-control" defaultValue='credito' onChange={(e) => setTypePayment(e.target.value)}>
-                                <option value='contado'>Contado</option>
-                                <option value='credito'>Crédito</option>
-                            </select>
-                        </div>
+                      
                         <div className="form-group">
                             <label htmlFor="exampleFormControlSelect1">Plazo</label>
                             <select className="form-control" defaultValue={48} onChange={(e) => setPlazo(e.target.value)}>
@@ -49,6 +42,7 @@ export const Simulate = () => {
                                 <option value={24}>24 Meses</option>
                                 <option value={36}>36 Meses</option>
                                 <option value={48}>48 Meses</option>
+                                <option value={60}>60 Meses</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -62,9 +56,8 @@ export const Simulate = () => {
                         Monto crédito: {monto} <br />
                         Tasa: {tasa} <br />
                         Total: {total} <br />
-                        Couta: {total / plazo} <br />
                         Forma de pago: {typePayment} <br />
-                        Plazo: {plazo} <br />
+                        Plazo: {plazo} Meses<br />
                     </div>
                 </div>
             </div>

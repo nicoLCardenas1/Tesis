@@ -62,31 +62,43 @@ export const Program = () => {
             console.log(error)
         }
     }
-
+    console.log(offer)
     return (
         <div className='container-fluid'>
             <div className='row justify-content-center'>
                 <div className='col-md-6 card p-4 mt-4'>
-                    <button
-                        type='button'
-                        className='btn btn-sm mb-3'
-                        style={{ fontSize: '30px' }}
-                        onClick={() => handleSaveFavorite(offer)}
-                    >
-                        ❤
-                    </button>
-                    <h5>Oferta {offer?.nombre_programa ? offer?.nombre_programa : 'Cargando...'}</h5><hr />
-                    <p>{`Codigo Snies: ${offer?.codigo_snies ? offer?.codigo_snies : 'Cargando...'}`}</p>
-                    <p>{`Nombre de programa: ${offer?.nombre_programa ? offer?.nombre_programa : 'Cargando...'}`}</p>
-                    <p>{`Sector Academico: ${offer?.sector_academico ? offer?.sector_academico : 'Cargando...'}`}</p>
-                    <p>{`Caracter Academico: ${offer?.caracter_academico ? offer?.caracter_academico : 'Cargando...'}`}</p>
-                    <p>{`Ubicación: ${offer?.ubicacion ? offer?.ubicacion : 'Cargando...'}`}</p>
-                    <p>{`Acreditado: ${offer?.acreditado ? offer?.acreditado : 'Cargando...'}`}</p>
-                    <p>{`Jornada: ${offer?.jornada ? offer?.jornada : 'Cargando...'}`}</p>
-                    <p>{`Número de semestres: ${offer?.numero_semestres ? offer?.numero_semestres : 'Cargando...'}`}</p>
-                    <p>{`Metodología: ${offer?.metodologia ? offer?.metodologia : 'Cargando...'}`}</p>
+                <h2 className="card-title">{offer?.nombre_programa}</h2>
+                    <img src={offer?.url_programa} className="card-img-top" alt="..." />
+                    <br></br>
+                    <div className="card-body">
+                    <span className="card-title">{offer?.descripcion}</span>
+                    
+                        <div className="my-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin p-2" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="11" r="3" />
+                                <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
+                            </svg>
+                            <span className="card-title">{offer?.ubicacion}</span>
+                            <br></br>
+                            <span className="card-title">Valor Semestre: {offer?.precio}</span>
+                            <br></br> 
+                            <span className="card-title">Titulo Otorgado: {offer?.titulo_otorgado}</span> </div>
+                            <span className="card-title">Nivel Academico: {offer?.nivel_academico}</span>
+                            <br></br>
+                            <span className="card-title">Metodologia: {offer?.metodologia}</span>
+                            <br></br>
+                            <span className="card-title">Jornada: {offer?.jornada}</span>
+                            <br></br>
+                            <br></br>
+                        <a href={offer?.pagina_admision} target="_blank" className="btn btn-dark">Página de Admisiones</a>
+                        <br></br>
+                       
+                        <a href={offer?.pagina_plan} target="_blank" className="btn btn-primary">Ver plan de estudios</a>
+
+                    </div>
                 </div>
             </div>
         </div>
     )
-}
+    }
