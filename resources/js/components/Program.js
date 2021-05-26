@@ -67,6 +67,14 @@ export const Program = () => {
         <div className='container-fluid'>
             <div className='row justify-content-center'>
                 <div className='col-md-6 card p-4 mt-4'>
+                <button
+                        type='button'
+                        className='btn btn-sm mb-3'
+                        style={{ fontSize: '30px' }}
+                        onClick={() => handleSaveFavorite(offer)}
+                    >
+                        ❤
+                    </button>
                 <h2 className="card-title">{offer?.nombre_programa}</h2>
                     <img src={offer?.url_programa} className="card-img-top" alt="..." />
                     <br></br>
