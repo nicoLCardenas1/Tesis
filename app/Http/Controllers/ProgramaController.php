@@ -12,14 +12,9 @@ class ProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id = null)
+    public function index($snies = null)
     {
-        // if ($id == null) {
-        //     $response = Ofert::orderBy('id', 'desc')->get();
-        // } else {
-        //     $response = Ofert::where('user_id', $id)->orderBy('id', 'desc')->get();
-        // }
-        // return response()->json($response, 200);
+        return response()->json(Programa::where('codigo_snies', $snies)->first(), 200);
     }
 
     /**

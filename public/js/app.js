@@ -79585,6 +79585,16 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var styleTable = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+var table = {
+  overflowX: 'auto',
+  display: 'block',
+  width: 'max-content'
+};
 var Representate = function Representate() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -79672,6 +79682,16 @@ var Representate = function Representate() {
     console.log('***', offer === null || offer === void 0 ? void 0 : offer.offers);
     if (!(offer !== null && offer !== void 0 && offer.offers)) dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__["offers"])(user.user_id));
   }, [user]);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var delayDebounceFn = setTimeout(function () {
+      if (snies) {
+        getDataProgram(snies);
+      }
+    }, 1000);
+    return function () {
+      return clearTimeout(delayDebounceFn);
+    };
+  }, [snies]);
 
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
@@ -79921,16 +79941,56 @@ var Representate = function Representate() {
     setUrlPrograma('');
   };
 
-  var styleTable = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+  var getDataProgram = function getDataProgram(snies) {
+    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Buscando información...');
+    setTimeout(function () {
+      fetch("/api/programa/".concat(snies), {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
+          'Access-Control-Allow-Origin': '*',
+          "Access-Control-Request-Headers": "*",
+          "Access-Control-Request-Method": "*"
+        }
+      }).then(function (data) {
+        return data.json();
+      }).then(function (data) {
+        var _data$titulo_otorgado, _data$precio, _data$numero_semestre, _data$nombre_programa, _data$nivel_academico, _data$municipio, _data$modalidad;
+
+        setTitulo((_data$titulo_otorgado = data.titulo_otorgado) !== null && _data$titulo_otorgado !== void 0 ? _data$titulo_otorgado : "");
+        setPrecio((_data$precio = data.precio) !== null && _data$precio !== void 0 ? _data$precio : "");
+        setNumeroSemestres((_data$numero_semestre = data.numero_semestres) !== null && _data$numero_semestre !== void 0 ? _data$numero_semestre : "");
+        setNombrePrograma((_data$nombre_programa = data.nombre_programa) !== null && _data$nombre_programa !== void 0 ? _data$nombre_programa : "");
+        setNivelAcademico((_data$nivel_academico = data.nivel_academico) !== null && _data$nivel_academico !== void 0 ? _data$nivel_academico : "");
+        setUbicacion((_data$municipio = data.municipio) !== null && _data$municipio !== void 0 ? _data$municipio : "");
+        setMetodologia((_data$modalidad = data.modalidad) !== null && _data$modalidad !== void 0 ? _data$modalidad : "");
+
+        if (data.id) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.close();
+        } else {
+          var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: function didOpen(toast) {
+              toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.stopTimer);
+              toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.resumeTimer);
+            }
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'No se ha encontrando información para este codigo de snies.'
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }, 1000);
   };
-  var table = {
-    overflowX: 'auto',
-    display: 'block',
-    width: 'max-content'
-  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -79980,6 +80040,7 @@ var Representate = function Representate() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Nombre de programa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: nombrePrograma,
     className: "form-control",
     type: "text",
     placeholder: "Nombre de programa",
@@ -79992,6 +80053,7 @@ var Representate = function Representate() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "T\xEDtulo otorgado"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: titulo,
     className: "form-control",
     type: "text",
     placeholder: "T\xEDtulo otorgado",
@@ -80002,6 +80064,7 @@ var Representate = function Representate() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Nivel acad\xE9mico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: nivelAcademico,
     className: "form-control",
     type: "text",
     placeholder: "Nivel acad\xE9mico",
@@ -80014,6 +80077,7 @@ var Representate = function Representate() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Ubicaci\xF3n"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: ubicacion,
     className: "form-control",
     type: "text",
     placeholder: "Ubicaci\xF3n",
@@ -80036,6 +80100,7 @@ var Representate = function Representate() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: precio,
     className: "form-control",
     type: "number",
     placeholder: "Precio",
@@ -80058,6 +80123,7 @@ var Representate = function Representate() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "N\xFAmero de Semestres"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: numeroSemestres,
     className: "form-control",
     type: "number",
     placeholder: "N\xFAmero de Semestres",
@@ -80068,6 +80134,7 @@ var Representate = function Representate() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Metodolog\xEDa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: metodologia,
     className: "form-control",
     type: "text",
     placeholder: "Metodolog\xEDa",
