@@ -7334,7 +7334,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".pb-image-viewer .img-responsive.full-width{\r\n    display: none !important;\r\n}", ""]);
+exports.push([module.i, ".pb-image-viewer .img-responsive.full-width{\n    display: none !important;\n}", ""]);
 
 // exports
 
@@ -79478,7 +79478,16 @@ var Program = function Program() {
     className: "row justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "col-md-6 card p-4 mt-4"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    type: "button",
+    className: "btn btn-sm mb-3",
+    style: {
+      fontSize: '30px'
+    },
+    onClick: function onClick() {
+      return handleSaveFavorite(offer);
+    }
+  }, "\u2764"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
     className: "card-title"
   }, offer === null || offer === void 0 ? void 0 : offer.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
     src: offer === null || offer === void 0 ? void 0 : offer.url_programa,
@@ -81031,8 +81040,8 @@ var AppRouter = function AppRouter() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ashly\OneDrive\Escritorio\Proyecto\Tesis\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ashly\OneDrive\Escritorio\Proyecto\Tesis\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\ies-master\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\ies-master\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
