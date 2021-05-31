@@ -67,7 +67,7 @@ export const Program = () => {
         <div className='container-fluid'>
             <div className='row justify-content-center'>
                 <div className='col-md-6 card p-4 mt-4'>
-                <button
+                    <button
                         type='button'
                         className='btn btn-sm mb-3'
                         style={{ fontSize: '30px' }}
@@ -75,12 +75,12 @@ export const Program = () => {
                     >
                         ❤
                     </button>
-                <h2 className="card-title">{offer?.nombre_programa}</h2>
-                    <img src={offer?.url_programa} className="card-img-top" alt="..." />
+                    <h2 className="card-title text-center">{offer?.nombre_programa}</h2>
+                    <img src={offer?.url_programa} className="card-img-top" alt="..." style={{ "height": '200px', objectFit: 'cover' }} />
                     <br></br>
                     <div className="card-body">
-                    <span className="card-title">{offer?.descripcion}</span>
-                    
+                        <span className="card-title text-center">{offer?.descripcion}</span>
+
                         <div className="my-2">
                             <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-map-pin p-2" width="44" height="44" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -88,25 +88,21 @@ export const Program = () => {
                                 <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
                             </svg>
                             <span className="card-title">{offer?.ubicacion}</span>
-                            <br></br>
-                            <span className="card-title">Valor Semestre: {offer?.precio}</span>
-                            <br></br> 
-                            <span className="card-title">Titulo Otorgado: {offer?.titulo_otorgado}</span> </div>
-                            <span className="card-title">Nivel Academico: {offer?.nivel_academico}</span>
-                            <br></br>
-                            <span className="card-title">Metodologia: {offer?.metodologia}</span>
-                            <br></br>
-                            <span className="card-title">Jornada: {offer?.jornada}</span>
-                            <br></br>
-                            <br></br>
-                        <a href={offer?.pagina_admision} target="_blank" className="btn btn-dark">Página de Admisiones</a>
-                        <br></br>
-                       
-                        <a href={offer?.pagina_plan} target="_blank" className="btn btn-primary">Ver plan de estudios</a>
+                        </div>
 
+                        <p className="card-title"><b>Valor Semestre:</b> $ {offer?.precio}</p>
+                        <p className="card-title"><b>Titulo Otorgado:</b> {offer?.titulo_otorgado}</p>
+                        <p className="card-title"><b>Nivel Academico:</b> {offer?.nivel_academico}</p>
+                        <p className="card-title"><b>Metodologia:</b> {offer?.metodologia}</p>
+                        <p className="card-title"><b>Jornada:</b> {offer?.jornada}</p>
+
+                        <div className="d-flex justify-content-between">
+                            <a href={offer?.pagina_admision} target="_blank" className="btn btn-dark my-2">Página de Admisiones</a>
+                            <a href={offer?.pagina_plan} target="_blank" className="btn btn-primary my-2">Ver plan de estudios</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     )
-    }
+}

@@ -78232,11 +78232,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
-/* harmony import */ var use_debounce__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! use-debounce */ "./node_modules/use-debounce/esm/index.js");
-var _templateObject;
-
+/* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78249,25 +78245,40 @@ function _iterableToArrayLimit(arr, i) { var _i = arr && (typeof Symbol !== "und
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
 
-
-
-
-var Input = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].input(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: none;\n  height: 100%;\n  min-height: 35px;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-radius: 4px;\n  text-align: center;\n  color: gray;\n"])));
+var styleTable = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+var table = {
+  overflowX: 'auto',
+  display: 'block',
+  width: 'max-content'
+};
 var Aspirante = function Aspirante() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
       snies = _useState2[0],
       setSnies = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
       _useState4 = _slicedToArray(_useState3, 2),
-      dinamicOffer = _useState4[0],
-      setDinamicOffer = _useState4[1];
+      search = _useState4[0],
+      setSearch = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      dinamicOffer = _useState6[0],
+      setDinamicOffer = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      data = _useState8[0],
+      setData = _useState8[1];
 
   var user = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(function (state) {
     return state.auth;
@@ -78276,47 +78287,41 @@ var Aspirante = function Aspirante() {
     return state.offer;
   });
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
-
-  var _useDebounce = Object(use_debounce__WEBPACK_IMPORTED_MODULE_5__["useDebounce"])(snies, 1000),
-      _useDebounce2 = _slicedToArray(_useDebounce, 1),
-      value = _useDebounce2[0];
-
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    console.log('***', offer === null || offer === void 0 ? void 0 : offer.offers);
-    if (!(offer !== null && offer !== void 0 && offer.offers)) dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_4__["offers"])());
-    if (offer !== null && offer !== void 0 && offer.offers) setDinamicOffer(offer === null || offer === void 0 ? void 0 : offer.offers);
-  }, [setSnies, offer === null || offer === void 0 ? void 0 : offer.offers]);
+    if (!(offer !== null && offer !== void 0 && offer.offers)) {
+      dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__["offers"])());
+    } else {
+      setDinamicOffer(offer === null || offer === void 0 ? void 0 : offer.offers);
+      setData(offer === null || offer === void 0 ? void 0 : offer.offers);
+    }
+  }, [offer === null || offer === void 0 ? void 0 : offer.offers]);
 
-  var restarData = function restarData() {
-    setDinamicOffer(offer === null || offer === void 0 ? void 0 : offer.offers);
-    setSnies('');
-  };
+  var filter = function filter() {
+    var newData = data.slice().filter(function (item) {
+      var filter = false;
 
-  var filter = function filter(e) {
-    var text = e.target.value;
-    var data = dinamicOffer;
-    var newData = data.filter(function (item) {
-      var id = item.id;
-      var codigo_snies = item.codigo_snies.toUpperCase();
-      var codigo_ies = item.codigo_ies.toUpperCase();
-      var nombre_ies = item.nombre_ies.toUpperCase();
-      var nombre_programa = item.nombre_programa.toUpperCase();
-      var sector_academico = item.sector_academico.toUpperCase();
-      var caracter_academico = item.caracter_academico.toUpperCase();
-      var ubicacion = item.ubicacion.toUpperCase();
-      var acreditado = item.acreditado.toUpperCase();
-      var jornada = item.jornada.toUpperCase();
-      var numero_semestres = item.numero_semestres.toUpperCase();
-      var metodologia = item.metodologia.toUpperCase();
-      var precio = item.precio.toUpperCase(); //merge seacrh
+      if (!search.modalidad && !search.nivel_academico) {
+        filter = true;
+      } else if (search.modalidad === item.metodologia && search.nivel_academico === item.nivel_academico) {
+        filter = true;
+      } else {
+        if (search.modalidad === item.metodologia && !search.nivel_academico) {
+          filter = true;
+        } else if (search.nivel_academico === item.nivel_academico && !search.modalidad) {
+          filter = true;
+        } else {
+          filter = false;
+        }
+      }
 
-      var campo = id + " " + codigo_snies + " " + codigo_ies + " " + nombre_ies + " " + nombre_programa + " " + sector_academico + " " + caracter_academico + " " + ubicacion + " " + acreditado + " " + jornada + " " + numero_semestres + " " + metodologia + " " + precio;
-      var textData = text.toUpperCase();
-      console.log('result index of', campo.indexOf(textData) > -1);
-      return campo.indexOf(textData) > -1;
+      if (filter && snies) {
+        var merge = item.nombre_programa.toUpperCase() + " " + item.nombre_ies.toUpperCase();
+        filter = merge.indexOf(snies.toUpperCase()) > -1;
+      }
+
+      return filter;
     });
     setDinamicOffer(newData);
-    setSnies(text);
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -78329,32 +78334,62 @@ var Aspirante = function Aspirante() {
     className: "text-primary"
   }, "Bienvenido: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "text-dark"
-  }, user === null || user === void 0 ? void 0 : user.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+  }, user === null || user === void 0 ? void 0 : user.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Buscar por programa",
+    "aria-label": "Buscar por programa",
+    "aria-describedby": "button-addon2",
+    onChange: function onChange(e) {
+      return setSnies(e.target.value);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "input-group-append"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-outline-secondary",
+    type: "button",
+    id: "button-addon2",
+    onClick: filter
+  }, "Buscar"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "custom-select w-auto mx-2",
+    defaultValue: 'DEFAULT',
+    onChange: function onChange(e) {
+      return search.modalidad = e.target.value;
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "DEFAULT",
+    required: true,
+    disabled: true
+  }, "Tipo de modalidad"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Presencial"
+  }, "Presencial"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Dual"
+  }, "Dual"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Distancia (virtual)"
+  }, "Distancia (virtual)")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "custom-select w-auto mx-2",
+    defaultValue: 'DEFAULT',
+    onChange: function onChange(e) {
+      return search.nivel_academico = e.target.value;
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "DEFAULT",
+    required: true,
+    disabled: true
+  }, "Nivel acad\xE9mico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Posgrado"
+  }, "Posgrado"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Pregrado"
+  }, "Pregrado"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: styleTable
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", {
+    style: table,
     className: "table table-hover"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
-    className: "text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-    scope: "row"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-    colSpan: 8
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Input, {
-    type: "text",
-    className: "form-control mb-3 w-10 d-inline",
-    placeholder: "Buscador",
-    value: snies,
-    onChange: function onChange(snies) {
-      return filter(snies);
-    }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
-    colSpan: 1
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Input, {
-    type: "button",
-    className: "btn",
-    value: "restaurar",
-    onClick: function onClick() {
-      return restarData();
-    }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
     className: "bg-primary text-light text-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
     scope: "col"
@@ -78396,7 +78431,7 @@ var Aspirante = function Aspirante() {
     colSpan: 10
   }, "No hay ofertas disponibles")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
     colSpan: 10
-  }, "Cargando ofertas")))))));
+  }, "Cargando ofertas"))))))));
 };
 
 /***/ }),
@@ -79063,15 +79098,23 @@ var Perfil = function Perfil() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "sector"
-  }, "Sector"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    id: "sector",
+  }, "Sector"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "custom-select custom-select-sm",
+    defaultValue: 'DEFAULT',
     onChange: function onChange(e) {
       return setSector(e.target.value);
-    },
-    value: sector
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "DEFAULT",
+    required: true,
+    disabled: true
+  }, "Tipo de jornada"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Diurna"
+  }, "Diurna"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Nocturna"
+  }, "Nocturna"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Completa"
+  }, "Completa"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "caracterAcademico"
@@ -79110,8 +79153,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _https_GetHttpRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./https/GetHttpRequest */ "./resources/js/components/https/GetHttpRequest.js");
-/* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
-/* harmony import */ var use_debounce__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! use-debounce */ "./node_modules/use-debounce/esm/index.js");
 var _templateObject;
 
 
@@ -79139,8 +79180,6 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-
-
 var Input = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].input(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: none;\n  height: 100%;\n  min-height: 35px;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-radius: 4px;\n  text-align: center;\n  color: gray;\n"])));
 var Postulados = function Postulados() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
@@ -79159,12 +79198,6 @@ var Postulados = function Postulados() {
   var offer = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.offer;
   });
-  var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
-
-  var _useDebounce = Object(use_debounce__WEBPACK_IMPORTED_MODULE_7__["useDebounce"])(snies, 1000),
-      _useDebounce2 = _slicedToArray(_useDebounce, 1),
-      value = _useDebounce2[0];
-
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     console.log('***', offer === null || offer === void 0 ? void 0 : offer.offers); //if (!offer?.offers) dispatch(offers())
 
@@ -79488,15 +79521,19 @@ var Program = function Program() {
       return handleSaveFavorite(offer);
     }
   }, "\u2764"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
-    className: "card-title"
+    className: "card-title text-center"
   }, offer === null || offer === void 0 ? void 0 : offer.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
     src: offer === null || offer === void 0 ? void 0 : offer.url_programa,
     className: "card-img-top",
-    alt: "..."
+    alt: "...",
+    style: {
+      "height": '200px',
+      objectFit: 'cover'
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-    className: "card-title"
+    className: "card-title text-center"
   }, offer === null || offer === void 0 ? void 0 : offer.descripcion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "my-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("svg", {
@@ -79522,25 +79559,27 @@ var Program = function Program() {
     d: "M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "card-title"
-  }, offer === null || offer === void 0 ? void 0 : offer.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, offer === null || offer === void 0 ? void 0 : offer.ubicacion)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "card-title"
-  }, "Valor Semestre: ", offer === null || offer === void 0 ? void 0 : offer.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Valor Semestre:"), " $ ", offer === null || offer === void 0 ? void 0 : offer.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "card-title"
-  }, "Titulo Otorgado: ", offer === null || offer === void 0 ? void 0 : offer.titulo_otorgado), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Titulo Otorgado:"), " ", offer === null || offer === void 0 ? void 0 : offer.titulo_otorgado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "card-title"
-  }, "Nivel Academico: ", offer === null || offer === void 0 ? void 0 : offer.nivel_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Nivel Academico:"), " ", offer === null || offer === void 0 ? void 0 : offer.nivel_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "card-title"
-  }, "Metodologia: ", offer === null || offer === void 0 ? void 0 : offer.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Metodologia:"), " ", offer === null || offer === void 0 ? void 0 : offer.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
     className: "card-title"
-  }, "Jornada: ", offer === null || offer === void 0 ? void 0 : offer.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "Jornada:"), " ", offer === null || offer === void 0 ? void 0 : offer.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex justify-content-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: offer === null || offer === void 0 ? void 0 : offer.pagina_admision,
     target: "_blank",
-    className: "btn btn-dark"
-  }, "P\xE1gina de Admisiones"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    className: "btn btn-dark my-2"
+  }, "P\xE1gina de Admisiones"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: offer === null || offer === void 0 ? void 0 : offer.pagina_plan,
     target: "_blank",
-    className: "btn btn-primary"
-  }, "Ver plan de estudios")))));
+    className: "btn btn-primary my-2"
+  }, "Ver plan de estudios"))))));
 };
 
 /***/ }),

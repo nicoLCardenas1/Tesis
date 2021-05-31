@@ -176,7 +176,6 @@ class OfertsController extends Controller
         $ofert->pagina_plan = $request->input('paginaPlan') ?? '';
         $ofert->url_programa = $request->input('urlPrograma') ?? '';
 
-        
 
         //hacer el guardado
         if ($ofert->update()) {
