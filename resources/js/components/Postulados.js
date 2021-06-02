@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GetHttpRequest } from './https/GetHttpRequest';
-import { createOffer, offers } from './redux/actions/oferts';
-import { useDebounce } from 'use-debounce';
 
 const Input = styled.input`
   border: none;
@@ -22,9 +20,7 @@ export const Postulados = () => {
     const [snies, setSnies] = useState('')
     const [dinamicOffer, setDinamicOffer] = useState([])
     const user = useSelector(state => state.auth)
-    const offer = useSelector(state => state.offer)
-    const dispatch = useDispatch();
-    const [value] = useDebounce(snies, 1000);
+    const offer = useSelector(state => state.offer);
 
     useEffect(() => {
         console.log('***', offer?.offers)

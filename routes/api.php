@@ -34,3 +34,6 @@ Route::get('universidad-user/{id}', 'OfertsController@getUniversidadIdUser');
 Route::get('universidad/{id}', 'OfertsController@getUniversidadId');
 
 Route::post('snies', 'OfertsController@snies');
+
+Route::post('programas', 'ProgramaController@store');
+Route::get('programa/{snies}', 'ProgramaController@index');

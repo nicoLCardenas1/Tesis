@@ -3,6 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { offers } from './redux/actions/oferts';
 import Swal from 'sweetalert2'
 
+const styleTable = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+};
+
+const table = {
+    overflowX: 'auto',
+    display: 'block',
+    width: 'max-content'
+}
+
 export const Representate = () => {
     const [idoffer, setIdoffer] = useState(null)
     const [snies, setSnies] = useState('')
@@ -28,6 +40,16 @@ export const Representate = () => {
         console.log('***', offer?.offers)
         if (!offer?.offers) dispatch(offers(user.user_id))
     }, [user]);
+
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            if (snies) {
+                getDataProgram(snies);
+            }
+        }, 1000);
+
+        return () => clearTimeout(delayDebounceFn);
+    }, [snies]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -259,16 +281,55 @@ export const Representate = () => {
         setUrlPrograma('')
     }
 
-    const styleTable = {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
-    };
+    const getDataProgram = (snies) => {
+        Swal.fire('Buscando información...');
 
-    const table = {
-        overflowX: 'auto',
-        display: 'block',
-        width: 'max-content'
+        setTimeout(() => {
+            fetch(`/api/programa/${snies}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Access-Control-Allow-Origin': '*',
+                    "Access-Control-Request-Headers": "*",
+                    "Access-Control-Request-Method": "*"
+                }
+            })
+                .then(data => data.json())
+                .then(data => {
+                    setTitulo(data.titulo_otorgado ?? "");
+                    setPrecio(data.precio ?? "");
+                    setNumeroSemestres(data.numero_semestres ?? "");
+                    setNombrePrograma(data.nombre_programa ?? "");
+                    setNivelAcademico(data.nivel_academico ?? "");
+                    setUbicacion(data.municipio ?? "");
+                    setMetodologia(data.modalidad ?? "");
+
+                    if (data.id) {
+                        Swal.close();
+                    } else {
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        });
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'No se ha encontrando información para este codigo de snies.'
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }, 1000);
     }
 
     return (
@@ -295,23 +356,23 @@ export const Representate = () => {
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Nombre de programa</label>
-                                            <input className="form-control" type='text' placeholder='Nombre de programa' onChange={(e) => setNombrePrograma(e.target.value)} value={nombrePrograma} />
+                                            <input disabled={nombrePrograma} className="form-control" type='text' placeholder='Nombre de programa' onChange={(e) => setNombrePrograma(e.target.value)} value={nombrePrograma} />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Título otorgado</label>
-                                            <input className="form-control" type='text' placeholder='Título otorgado' onChange={(e) => setTitulo(e.target.value)} value={titulo} />
+                                            <input disabled={titulo} className="form-control" type='text' placeholder='Título otorgado' onChange={(e) => setTitulo(e.target.value)} value={titulo} />
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Nivel académico</label>
-                                            <input className="form-control" type='text' placeholder='Nivel académico' onChange={(e) => setNivelAcademico(e.target.value)} value={nivelAcademico} />
+                                            <input disabled={nivelAcademico} className="form-control" type='text' placeholder='Nivel académico' onChange={(e) => setNivelAcademico(e.target.value)} value={nivelAcademico} />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Ubicación</label>
-                                            <input className="form-control" type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} />
+                                            <input disabled={ubicacion} className="form-control" type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} />
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Acreditado</label>
@@ -321,7 +382,7 @@ export const Representate = () => {
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Precio</label>
-                                            <input className="form-control" type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} />
+                                            <input disabled={precio} className="form-control" type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} />
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Jornada</label>
@@ -331,11 +392,11 @@ export const Representate = () => {
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Número de Semestres</label>
-                                            <input className="form-control" type='number' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} />
+                                            <input disabled={numeroSemestres} className="form-control" type='number' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} />
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Metodología</label>
-                                            <input className="form-control" type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} />
+                                            <input disabled={metodologia} className="form-control" type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} />
                                         </div>
                                     </div>
                                     <div className="form-row">

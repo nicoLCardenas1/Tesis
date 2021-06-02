@@ -122,8 +122,14 @@ export const Perfil = () => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="sector">Sector</label>
-                            <input type="text" className="form-control" id="sector" onChange={(e) => setSector(e.target.value)} value={sector} />
+                            <select className="custom-select custom-select-sm" defaultValue={'DEFAULT'} onChange={(e) => setSector(e.target.value)}>
+                                <option value="DEFAULT" required disabled>Tipo de jornada</option>
+                                <option value="Diurna">Diurna</option>
+                                <option value="Nocturna">Nocturna</option>
+                                <option value="Completa">Completa</option>
+                            </select>
                         </div>
+
                         <div className="form-group">
                             <label htmlFor="caracterAcademico">Caracter academico</label>
                             <input type="text" className="form-control" id="caracterAcademico" onChange={(e) => setCaracterAcademico(e.target.value)} value={caracterAcademico} />
