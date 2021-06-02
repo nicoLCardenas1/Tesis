@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { useSelector } from 'react-redux';
 
-
 export const Perfil = () => {
     const [urlFoto, setUrlPhoto] = useState('');
     const [nombreIes, setNombre] = useState('');
@@ -120,7 +119,7 @@ export const Perfil = () => {
                         </div>
                         <div className="form-group">
                             <label htmlFor="sector">Sector</label>
-                            <select className="custom-select custom-select-sm" defaultValue={'DEFAULT'} onChange={(e) => setSector(e.target.value)}>
+                            <select className="custom-select custom-select-sm" value={sector ? sector : 'DEFAULT'} onChange={(e) => setSector(e.target.value)}>
                                 <option value="DEFAULT" required disabled>Tipo de jornada</option>
                                 <option value="Diurna">Diurna</option>
                                 <option value="Nocturna">Nocturna</option>
@@ -130,7 +129,13 @@ export const Perfil = () => {
 
                         <div className="form-group">
                             <label htmlFor="caracterAcademico">Caracter academico</label>
-                            <input type="text" className="form-control" id="caracterAcademico" onChange={(e) => setCaracterAcademico(e.target.value)} value={caracterAcademico} />
+                            <select className="custom-select custom-select-sm" value={caracterAcademico ? caracterAcademico : 'DEFAULT'} onChange={(e) => setCaracterAcademico(e.target.value)}>
+                                <option value="DEFAULT" required disabled>Tipo de caracter academico</option>
+                                <option value="Institución técnica profesional">Institución técnica profesional</option>
+                                <option value="Institución tecnológica">Institución tecnológica</option>
+                                <option value="Institución universitario">Institución universitario</option>
+                                <option value="Universidad">Universidad</option>
+                            </select>
                         </div>
                         <button type="submit" className="btn btn-primary" onClick={handlerSubmit}>Actualizar información</button>
                     </form>

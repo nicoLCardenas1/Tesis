@@ -43,9 +43,7 @@ export const Representate = () => {
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            if (snies) {
-                getDataProgram(snies);
-            }
+            if (snies) { getDataProgram(snies); }
         }, 1000);
 
         return () => clearTimeout(delayDebounceFn);
@@ -372,7 +370,7 @@ export const Representate = () => {
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Ubicación</label>
-                                            <input disabled={ubicacion} className="form-control" type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} />
+                                            <input className="form-control" type='text' placeholder='Ubicación' onChange={(e) => setUbicacion(e.target.value)} value={ubicacion} />
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Acreditado</label>
@@ -382,7 +380,7 @@ export const Representate = () => {
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Precio</label>
-                                            <input disabled={precio} className="form-control" type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} />
+                                            <input className="form-control" type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} />
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Jornada</label>
@@ -392,11 +390,11 @@ export const Representate = () => {
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Número de Semestres</label>
-                                            <input disabled={numeroSemestres} className="form-control" type='number' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} />
+                                            <input className="form-control" type='number' placeholder='Número de Semestres' onChange={(e) => setNumeroSemestres(e.target.value)} value={numeroSemestres} />
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Metodología</label>
-                                            <input disabled={metodologia} className="form-control" type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} />
+                                            <input className="form-control" type='text' placeholder='Metodología' onChange={(e) => setMetodologia(e.target.value)} value={metodologia} />
                                         </div>
                                     </div>
                                     <div className="form-row">

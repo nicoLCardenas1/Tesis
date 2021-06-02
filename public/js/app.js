@@ -79100,7 +79100,7 @@ var Perfil = function Perfil() {
     htmlFor: "sector"
   }, "Sector"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
     className: "custom-select custom-select-sm",
-    defaultValue: 'DEFAULT',
+    value: sector ? sector : 'DEFAULT',
     onChange: function onChange(e) {
       return setSector(e.target.value);
     }
@@ -79118,15 +79118,25 @@ var Perfil = function Perfil() {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "caracterAcademico"
-  }, "Caracter academico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "text",
-    className: "form-control",
-    id: "caracterAcademico",
+  }, "Caracter academico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+    className: "custom-select custom-select-sm",
+    value: caracterAcademico ? caracterAcademico : 'DEFAULT',
     onChange: function onChange(e) {
       return setCaracterAcademico(e.target.value);
-    },
-    value: caracterAcademico
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "DEFAULT",
+    required: true,
+    disabled: true
+  }, "Tipo de caracter academico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Instituci\xF3n t\xE9cnica profesional"
+  }, "Instituci\xF3n t\xE9cnica profesional"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Instituci\xF3n tecnol\xF3gica"
+  }, "Instituci\xF3n tecnol\xF3gica"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Instituci\xF3n universitario"
+  }, "Instituci\xF3n universitario"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+    value: "Universidad"
+  }, "Universidad"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary",
     onClick: handlerSubmit
@@ -80116,7 +80126,6 @@ var Representate = function Representate() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Ubicaci\xF3n"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    disabled: ubicacion,
     className: "form-control",
     type: "text",
     placeholder: "Ubicaci\xF3n",
@@ -80139,7 +80148,6 @@ var Representate = function Representate() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    disabled: precio,
     className: "form-control",
     type: "number",
     placeholder: "Precio",
@@ -80162,7 +80170,6 @@ var Representate = function Representate() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "N\xFAmero de Semestres"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    disabled: numeroSemestres,
     className: "form-control",
     type: "number",
     placeholder: "N\xFAmero de Semestres",
@@ -80173,7 +80180,6 @@ var Representate = function Representate() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Metodolog\xEDa"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    disabled: metodologia,
     className: "form-control",
     type: "text",
     placeholder: "Metodolog\xEDa",
