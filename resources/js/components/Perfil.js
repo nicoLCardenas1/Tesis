@@ -99,7 +99,9 @@ export const Perfil = () => {
                     <h4 className='text-primary'>Editar perfil universidad</h4>
                     <form>
                         <div className="form-group">
-                            <label htmlFor="urlFoto">URL foto</label>
+                            <label for="urlFoto">
+                                <input type ="file" name ="urlFoto"></input>
+                            </label>
                             <input type="text" className="form-control" id="urlFoto" placeholder="URL imagen de la universidad" onChange={(e) => setUrlPhoto(e.target.value)} value={urlFoto} />
                         </div>
                         <div className="form-group">
