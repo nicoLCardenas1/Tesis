@@ -101,7 +101,6 @@ export const Aspirante = () => {
                                     <th scope="col">Num. Semestres</th>
                                     <th scope="col">Metodología</th>
                                     <th scope="col">Precio</th>
-                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -133,12 +132,7 @@ export const Aspirante = () => {
                                                     <td>{item.metodologia}</td>
                                                     <td>{item.precio}</td>
 
-                                                    <td>
-                                                        <Link
-                                                            to={`/home/programa/${item.id}`}
-                                                            className='btn btn-sm btn-warning text-light'
-                                                        > Ver...</Link>
-                                                    </td>
+                                                    
                                                 </tr>
                                             ))
                                             : <tr>

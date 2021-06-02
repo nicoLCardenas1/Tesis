@@ -118,10 +118,7 @@ export const Favorite = () => {
                                                 <td>{item.numero_semestres}</td>
                                                 <td>{item.metodologia}</td>
                                                 <td>
-                                                    <Link
-                                                        to={`/home/programa/${item.id}`}
-                                                        className='btn btn-sm btn-warning text-light'
-                                                    > Ver...</Link>
+                                                <button className='btn btn-sm mx-1 btn-danger' onClick={(e) => handleDeleteOffer(item.id, e, i)}>Eliminar</button>
                                                 </td>
                                             </tr>
                                         ))
