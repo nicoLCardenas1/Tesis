@@ -51,6 +51,10 @@ export const Aspirante = () => {
                 }
             }
 
+            if (filter && search.precio) {
+                filter = item.precio <= Number(search.precio) + 500000 && item.precio >= Number(search.precio) - 500000;
+            }
+
             if (filter && snies) {
                 const merge = item.nombre_programa.toUpperCase() + " " + item.nombre_ies.toUpperCase();
                 filter = merge.indexOf(snies.toUpperCase()) > -1;
@@ -85,6 +89,9 @@ export const Aspirante = () => {
                             <option value="Posgrado">Posgrado</option>
                             <option value="Pregrado">Pregrado</option>
                         </select>
+                        <div className="d-inline-flex col-sm-3 my-1">
+                            <input type="number" className="form-control w-auto" placeholder="Precio" aria-label="Precio" aria-describedby="button-addon2" onChange={(e) => search.precio = e.target.value} />
+                        </div>
                     </div>
                     <div style={styleTable}>
                         <table style={table} className="table table-hover">
@@ -132,7 +139,6 @@ export const Aspirante = () => {
                                                     <td>{item.metodologia}</td>
                                                     <td>{item.precio}</td>
 
-                                                    
                                                 </tr>
                                             ))
                                             : <tr>
