@@ -17,6 +17,18 @@ const Input = styled.input`
   color: gray;
 `;
 
+const styleTable = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+};
+
+const table = {
+    overflowX: 'auto',
+    display: 'block',
+    width: 'max-content'
+}
+
 export const Favorite = () => {
     const [snies, setSnies] = useState('')
     const [dinamicOffer, setDinamicOffer] = useState([])
@@ -99,58 +111,60 @@ export const Favorite = () => {
             <div className='row justify-content-center'>
                 <div className='col-md-12 mt-4'>
                     <h4 className='text-primary'>Bienvenido: <span className='text-dark'>{user?.name}</span></h4>
-                    <table className="table table-hover">
-                        <thead>
-                            <tr className='text-center'>
-                                <td colSpan={8}><Input type='text' className='form-control mb-3 w-10 d-inline' placeholder='Buscador' value={snies} onChange={(snies) => filter(snies)} /></td>
-                                <td colSpan={1}><Input type='button' className='btn' value='restaurar' onClick={() => restarData()} /></td>
-                            </tr>
+                    <div style={styleTable}>
+                        <table style={table} className="table table-hover">
+                            <thead>
+                                <tr className='text-center'>
+                                    <td colSpan={8}><Input type='text' className='form-control mb-3 w-10 d-inline' placeholder='Buscador' value={snies} onChange={(snies) => filter(snies)} /></td>
+                                    <td colSpan={1}><Input type='button' className='btn' value='restaurar' onClick={() => restarData()} /></td>
+                                </tr>
 
-                            <tr className='bg-primary text-light text-center'>
-                                <th scope="col">ID</th>
-                                <th scope="col">Codigo SNIES</th>
-                                <th scope="col">N. Programa</th>
-                                <th scope="col">Sector</th>
-                                <th scope="col">Carácter Académico</th>
-                                <th scope="col">Ubicación</th>
-                                <th scope="col">¿Acreditado?</th>
-                                <th scope="col">Jornada</th>
-                                <th scope="col">Num. Semestres</th>
-                                <th scope="col">Metodología</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                dinamicOffer
-                                    ? dinamicOffer.length
-                                        ?
-                                        dinamicOffer.map((item, i) => (
-                                            <tr key={i} className='text-center'>
-                                                <th scope="row">{item.id}</th>
-                                                <td>{item.codigo_snies}</td>
-                                                <td>{item.nombre_programa}</td>
-                                                <td>{item.sector_academico}</td>
-                                                <td>{item.caracter_academico}</td>
-                                                <td>{item.ubicacion}</td>
-                                                <td>{item.acreditado}</td>
-                                                <td>{item.jornada}</td>
-                                                <td>{item.numero_semestres}</td>
-                                                <td>{item.metodologia}</td>
-                                                <td>
-                                                    <button className='btn btn-sm mx-1 btn-danger' onClick={() => handleDeleteOffer(item)}>Eliminar</button>
-                                                </td>
+                                <tr className='bg-primary text-light text-center'>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Codigo SNIES</th>
+                                    <th scope="col">N. Programa</th>
+                                    <th scope="col">Sector</th>
+                                    <th scope="col">Carácter Académico</th>
+                                    <th scope="col">Ubicación</th>
+                                    <th scope="col">¿Acreditado?</th>
+                                    <th scope="col">Jornada</th>
+                                    <th scope="col">Num. Semestres</th>
+                                    <th scope="col">Metodología</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    dinamicOffer
+                                        ? dinamicOffer.length
+                                            ?
+                                            dinamicOffer.map((item, i) => (
+                                                <tr key={i} className='text-center'>
+                                                    <th scope="row">{item.id}</th>
+                                                    <td>{item.codigo_snies}</td>
+                                                    <td>{item.nombre_programa}</td>
+                                                    <td>{item.sector_academico}</td>
+                                                    <td>{item.caracter_academico}</td>
+                                                    <td>{item.ubicacion}</td>
+                                                    <td>{item.acreditado}</td>
+                                                    <td>{item.jornada}</td>
+                                                    <td>{item.numero_semestres}</td>
+                                                    <td>{item.metodologia}</td>
+                                                    <td>
+                                                        <button className='btn btn-sm mx-1 btn-danger' onClick={() => handleDeleteOffer(item)}>Eliminar</button>
+                                                    </td>
+                                                </tr>
+                                            ))
+                                            : <tr>
+                                                <td colSpan={10}>No hay ofertas disponibles</td>
                                             </tr>
-                                        ))
                                         : <tr>
-                                            <td colSpan={10}>No hay ofertas disponibles</td>
+                                            <td colSpan={10}>Cargando ofertas</td>
                                         </tr>
-                                    : <tr>
-                                        <td colSpan={10}>Cargando ofertas</td>
-                                    </tr>
-                            }
-                        </tbody>
-                    </table>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

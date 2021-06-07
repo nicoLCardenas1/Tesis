@@ -119,6 +119,12 @@ class OfertsController extends Controller
         return response()->json(Ofert::find($id), 200);
     }
 
+    public function relative($name)
+    {
+        $offers = Ofert::where("nombre_programa", "LIKE", "%$name%")->offset(0)->limit(10)->get();
+        return response()->json($offers, 200);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

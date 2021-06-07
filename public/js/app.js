@@ -78525,6 +78525,16 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 var Input = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].input(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: none;\n  height: 100%;\n  min-height: 35px;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-radius: 4px;\n  text-align: center;\n  color: gray;\n"])));
+var styleTable = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+var table = {
+  overflowX: 'auto',
+  display: 'block',
+  width: 'max-content'
+};
 var Favorite = function Favorite() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -78653,7 +78663,10 @@ var Favorite = function Favorite() {
     className: "text-primary"
   }, "Bienvenido: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "text-dark"
-  }, user === null || user === void 0 ? void 0 : user.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+  }, user === null || user === void 0 ? void 0 : user.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    style: styleTable
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+    style: table,
     className: "table table-hover"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
     className: "text-center"
@@ -78716,7 +78729,7 @@ var Favorite = function Favorite() {
     colSpan: 10
   }, "No hay ofertas disponibles")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
     colSpan: 10
-  }, "Cargando ofertas")))))));
+  }, "Cargando ofertas"))))))));
 };
 
 /***/ }),
@@ -79436,12 +79449,19 @@ var Program = function Program() {
       offer = _useState2[0],
       setOffer = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      offerRelation = _useState4[0],
+      setOfferRelation = _useState4[1];
+
   var user = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useSelector"])(function (state) {
     return state.auth;
   });
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     console.log('cambio el parametro id:' + id);
-    getDataOffer();
+    getDataOffer().then(function (response) {
+      getDataOfferRelation(response);
+    })["catch"]();
   }, [id]);
 
   var getDataOffer = /*#__PURE__*/function () {
@@ -79465,8 +79485,9 @@ var Program = function Program() {
                * La variable request tiene toda la información de la oferta, por lo cual puedes agregar una vista para el programa.
                */
               setOffer(request);
+              return _context.abrupt("return", request);
 
-            case 5:
+            case 6:
             case "end":
               return _context.stop();
           }
@@ -79479,16 +79500,47 @@ var Program = function Program() {
     };
   }();
 
-  var handleSaveFavorite = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(offer) {
-      var response, data;
+  var getDataOfferRelation = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(item) {
+      var data, request;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
+              data = {
+                route: "/api/offer/name/".concat(item.nombre_programa),
+                parametro: ''
+              };
+              _context2.next = 3;
+              return Object(_https_GetHttpRequest__WEBPACK_IMPORTED_MODULE_4__["GetHttpRequest"])(data);
+
+            case 3:
+              request = _context2.sent;
+              setOfferRelation(request);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function getDataOfferRelation(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  var handleSaveFavorite = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(offer) {
+      var response, data;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
               offer.user_id = parseInt(user === null || user === void 0 ? void 0 : user.user_id);
-              _context2.prev = 1;
-              _context2.next = 4;
+              _context3.prev = 1;
+              _context3.next = 4;
               return fetch("/api/save/favorite", {
                 method: 'POST',
                 headers: {
@@ -79502,12 +79554,12 @@ var Program = function Program() {
               });
 
             case 4:
-              response = _context2.sent;
-              _context2.next = 7;
+              response = _context3.sent;
+              _context3.next = 7;
               return response.json();
 
             case 7:
-              data = _context2.sent;
+              data = _context3.sent;
               console.log('******||favorite', data); //dispatch(offers())
 
               if (data.status) {
@@ -79526,24 +79578,24 @@ var Program = function Program() {
                 });
               }
 
-              _context2.next = 15;
+              _context3.next = 15;
               break;
 
             case 12:
-              _context2.prev = 12;
-              _context2.t0 = _context2["catch"](1);
-              console.log(_context2.t0);
+              _context3.prev = 12;
+              _context3.t0 = _context3["catch"](1);
+              console.log(_context3.t0);
 
             case 15:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2, null, [[1, 12]]);
+      }, _callee3, null, [[1, 12]]);
     }));
 
-    return function handleSaveFavorite(_x) {
-      return _ref2.apply(this, arguments);
+    return function handleSaveFavorite(_x2) {
+      return _ref3.apply(this, arguments);
     };
   }();
 
@@ -79622,7 +79674,30 @@ var Program = function Program() {
     href: offer === null || offer === void 0 ? void 0 : offer.pagina_plan,
     target: "_blank",
     className: "btn btn-primary my-2"
-  }, "Ver plan de estudios"))))));
+  }, "Ver plan de estudios"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "container-fluid my-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+    className: "text-center my-2"
+  }, "COMPARAR OFERTAS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card-deck"
+  }, offerRelation === null || offerRelation === void 0 ? void 0 : offerRelation.map(function (item, i) {
+    return offer.id !== item.id ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      key: i,
+      className: "card"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "card-body"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
+      className: "card-title text-center"
+    }, item.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Instituci\xF3n: ", item.nombre_ies), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Ubicaci\xF3n: ", item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Nivel acad\xE9mico: ", item.nivel_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "Precio: ", offer.precio - item.precio > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "text-danger"
+    }, "- $", offer.precio - item.precio) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+      className: "text-success"
+    }, "+ $", offer.precio - item.precio), " : ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("i", null, "$ ", item.precio))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      className: "card-footer"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", {
+      className: "text-muted"
+    }, "Fecha creaci\xF3n: ", item.created_at))) : '';
+  }))));
 };
 
 /***/ }),

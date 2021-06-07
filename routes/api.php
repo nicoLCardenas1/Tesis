@@ -28,6 +28,7 @@ Route::post('save/ofert', 'OfertsController@store');
 Route::post('update/ofert', 'OfertsController@update');
 Route::get('oferts/{id?}', 'OfertsController@index');
 Route::get('offer/{id}', 'OfertsController@show');
+Route::get('offer/name/{name}', 'OfertsController@relative');
 Route::delete('offer/{id}', 'OfertsController@delete');
 
 Route::put('universidad', 'OfertsController@updateUniversidad');

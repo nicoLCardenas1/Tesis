@@ -7,12 +7,17 @@ import Swal from 'sweetalert2'
 export const Program = () => {
     let { id } = useParams();
     const [offer, setOffer] = useState(null)
+    const [offerRelation, setOfferRelation] = useState(null)
     const user = useSelector(state => state.auth)
 
     useEffect(() => {
         console.log('cambio el parametro id:' + id)
         getDataOffer()
-    }, [id])
+            .then(response => {
+                getDataOfferRelation(response);
+            })
+            .catch();
+    }, [id]);
 
     const getDataOffer = async () => {
         const data = {
@@ -24,6 +29,17 @@ export const Program = () => {
          * La variable request tiene toda la información de la oferta, por lo cual puedes agregar una vista para el programa.
          */
         setOffer(request);
+        return request;
+    }
+
+    const getDataOfferRelation = async (item) => {
+        const data = {
+            route: `/api/offer/name/${item.nombre_programa}`,
+            parametro: ''
+        };
+        const request = await GetHttpRequest(data)
+
+        setOfferRelation(request);
     }
 
     const handleSaveFavorite = async (offer) => {
@@ -103,6 +119,26 @@ export const Program = () => {
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div className="container-fluid my-4">
+                <h4 className="text-center my-2">COMPARAR OFERTAS</h4>
+                <div className="card-deck">
+                    {offerRelation?.map((item, i) => (
+                        offer.id !== item.id ? <div key={i} className="card" >
+                            <div className="card-body">
+                                <h5 className="card-title text-center">{item.nombre_programa}</h5>
+                                <p>Institución: {item.nombre_ies}</p>
+                                <p>Ubicación: {item.ubicacion}</p>
+                                <p>Nivel académico: {item.nivel_academico}</p>
+                                <p>Precio: {(offer.precio - item.precio) > 0 ? <span className="text-danger">- ${offer.precio - item.precio}</span> : <span className="text-success">+ ${offer.precio - item.precio}</span>} : <i>$ {item.precio}</i></p>
+                            </div>
+                            <div className="card-footer">
+                                <small className="text-muted">Fecha creación: {item.created_at}</small>
+                            </div>
+                        </div> : ''
+                    ))}
+                </div>
+            </div>
+        </div >
     )
 }
