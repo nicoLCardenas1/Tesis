@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('postulados/{id}', 'FavoriteController@postuados');
 Route::get('favorites/{id}', 'FavoriteController@show');
 Route::post('save/favorite', 'FavoriteController@store');
+Route::delete('favorite/{user}/{id}', 'FavoriteController@destroy');
 
 Route::post('save/ofert', 'OfertsController@store');
 Route::post('update/ofert', 'OfertsController@update');

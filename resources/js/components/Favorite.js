@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GetHttpRequest } from './https/GetHttpRequest';
-import { createOffer, offers } from './redux/actions/oferts';
 import { useDebounce } from 'use-debounce';
+import Swal from 'sweetalert2'
 
 const Input = styled.input`
   border: none;
@@ -74,6 +73,27 @@ export const Favorite = () => {
         setDinamicOffer(request)
     }
 
+    const handleDeleteOffer = (item) => {
+        fetch(`/api/favorite/${user.user_id}/${item.id}`, {
+            method: 'DELETE'
+        })
+            .then(data => data.json())
+            .then(response => {
+                if (response) {
+                    Swal.fire({
+                        title: 'Oferta eliminada',
+                        text: 'La oferta se ha eliminado exitosamente',
+                        icon: 'success',
+                        confirmButtonText: 'Cerrar'
+                    });
+                    setDinamicOffer(dinamicOffer.filter(offer => offer.id !== item.id));
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
     return (
         <div className='container-fluid'>
             <div className='row justify-content-center'>
@@ -118,7 +138,7 @@ export const Favorite = () => {
                                                 <td>{item.numero_semestres}</td>
                                                 <td>{item.metodologia}</td>
                                                 <td>
-                                                <button className='btn btn-sm mx-1 btn-danger' onClick={(e) => handleDeleteOffer(item.id, e, i)}>Eliminar</button>
+                                                    <button className='btn btn-sm mx-1 btn-danger' onClick={() => handleDeleteOffer(item)}>Eliminar</button>
                                                 </td>
                                             </tr>
                                         ))

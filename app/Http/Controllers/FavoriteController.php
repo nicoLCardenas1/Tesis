@@ -118,8 +118,9 @@ class FavoriteController extends Controller
      * @param  \App\Favorite  $favorite
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorite $favorite)
+    public function destroy($user, $id)
     {
-        //
+        $result = Favorite::where("user_id", $user)->where("offer_id", $id)->delete();
+        return response()->json($result ? true : false, 200);
     }
 }

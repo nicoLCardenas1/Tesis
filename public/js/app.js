@@ -78491,11 +78491,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
-/* harmony import */ var _https_GetHttpRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./https/GetHttpRequest */ "./resources/js/components/https/GetHttpRequest.js");
-/* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
-/* harmony import */ var use_debounce__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! use-debounce */ "./node_modules/use-debounce/esm/index.js");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _https_GetHttpRequest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./https/GetHttpRequest */ "./resources/js/components/https/GetHttpRequest.js");
+/* harmony import */ var use_debounce__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! use-debounce */ "./node_modules/use-debounce/esm/index.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
 var _templateObject;
 
 
@@ -78524,8 +78524,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 
 
-
-var Input = styled_components__WEBPACK_IMPORTED_MODULE_4__["default"].input(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: none;\n  height: 100%;\n  min-height: 35px;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-radius: 4px;\n  text-align: center;\n  color: gray;\n"])));
+var Input = styled_components__WEBPACK_IMPORTED_MODULE_3__["default"].input(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  border: none;\n  height: 100%;\n  min-height: 35px;\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-radius: 4px;\n  text-align: center;\n  color: gray;\n"])));
 var Favorite = function Favorite() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -78548,7 +78547,7 @@ var Favorite = function Favorite() {
 
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
 
-  var _useDebounce = Object(use_debounce__WEBPACK_IMPORTED_MODULE_7__["useDebounce"])(snies, 1000),
+  var _useDebounce = Object(use_debounce__WEBPACK_IMPORTED_MODULE_5__["useDebounce"])(snies, 1000),
       _useDebounce2 = _slicedToArray(_useDebounce, 1),
       value = _useDebounce2[0];
 
@@ -78602,7 +78601,7 @@ var Favorite = function Favorite() {
                 parametro: user === null || user === void 0 ? void 0 : user.user_id
               };
               _context.next = 4;
-              return Object(_https_GetHttpRequest__WEBPACK_IMPORTED_MODULE_5__["GetHttpRequest"])(data);
+              return Object(_https_GetHttpRequest__WEBPACK_IMPORTED_MODULE_4__["GetHttpRequest"])(data);
 
             case 4:
               request = _context.sent;
@@ -78621,6 +78620,28 @@ var Favorite = function Favorite() {
       return _ref.apply(this, arguments);
     };
   }();
+
+  var handleDeleteOffer = function handleDeleteOffer(item) {
+    fetch("/api/favorite/".concat(user.user_id, "/").concat(item.id), {
+      method: 'DELETE'
+    }).then(function (data) {
+      return data.json();
+    }).then(function (response) {
+      if (response) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
+          title: 'Oferta eliminada',
+          text: 'La oferta se ha eliminado exitosamente',
+          icon: 'success',
+          confirmButtonText: 'Cerrar'
+        });
+        setDinamicOffer(dinamicOffer.filter(function (offer) {
+          return offer.id !== item.id;
+        }));
+      }
+    })["catch"](function (error) {
+      console.error(error);
+    });
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid"
@@ -78687,8 +78708,8 @@ var Favorite = function Favorite() {
       scope: "row"
     }, item.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.codigo_snies), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.sector_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.caracter_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.acreditado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.jornada), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.numero_semestres), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "btn btn-sm mx-1 btn-danger",
-      onClick: function onClick(e) {
-        return handleDeleteOffer(item.id, e, i);
+      onClick: function onClick() {
+        return handleDeleteOffer(item);
       }
     }, "Eliminar")));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
