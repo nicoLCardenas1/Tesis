@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GetHttpRequest } from './https/GetHttpRequest';
+import { createOffer, offers } from './redux/actions/oferts';
+import { useDebounce } from 'use-debounce';
 
 const Input = styled.input`
   border: none;
@@ -20,7 +22,9 @@ export const Postulados = () => {
     const [snies, setSnies] = useState('')
     const [dinamicOffer, setDinamicOffer] = useState([])
     const user = useSelector(state => state.auth)
-    const offer = useSelector(state => state.offer);
+    const offer = useSelector(state => state.offer)
+    const dispatch = useDispatch();
+    const [value] = useDebounce(snies, 1000);
 
     useEffect(() => {
         console.log('***', offer?.offers)
@@ -29,13 +33,12 @@ export const Postulados = () => {
     }, [setDinamicOffer]);
 
     const getPostulados = async () => {
-        console.log('user: ', user)
+        console.log('user: ', user.user_id)
         const data = {
             route: `/api/postulados/`,
             parametro: user?.user_id,
         };
         const request = await GetHttpRequest(data)
-        console.log("DATA::", request);
         setDinamicOffer(request);
     }
 
@@ -49,9 +52,9 @@ export const Postulados = () => {
         const data = dinamicOffer
         const newData = data.filter(item => {
             const id = item.id
-            const codigo_snies = item.codigo_snies.toUpperCase()
-            const codigo_ies = item.codigo_ies.toUpperCase()
-            const nombre_ies = item.nombre_ies.toUpperCase()
+            const name = item.name.toUpperCase()
+            const email = item.email.toUpperCase()
+            const phone = item.phone.toUpperCase()
             const nombre_programa = item.nombre_programa.toUpperCase()
             const sector_academico = item.sector_academico.toUpperCase()
             const caracter_academico = item.caracter_academico.toUpperCase()
@@ -59,9 +62,10 @@ export const Postulados = () => {
             const acreditado = item.acreditado.toUpperCase()
             const jornada = item.jornada.toUpperCase()
             const numero_semestres = item.numero_semestres.toUpperCase()
+            const precio = item.precio
             const metodologia = item.metodologia.toUpperCase()
             //merge seacrh
-            const campo = id + " " + codigo_snies + " " + codigo_ies + " " + nombre_ies + " " + nombre_programa + " " + sector_academico + " " + caracter_academico + " " + ubicacion + " " + acreditado + " " + jornada + " " + numero_semestres + " " + metodologia
+            const campo = id + " " + name + " " + email + " " + phone + " " + nombre_programa + " " + sector_academico + " " + caracter_academico + " " + ubicacion + " " + acreditado + " " + jornada + " " + numero_semestres + " " + metodologia + " " + precio
             const textData = text.toUpperCase()
             console.log('result index of', campo.indexOf(textData) > -1);
             return campo.indexOf(textData) > -1
@@ -84,15 +88,16 @@ export const Postulados = () => {
                             </tr>
 
                             <tr className='bg-primary text-light text-center'>
-                                <th scope="col">ID</th>
+                                <th scope="col">Aspirante</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Teléfono</th>
                                 <th scope="col">Codigo SNIES</th>
                                 <th scope="col">N. Programa</th>
-                                <th scope="col">Sector</th>
                                 <th scope="col">Carácter Académico</th>
                                 <th scope="col">Ubicación</th>
                                 <th scope="col">¿Acreditado?</th>
-                                <th scope="col">Jornada</th>
                                 <th scope="col">Num. Semestres</th>
+                                <th scope="col">Precio</th>
                                 <th scope="col">Metodología</th>
                                 <th scope="col">Acciones</th>
                             </tr>
@@ -104,15 +109,16 @@ export const Postulados = () => {
                                         ?
                                         dinamicOffer.map((item, i) => (
                                             <tr key={i} className='text-center'>
-                                                <th scope="row">{item.id}</th>
+                                                <td>{item.name}</td>
+                                                <td>{item.email}</td>
+                                                <td>{item.phone}</td>
                                                 <td>{item.codigo_snies}</td>
                                                 <td>{item.nombre_programa}</td>
-                                                <td>{item.sector_academico}</td>
                                                 <td>{item.caracter_academico}</td>
                                                 <td>{item.ubicacion}</td>
                                                 <td>{item.acreditado}</td>
-                                                <td>{item.jornada}</td>
                                                 <td>{item.numero_semestres}</td>
+                                                <td>{item.precio}</td>
                                                 <td>{item.metodologia}</td>
                                                 <td>
                                                     <Link

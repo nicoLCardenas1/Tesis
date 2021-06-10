@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use App\Favorite;
 use App\Ofert;
 use Illuminate\Http\Request;
@@ -83,10 +83,14 @@ class FavoriteController extends Controller
     public function postuados($id)
     {
         $favorites = Favorite::select('offer_id')->get();
-        $offers = Ofert::whereIn('id', $favorites)
-            ->where('user_id', $id)
+        $offers = DB::table('oferts')
+            ->join('users', 'oferts.user_id', '=', 'users.id')
+            ->select('users.*', 'oferts.*')
+            // ->whereIn('id', $favorites)
+            ->where('oferts.user_id', $id)
             ->get();
-        return response()->json($offers, 200);
+
+            return response()->json($offers, 200);
     }
 
     /**
