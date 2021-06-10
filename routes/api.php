@@ -39,3 +39,4 @@ Route::post('snies', 'OfertsController@snies');
 
 Route::post('programas', 'ProgramaController@store');
 Route::get('programa/{snies}', 'ProgramaController@index');
+Route::post('enviarCorreo', 'ProgramaController@correo');

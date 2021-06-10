@@ -7334,7 +7334,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".pb-image-viewer .img-responsive.full-width{\r\n    display: none !important;\r\n}", ""]);
+exports.push([module.i, ".pb-image-viewer .img-responsive.full-width{\n    display: none !important;\n}", ""]);
 
 // exports
 
@@ -79209,7 +79209,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _https_GetHttpRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./https/GetHttpRequest */ "./resources/js/components/https/GetHttpRequest.js");
-/* harmony import */ var _redux_actions_oferts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./redux/actions/oferts */ "./resources/js/components/redux/actions/oferts.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var use_debounce__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! use-debounce */ "./node_modules/use-debounce/esm/index.js");
 var _templateObject;
 
@@ -79334,6 +79335,53 @@ var Postulados = function Postulados() {
     setSnies(text);
   };
 
+  var enviarEmail = function enviarEmail(correo) {
+    sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
+      title: 'Enviar correo al postulado',
+      input: 'textarea',
+      inputPlaceholder: 'Escriba mensaje del correo...',
+      inputAttributes: {
+        autocapitalize: 'off',
+        'aria-label': 'Escriba mensaje del correo'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Enviar mensaje',
+      showLoaderOnConfirm: true,
+      preConfirm: function preConfirm(mensaje) {
+        return fetch("/api/enviarCorreo", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            correo: correo,
+            mensaje: mensaje
+          })
+        }).then(function (response) {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+
+          return response.json();
+        })["catch"](function (error) {
+          sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.showValidationMessage("Request failed: ".concat(error));
+        });
+      },
+      allowOutsideClick: function allowOutsideClick() {
+        return !sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.isLoading();
+      }
+    }).then(function (result) {
+      if (result.isConfirmed) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
+          title: 'Correo enviado',
+          showCancelButton: true,
+          showConfirmButton: false,
+          cancelButtonText: 'Cerrar'
+        });
+      }
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -79397,8 +79445,13 @@ var Postulados = function Postulados() {
       className: "text-center"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.phone), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.codigo_snies), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.nombre_programa), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.caracter_academico), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.acreditado), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.numero_semestres), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.precio), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, item.metodologia), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
       to: "/home/programa/".concat(item.id),
-      className: "btn btn-sm btn-warning text-light"
-    }, " Ver...")));
+      className: "btn btn-sm btn-warning text-light m-1"
+    }, " Ver..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+      className: "btn btn-sm btn-info text-light m-1",
+      onClick: function onClick() {
+        return enviarEmail(item.email);
+      }
+    }, " Enviar correo")));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
     colSpan: 10
   }, "No hay ofertas disponibles")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
@@ -81270,8 +81323,8 @@ var AppRouter = function AppRouter() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ashly\OneDrive\Escritorio\Proyecto\Tesis\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ashly\OneDrive\Escritorio\Proyecto\Tesis\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\ies-master\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\ies-master\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

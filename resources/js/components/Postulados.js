@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GetHttpRequest } from './https/GetHttpRequest';
-import { createOffer, offers } from './redux/actions/oferts';
+import Swal from 'sweetalert2';
 import { useDebounce } from 'use-debounce';
 
 const Input = styled.input`
@@ -74,6 +74,51 @@ export const Postulados = () => {
         setSnies(text)
     }
 
+    const enviarEmail = (correo) => {
+        Swal.fire({
+            title: 'Enviar correo al postulado',
+            input: 'textarea',
+            inputPlaceholder: 'Escriba mensaje del correo...',
+            inputAttributes: {
+                autocapitalize: 'off',
+                'aria-label': 'Escriba mensaje del correo'
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Enviar mensaje',
+            showLoaderOnConfirm: true,
+            preConfirm: (mensaje) => {
+                return fetch(`/api/enviarCorreo`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ correo, mensaje })
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    })
+                    .catch(error => {
+                        Swal.showValidationMessage(
+                            `Request failed: ${error}`
+                        )
+                    })
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Correo enviado',
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonText: 'Cerrar',
+                })
+            }
+        });
+    }
+
     return (
         <div className='container-fluid'>
             <div className='row justify-content-center'>
@@ -123,8 +168,12 @@ export const Postulados = () => {
                                                 <td>
                                                     <Link
                                                         to={`/home/programa/${item.id}`}
-                                                        className='btn btn-sm btn-warning text-light'
+                                                        className='btn btn-sm btn-warning text-light m-1'
                                                     > Ver...</Link>
+                                                    <button
+                                                        className='btn btn-sm btn-info text-light m-1'
+                                                        onClick={() => enviarEmail(item.email)}
+                                                    > Enviar correo</button>
                                                 </td>
                                             </tr>
                                         ))

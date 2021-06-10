@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use App\Favorite;
 use App\Ofert;
@@ -86,11 +87,11 @@ class FavoriteController extends Controller
         $offers = DB::table('oferts')
             ->join('users', 'oferts.user_id', '=', 'users.id')
             ->select('users.*', 'oferts.*')
-            // ->whereIn('id', $favorites)
+            ->whereIn('oferts.id', $favorites)
             ->where('oferts.user_id', $id)
             ->get();
 
-            return response()->json($offers, 200);
+        return response()->json($offers, 200);
     }
 
     /**

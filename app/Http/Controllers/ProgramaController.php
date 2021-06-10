@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Informacion;
 use App\Programa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProgramaController extends Controller
 {
@@ -105,5 +107,16 @@ class ProgramaController extends Controller
     public function destroy()
     {
         //
+    }
+
+    /**
+     *
+     */
+    public function correo(Request $request)
+    {
+        $data = $request->all();
+
+        Mail::to($data["correo"])->send(new Informacion($data["mensaje"]));
+        return response()->json([], 200);
     }
 }
