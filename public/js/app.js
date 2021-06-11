@@ -79374,6 +79374,7 @@ var Postulados = function Postulados() {
       if (result.isConfirmed) {
         sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
           title: 'Correo enviado',
+          icon: "success",
           showCancelButton: true,
           showConfirmButton: false,
           cancelButtonText: 'Cerrar'
@@ -79594,6 +79595,36 @@ var Program = function Program() {
     };
   }();
 
+  var enviarCorreo = function enviarCorreo() {
+    fetch("/api/enviarCorreoPlan", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user_id: user.user_id,
+        offer_id: offer.id
+      })
+    }).then(function (data) {
+      return data.json();
+    }).then(function (response) {
+      if (response) {
+        sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
+          title: 'Correo enviado',
+          icon: "success",
+          showCancelButton: true,
+          showConfirmButton: false,
+          cancelButtonText: 'Cerrar'
+        });
+      }
+    })["catch"](function (error) {
+      console.log({
+        error: error
+      });
+      sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.showValidationMessage("Request failed: ".concat(error));
+    });
+  };
+
   var handleSaveFavorite = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(offer) {
       var response, data;
@@ -79732,12 +79763,15 @@ var Program = function Program() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: offer === null || offer === void 0 ? void 0 : offer.pagina_admision,
     target: "_blank",
-    className: "btn btn-dark my-2"
+    className: "btn btn-dark m-1"
   }, "P\xE1gina de Admisiones"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
     href: offer === null || offer === void 0 ? void 0 : offer.pagina_plan,
     target: "_blank",
-    className: "btn btn-primary my-2"
-  }, "Ver plan de estudios"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "btn btn-primary m-1"
+  }, "Ver plan de estudios"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    onClick: enviarCorreo,
+    className: "btn btn-info m-1"
+  }, "Enviar plan al correo"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid my-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
     className: "text-center my-2"

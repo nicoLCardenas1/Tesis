@@ -108,15 +108,4 @@ class ProgramaController extends Controller
     {
         //
     }
-
-    /**
-     *
-     */
-    public function correo(Request $request)
-    {
-        $data = $request->all();
-
-        Mail::to($data["correo"])->send(new Informacion($data["mensaje"]));
-        return response()->json([], 200);
-    }
 }

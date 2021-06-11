@@ -42,6 +42,34 @@ export const Program = () => {
         setOfferRelation(request);
     }
 
+    const enviarCorreo = () => {
+        fetch(`/api/enviarCorreoPlan`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: user.user_id, offer_id: offer.id })
+        })
+            .then(data => data.json())
+            .then(response => {
+                if (response) {
+                    Swal.fire({
+                        title: 'Correo enviado',
+                        icon: "success",
+                        showCancelButton: true,
+                        showConfirmButton: false,
+                        cancelButtonText: 'Cerrar',
+                    })
+                }
+            })
+            .catch(error => {
+                console.log({ error });
+                Swal.showValidationMessage(
+                    `Request failed: ${error}`
+                )
+            })
+    }
+
     const handleSaveFavorite = async (offer) => {
         offer.user_id = parseInt(user?.user_id)
         try {
@@ -113,8 +141,9 @@ export const Program = () => {
                         <p className="card-title"><b>Jornada:</b> {offer?.jornada}</p>
 
                         <div className="d-flex justify-content-between">
-                            <a href={offer?.pagina_admision} target="_blank" className="btn btn-dark my-2">Página de Admisiones</a>
-                            <a href={offer?.pagina_plan} target="_blank" className="btn btn-primary my-2">Ver plan de estudios</a>
+                            <a href={offer?.pagina_admision} target="_blank" className="btn btn-dark m-1">Página de Admisiones</a>
+                            <a href={offer?.pagina_plan} target="_blank" className="btn btn-primary m-1">Ver plan de estudios</a>
+                            <button onClick={enviarCorreo} className="btn btn-info m-1">Enviar plan al correo</button>
                         </div>
                     </div>
                 </div>

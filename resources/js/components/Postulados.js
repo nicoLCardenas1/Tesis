@@ -111,6 +111,7 @@ export const Postulados = () => {
             if (result.isConfirmed) {
                 Swal.fire({
                     title: 'Correo enviado',
+                    icon: "success",
                     showCancelButton: true,
                     showConfirmButton: false,
                     cancelButtonText: 'Cerrar',
