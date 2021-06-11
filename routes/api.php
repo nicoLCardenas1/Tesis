@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::get('postulados/{id}', 'FavoriteController@postuados');
 Route::get('favorites/{id}', 'FavoriteController@show');
 Route::post('save/favorite', 'FavoriteController@store');
@@ -31,9 +30,9 @@ Route::get('offer/{id}', 'OfertsController@show');
 Route::get('offer/name/{name}', 'OfertsController@relative');
 Route::delete('offer/{id}', 'OfertsController@delete');
 
-Route::put('universidad', 'OfertsController@updateUniversidad');
-Route::get('universidad-user/{id}', 'OfertsController@getUniversidadIdUser');
-Route::get('universidad/{id}', 'OfertsController@getUniversidadId');
+Route::put('universidad', 'UniversidadController@updateUniversidad');
+Route::get('universidad-user/{id}', 'UniversidadController@getUniversidadIdUser');
+Route::get('universidad/{id}', 'UniversidadController@getUniversidadId');
 
 Route::post('snies', 'OfertsController@snies');
 
