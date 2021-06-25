@@ -302,6 +302,7 @@ export const Representate = () => {
                     setNivelAcademico(data.nivel_academico ?? "");
                     setUbicacion(data.municipio ?? "");
                     setMetodologia(data.modalidad ?? "");
+                    setAcreditado(data.reconocimiento?? "");
 
                     if (data.id) {
                         Swal.close();
@@ -374,18 +375,30 @@ export const Representate = () => {
                                         </div>
                                         <div className="form-group col-md-6">
                                             <label>Acreditado</label>
-                                            <input className="form-control" type='text' placeholder='Acreditado' onChange={(e) => setAcreditado(e.target.value)} value={acreditado} />
+                                            <input disabled={acreditado} className="form-control" type='text' placeholder='Reconocimiento del ministerio' onChange={(e) => setTitulo(e.target.value)} value={acreditado} />
                                         </div>
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">
                                             <label>Precio</label>
-                                            <input className="form-control" type='number' placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} />
+                                            <input className="form-control"  placeholder='Precio' onChange={(e) => setPrecio(e.target.value)} value={precio} />
                                         </div>
+                                       
+
                                         <div className="form-group col-md-6">
-                                            <label>Jornada</label>
-                                            <input className="form-control" type='text' placeholder='Jornada' onChange={(e) => setJornada(e.target.value)} value={jornada} />
-                                        </div>
+                                             <label htmlFor="sector">Jornada</label>
+                                             <select className="custom-select custom-select-sm" value={jornada ? jornada : 'DEFAULT'} onChange={(e) => setJornada(e.target.value)}>
+                                                     <option value="DEFAULT" required disabled>Tipo de jornada</option>
+                                                     <option value="Diurna">Diurna</option>
+                                                     <option value="Nocturna">Nocturna</option>
+                                                     <option value="Completa">Única</option>
+                                             </select>
+                                         </div>
+
+
+
+
+
                                     </div>
                                     <div className="form-row">
                                         <div className="form-group col-md-6">

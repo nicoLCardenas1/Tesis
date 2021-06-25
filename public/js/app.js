@@ -79177,13 +79177,11 @@ var Perfil = function Perfil() {
     value: "DEFAULT",
     required: true,
     disabled: true
-  }, "Tipo de jornada"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+  }, "Tipo de sector"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "Diurna"
-  }, "Diurna"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+  }, "P\xFAblico"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
     value: "Nocturna"
-  }, "Nocturna"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-    value: "Completa"
-  }, "Completa"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Privado"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "caracterAcademico"
@@ -80233,7 +80231,7 @@ var Representate = function Representate() {
       }).then(function (data) {
         return data.json();
       }).then(function (data) {
-        var _data$titulo_otorgado, _data$precio, _data$numero_semestre, _data$nombre_programa, _data$nivel_academico, _data$municipio, _data$modalidad;
+        var _data$titulo_otorgado, _data$precio, _data$numero_semestre, _data$nombre_programa, _data$nivel_academico, _data$municipio, _data$modalidad, _data$reconocimiento;
 
         setTitulo((_data$titulo_otorgado = data.titulo_otorgado) !== null && _data$titulo_otorgado !== void 0 ? _data$titulo_otorgado : "");
         setPrecio((_data$precio = data.precio) !== null && _data$precio !== void 0 ? _data$precio : "");
@@ -80242,6 +80240,7 @@ var Representate = function Representate() {
         setNivelAcademico((_data$nivel_academico = data.nivel_academico) !== null && _data$nivel_academico !== void 0 ? _data$nivel_academico : "");
         setUbicacion((_data$municipio = data.municipio) !== null && _data$municipio !== void 0 ? _data$municipio : "");
         setMetodologia((_data$modalidad = data.modalidad) !== null && _data$modalidad !== void 0 ? _data$modalidad : "");
+        setAcreditado((_data$reconocimiento = data.reconocimiento) !== null && _data$reconocimiento !== void 0 ? _data$reconocimiento : "");
 
         if (data.id) {
           sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.close();
@@ -80364,11 +80363,12 @@ var Representate = function Representate() {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Acreditado"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    disabled: acreditado,
     className: "form-control",
     type: "text",
-    placeholder: "Acreditado",
+    placeholder: "Reconocimiento del ministerio",
     onChange: function onChange(e) {
-      return setAcreditado(e.target.value);
+      return setTitulo(e.target.value);
     },
     value: acreditado
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -80377,7 +80377,6 @@ var Representate = function Representate() {
     className: "form-group col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Precio"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     className: "form-control",
-    type: "number",
     placeholder: "Precio",
     onChange: function onChange(e) {
       return setPrecio(e.target.value);
@@ -80385,15 +80384,25 @@ var Representate = function Representate() {
     value: precio
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", null, "Jornada"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "form-control",
-    type: "text",
-    placeholder: "Jornada",
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "sector"
+  }, "Jornada"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    className: "custom-select custom-select-sm",
+    value: jornada ? jornada : 'DEFAULT',
     onChange: function onChange(e) {
       return setJornada(e.target.value);
-    },
-    value: jornada
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "DEFAULT",
+    required: true,
+    disabled: true
+  }, "Tipo de jornada"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "Diurna"
+  }, "Diurna"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "Nocturna"
+  }, "Nocturna"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "Completa"
+  }, "\xDAnica")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "form-group col-md-6"

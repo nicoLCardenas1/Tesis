@@ -120,10 +120,9 @@ export const Perfil = () => {
                         <div className="form-group">
                             <label htmlFor="sector">Sector</label>
                             <select className="custom-select custom-select-sm" value={sector ? sector : 'DEFAULT'} onChange={(e) => setSector(e.target.value)}>
-                                <option value="DEFAULT" required disabled>Tipo de jornada</option>
-                                <option value="Diurna">Diurna</option>
-                                <option value="Nocturna">Nocturna</option>
-                                <option value="Completa">Completa</option>
+                                <option value="DEFAULT" required disabled>Tipo de sector</option>
+                                <option value="Diurna">Público</option>
+                                <option value="Nocturna">Privado</option>
                             </select>
                         </div>
 
