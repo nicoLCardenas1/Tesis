@@ -14,14 +14,16 @@ class ProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($snies = null)
+    public function index(Request $request,$ies = null)
     {
-        return response()->json(Programa::where('codigo_snies', $snies)->first(), 200);
+    $snies=$request->input('q');
+        return response()->json(Programa::where('codigo_snies', $snies)->where('codigo_ies', $ies)->first(), 200);
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * 
      * @return \Illuminate\Http\Response
      */
     public function create()

@@ -37,13 +37,13 @@ export const Representate = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log('***', offer?.offers)
+        console.log('***', user)
         if (!offer?.offers) dispatch(offers(user.user_id))
     }, [user]);
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            if (snies) { getDataProgram(snies); }
+            if (snies) { getDataProgram(snies,user.ies); }
         }, 1000);
 
         return () => clearTimeout(delayDebounceFn);
@@ -279,11 +279,11 @@ export const Representate = () => {
         setUrlPrograma('')
     }
 
-    const getDataProgram = (snies) => {
+    const getDataProgram = (snies,ies) => {
         Swal.fire('Buscando información...');
-
+      
         setTimeout(() => {
-            fetch(`/api/programa/${snies}`, {
+            fetch(`/api/programa/${ies}?q=${snies}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',

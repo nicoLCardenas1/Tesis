@@ -79954,13 +79954,13 @@ var Representate = function Representate() {
   });
   var dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["useDispatch"])();
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
-    console.log('***', offer === null || offer === void 0 ? void 0 : offer.offers);
+    console.log('***', user);
     if (!(offer !== null && offer !== void 0 && offer.offers)) dispatch(Object(_redux_actions_oferts__WEBPACK_IMPORTED_MODULE_3__["offers"])(user.user_id));
   }, [user]);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var delayDebounceFn = setTimeout(function () {
       if (snies) {
-        getDataProgram(snies);
+        getDataProgram(snies, user.ies);
       }
     }, 1000);
     return function () {
@@ -80216,10 +80216,10 @@ var Representate = function Representate() {
     setUrlPrograma('');
   };
 
-  var getDataProgram = function getDataProgram(snies) {
+  var getDataProgram = function getDataProgram(snies, ies) {
     sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire('Buscando información...');
     setTimeout(function () {
-      fetch("/api/programa/".concat(snies), {
+      fetch("/api/programa/".concat(ies, "?q=").concat(snies), {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -80786,9 +80786,12 @@ var Universidad = function Universidad() {
     r: "3"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("path", {
     d: "M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+    href: "https://www.google.com/maps/search/?api=1&query=" + encodeURI(offer === null || offer === void 0 ? void 0 : offer.ubicacion),
+    target: "_blank"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "card-title"
-  }, offer === null || offer === void 0 ? void 0 : offer.ubicacion), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+  }, offer === null || offer === void 0 ? void 0 : offer.ubicacion)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "card-title"
   }, "Sector: ", offer === null || offer === void 0 ? void 0 : offer.sector), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "card-title"

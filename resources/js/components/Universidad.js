@@ -41,7 +41,7 @@ export const Universidad = () => {
                                 <circle cx="12" cy="11" r="3" />
                                 <path d="M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0z" />
                             </svg>
-                            <span className="card-title">{offer?.ubicacion}</span>
+                            <a href={"https://www.google.com/maps/search/?api=1&query=" + encodeURI(offer?.ubicacion)} target="_blank"><span className="card-title">{offer?.ubicacion}</span></a>
                             <br></br>
                            <br></br>
                             <span className="card-title">Sector: {offer?.sector}</span>
