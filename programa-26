@@ -4439,7 +4439,7 @@
             "DEPARTAMENTO_OFERTA_PROGRAMA": "Caldas",
             "MUNICIPIO_OFERTA_PROGRAMA": "Manizales",
             "COSTO_MATRÍCULA_ESTUD_NUEVOS": 3348675
-        },**
+        },
         {
             "CÓDIGO_INSTITUCIÓN_PADRE": 1827,
             "CÓDIGO_SNIES_DEL_PROGRAMA": 11938,
@@ -5534,7 +5534,7 @@
             "DEPARTAMENTO_OFERTA_PROGRAMA": "Caldas",
             "MUNICIPIO_OFERTA_PROGRAMA": "Chinchiná",
             "COSTO_MATRÍCULA_ESTUD_NUEVOS": ""
-        },**
+        },
         {
             "CÓDIGO_INSTITUCIÓN_PADRE": 1827,
             "CÓDIGO_SNIES_DEL_PROGRAMA": 7826,
