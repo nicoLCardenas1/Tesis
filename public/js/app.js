@@ -79793,6 +79793,7 @@ var Program = function Program() {
     className: "btn btn-primary m-1"
   }, "Ver plan de estudios"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
     onClick: enviarCorreo,
+    hidden: !(offer !== null && offer !== void 0 && offer.pagina_plan.includes(".pdf")),
     className: "btn btn-info m-1"
   }, "Enviar plan al correo"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "container-fluid my-4"

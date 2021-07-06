@@ -143,8 +143,8 @@ export const Program = () => {
                         <div className="d-flex justify-content-between">
                             <a href={offer?.pagina_admision} target="_blank" className="btn btn-dark m-1">Página de Admisiones</a>
                             <a href={offer?.pagina_plan} target="_blank" className="btn btn-primary m-1">Ver plan de estudios</a>
-                            <button onClick={enviarCorreo} className="btn btn-info m-1">Enviar plan al correo</button>
-                        </div>
+                            <button onClick={enviarCorreo} hidden={!offer?.pagina_plan.includes(".pdf")} className="btn btn-info m-1">Enviar plan al correo</button>
+                                                    </div>
                     </div>
                 </div>
             </div>
