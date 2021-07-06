@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <p>{{ $data }}</p>
+    <p>{{ $mensaje }}</p>
 </body>
 
 </html>

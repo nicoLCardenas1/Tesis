@@ -16,8 +16,9 @@ class UtilController extends Controller
     public function correo(Request $request)
     {
         $data = $request->all();
+        $asunto= "Información " . $data["programa"] . " - " . $data["universidad"];
+        Mail::to($data["correo"])->send(new Informacion($data["mensaje"],$asunto));
 
-        Mail::to($data["correo"])->send(new Informacion($data["mensaje"]));
         return response()->json([], 200);
     }
 

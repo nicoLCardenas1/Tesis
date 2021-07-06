@@ -12,17 +12,19 @@ class Informacion extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "Informacion";
-    public $data;
+    public $subject;
+    public $mensaje;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($mensaje,$subject)
     {
-        $this->data = $data;
+        $this->mensaje = $mensaje;
+        $this->subject = $subject;
+
     }
     /**
      * Build the message.
@@ -31,6 +33,6 @@ class Informacion extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.Informacion1');
+        return $this->from('example@example.com')->view('mails.Informacion1');
     }
 }
