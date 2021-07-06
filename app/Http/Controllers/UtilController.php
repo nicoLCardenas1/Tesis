@@ -31,7 +31,7 @@ class UtilController extends Controller
 
         $offer = Ofert::where("id", $data["offer_id"])->first();
         $user = User::where("id", $data["user_id"])->first();
-        $mensaje = "Hola $user->name<br>Este es el plan de estudio para el programa $offer->nombre_programa en $offer->nombre_ies<br> <a href='$offer->pagina_url'>Plan de estudio</a>";
+        $mensaje = "Hola $user->name<br>Este es el plan de estudio para el programa $offer->nombre_programa en $offer->nombre_ies<br> <a href=\"$offer->pagina_plan\">$offer->pagina_plan</a>";
 
         Mail::to($user["email"])->send(new Informacion($mensaje, "Plan de estudio '$offer->nombre_programa' en  $offer->nombre_ies", "Información plan de estudio"));
         return response()->json([], 200);

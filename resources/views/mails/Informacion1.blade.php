@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <p>{{!! $mensaje !!}}</p>
+    <p>{!! $mensaje !!}</p>
 </body>
 
 </html>
