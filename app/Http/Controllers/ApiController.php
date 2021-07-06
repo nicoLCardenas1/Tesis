@@ -38,7 +38,9 @@ class ApiController extends Controller
             return response()->json([], 200);
         }
 
-        $universidad = Universidad::where("nombreIes", $snies["name"]);
+        $universidad = Universidad::where('nombreIes', 'LIKE', "%$snies->name%")->first();
+
+
         return response()->json($universidad, 200);
     }
 
