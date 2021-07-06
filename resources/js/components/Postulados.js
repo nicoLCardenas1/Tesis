@@ -92,7 +92,7 @@ export const Postulados = () => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ correo:item.email, mensaje,programa:item.nombre_programa,universidad:item.nombre_ies })
+                    body: JSON.stringify({ correo: item.email, mensaje, programa: item.nombre_programa, universidad: item.nombre_ies })
                 })
                     .then(response => {
                         if (!response.ok) {
