@@ -14,17 +14,18 @@ class Informacion extends Mailable
 
     public $subject;
     public $mensaje;
+    public $title;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mensaje,$subject)
+    public function __construct($mensaje, $subject, $title)
     {
         $this->mensaje = $mensaje;
         $this->subject = $subject;
-
+        $this->title = $title;
     }
     /**
      * Build the message.

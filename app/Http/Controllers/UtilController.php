@@ -16,8 +16,8 @@ class UtilController extends Controller
     public function correo(Request $request)
     {
         $data = $request->all();
-        $asunto= "Información " . $data["programa"] . " - " . $data["universidad"];
-        Mail::to($data["correo"])->send(new Informacion($data["mensaje"],$asunto));
+        $asunto = "Información " . $data["programa"] . " - " . $data["universidad"];
+        Mail::to($data["correo"])->send(new Informacion($data["mensaje"], $asunto, "Información de programa"));
 
         return response()->json([], 200);
     }
@@ -31,8 +31,9 @@ class UtilController extends Controller
 
         $offer = Ofert::where("id", $data["offer_id"])->first();
         $user = User::where("id", $data["user_id"])->first();
+        $mensaje = "Hola $user->name<br>Este es el plan de estudio para el programa $offer->nombre_programa en $offer->nombre_ies<br> <a href='$offer->pagina_url'>Plan de estudio</a>";
 
-        Mail::to($user["email"])->send(new Informacion($offer["nombre_programa"]));
+        Mail::to($user["email"])->send(new Informacion($mensaje, "Plan de estudio '$offer->nombre_programa' en  $offer->nombre_ies", "Información plan de estudio"));
         return response()->json([], 200);
     }
 }
