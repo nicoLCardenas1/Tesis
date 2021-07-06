@@ -74,7 +74,7 @@ export const Postulados = () => {
         setSnies(text)
     }
 
-    const enviarEmail = (correo) => {
+    const enviarEmail = (item) => {
         Swal.fire({
             title: 'Enviar correo al postulado',
             input: 'textarea',
@@ -92,7 +92,7 @@ export const Postulados = () => {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ correo, mensaje })
+                    body: JSON.stringify({ correo:item.email, mensaje,programa:item.nombre_programa,universidad:item.nombre_ies })
                 })
                     .then(response => {
                         if (!response.ok) {
@@ -173,7 +173,7 @@ export const Postulados = () => {
                                                     > Ver...</Link>
                                                     <button
                                                         className='btn btn-sm btn-info text-light m-1'
-                                                        onClick={() => enviarEmail(item.email)}
+                                                        onClick={() => enviarEmail(item)}
                                                     > Enviar correo</button>
                                                 </td>
                                             </tr>

@@ -79356,7 +79356,7 @@ var Postulados = function Postulados() {
     setSnies(text);
   };
 
-  var enviarEmail = function enviarEmail(correo) {
+  var enviarEmail = function enviarEmail(item) {
     sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.fire({
       title: 'Enviar correo al postulado',
       input: 'textarea',
@@ -79375,8 +79375,10 @@ var Postulados = function Postulados() {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            correo: correo,
-            mensaje: mensaje
+            correo: item.email,
+            mensaje: mensaje,
+            programa: item.nombre_programa,
+            universidad: item.nombre_ies
           })
         }).then(function (response) {
           if (!response.ok) {
@@ -79471,7 +79473,7 @@ var Postulados = function Postulados() {
     }, " Ver..."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
       className: "btn btn-sm btn-info text-light m-1",
       onClick: function onClick() {
-        return enviarEmail(item.email);
+        return enviarEmail(item);
       }
     }, " Enviar correo")));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", {
