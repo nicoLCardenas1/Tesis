@@ -40,6 +40,12 @@ class ApiController extends Controller
 
         $universidad = Universidad::where('nombreIes', 'LIKE', "%$snies->name%")->first();
 
+        if (isset($universidad)) {
+            unset($universidad->id);
+            unset($universidad->idUser);
+            unset($universidad->created_at);
+            unset($universidad->updated_at);
+        }
 
         return response()->json($universidad, 200);
     }
