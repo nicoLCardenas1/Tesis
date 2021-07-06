@@ -14,9 +14,9 @@ class ProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$ies = null)
+    public function index(Request $request, $ies = null)
     {
-    $snies=$request->input('q');
+        $snies = $request->input('q');
         return response()->json(Programa::where('codigo_snies', $snies)->where('codigo_ies', $ies)->first(), 200);
     }
 

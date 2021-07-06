@@ -41,3 +41,17 @@ Route::get('programa/{snies}', 'ProgramaController@index');
 
 Route::post('enviarCorreo', 'UtilController@correo');
 Route::post('enviarCorreoPlan', 'UtilController@correoPlan');
+
+/**
+ * GET: /api/public/snies/{id} 'Busca un snies de acuerdo al id'
+ * GET: /api/public/snies-search?nombre="" 'Busca un snies de acuerdo al nombre'
+ * 
+ * GET: /api/public/ies/{id} 'Busca un ies de acuerdo al id'
+ * GET: /api/public/ies-search?nombre="" 'Busca un ies de acuerdo al nombre'
+ * 
+ */
+Route::get('public/snies/{id}', 'ApiController@sniesByID');
+Route::get('public/snies-search', 'ApiController@sniesSearch');
+
+Route::get('public/ies/{id}', 'ApiController@iesByID');
+Route::get('public/ies-search', 'ApiController@iesSearch');
